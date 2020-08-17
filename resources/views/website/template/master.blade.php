@@ -67,7 +67,7 @@
 
 <body>
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <nav class="navbar navbar-expand-md navbar-light fixed-top" id="mainNav">
     <div class="container">
         <div>
             <span>
@@ -145,7 +145,7 @@
             </li>
           </ul> --}}
           <p class="copyright text-muted">
-              {{ __('website_master.copyright') }}&copy;{{ __('website_master.owner') }}&nbsp;{{ date("Y") }}
+              {{ __('website_master.copyright') }} &copy; {{ __('website_master.owner') }}&nbsp;{{ date("Y") }}
               &nbsp;|&nbsp;
               <a class="text-decoration-none text-blue-400" href="#" target="_blank">
                 {{ __('website_master.owner_site') }}&nbsp;<i class="fas fa-external-link-alt fa-xs text-muted"></i>
