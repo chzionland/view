@@ -23,13 +23,15 @@
   <link href="{{ asset('website/css/clean-blog.min.css') }}" rel="stylesheet">
 
     <style>
-    /* Nav bar */
+    /* Nav bar fixed top */
     .fixed-top {
         position: fixed !important;
         width: 100%;
         top: 0;
         left: 0;
     }
+
+    /* Nav bar hamberg to close */
     .navbar-close-icon {
         font-size: 18px;
         color: gray;
