@@ -67,7 +67,7 @@
 
 <body>
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-md navbar-light fixed-top" id="mainNav">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <div>
             <span>
@@ -84,8 +84,6 @@
         style="padding: 0;">
         <div class="navbar-close-icon px-1">X</div>
         <div class="navbar-toggler-icon"></div>
-        {{-- <i class="navbar-close-icon fas fas-times"></i>
-        <i class="navbar-toggler-icon fas fas-bars"></i> --}}
       </button>
 
       <div class="collapse navbar-collapse" id="navbarResponsive">
