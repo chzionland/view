@@ -57,7 +57,7 @@
                             <a class="nav-link" href="{{ route('pages.index', app()->getLocale()) }}">{{ __('app.manage_page') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('galleries.index', app()->getLocale()) }}">{{ __('app.manage_gallery') }}</a>
+                            <a class="nav-link" href="{{ route('photos.index', app()->getLocale()) }}">{{ __('app.manage_photo') }}</a>
                         </li>
                         <!-- Authentication Links -->
                         @guest

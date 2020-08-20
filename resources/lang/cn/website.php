@@ -1,16 +1,21 @@
 <?php
 
 return [
+    # master
+    'home' => '首 页',
+    'category_list' => '分类列表',
+    'contact_us' => '联系我们',
+    'copyright' => '版权所有',
+    'owner' => '北京其中科技发展集团有限公司',
+    'owner_site' => '公司主页',
+
     # index
-    'title' => '视 界',
     'sub_title' => '不忘昨天苦难辉煌, 不悔今天使命担当, 不负明天光荣梦想',
     'created_on' => '创建于',
     'updated_on' => '更新于',
     'category' => '类别',
 
     # pages
-    'site_name' => '视界',
-
     'category_list' => '分类列表',
     'read_more' => '查看更多...>>',
     'uncategorized_posts' => '其 它',

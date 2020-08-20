@@ -73,8 +73,8 @@
             <span>
                 <img src="{{ asset('website/logo/avatar.png') }}" alt="logo" style="height: 35px">
               </span>
-              <a class="navbar-brand" href="http://www.qizhong.land" target="_blank" style="padding-left: 0;">
-                  {{ __('website_master.main_site') }}
+              <a class="navbar-brand" href="#" style="padding-left: 0;">
+                  {{ __('app.app_name') }}
               </a>
         </div>
 
@@ -89,19 +89,27 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto" style="align-items: center;">
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('index', app()->getLocale()) }}" style="font-size: 18px;">{{ __('website_master.home') }}</a>
+            <a class="nav-link" href="{{ route('index', app()->getLocale()) }}" style="font-size: 18px;">
+                {{ __('website.home') }}
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('category_list', app()->getLocale()) }}" style="font-size: 18px;">{{ __('website_master.category_list') }}</a>
+            <a class="nav-link" href="{{ route('category_list', app()->getLocale()) }}" style="font-size: 18px;">
+                {{ __('website.category_list') }}
+            </a>
           </li>
           @php ($pages = getPages())
           @foreach ($pages as $page)
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('page', [$page->slug, app()->getLocale()]) }}" style="font-size: 18px;">{{ $page->title }}</a>
+                <a class="nav-link" href="{{ route('page', [$page->slug, app()->getLocale()]) }}" style="font-size: 18px;">
+                    {{ $page->title }}
+                </a>
             </li>
           @endforeach
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('message.show', app()->getLocale()) }}" style="font-size: 18px;">{{ __('website_master.messages') }}</a>
+            <a class="nav-link" href="https://www.qizhong.land#contact" target="_blank" style="font-size: 18px;">
+                {{ __('website.contact_us') }}&nbsp;<i class="fas fa-external-link-alt fa-xs"></i>
+            </a>
           </li>
         </ul>
       </div>
@@ -116,37 +124,12 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          {{-- <ul class="list-inline text-center">
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          </ul> --}}
+
           <p class="copyright text-muted">
-              {{ __('website_master.copyright') }} &copy; {{ __('website_master.owner') }}&nbsp;{{ date("Y") }}
-              &nbsp;|&nbsp;
-              <a class="text-decoration-none text-blue-400" href="#" target="_blank">
-                {{ __('website_master.owner_site') }}&nbsp;<i class="fas fa-external-link-alt fa-xs text-muted"></i>
+              {{ __('website.copyright') }} &copy; {{ __('website.owner') }}&nbsp;{{ date("Y") }}
+              <br>
+              <a class="text-decoration-none" href="https://www.qizhong.land" target="_blank" style="color: #0085a1">
+                {{ __('website.owner_site') }}&nbsp;<i class="fas fa-external-link-alt fa-xs"></i>
               </a>
           </p>
 

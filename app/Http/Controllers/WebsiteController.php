@@ -59,32 +59,4 @@ class WebsiteController extends Controller
     public function showMessageForm() {
         return view('website.message');
     }
-
-    public function submitMessageForm(Request $request) {
-        $this->validate($request,
-            [
-                'name' => 'required',
-                'email' => 'required',
-                'tel' => 'required',
-                'message' => 'required',
-            ],
-            [
-                'name.required' => 'Name is required',
-                'email.required' => 'Email is required',
-                'tel.required' => 'Tel is required',
-                'message.required' => 'Message is required'
-            ],
-        );
-        $data = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'tel' => $request->tel,
-            'message' => $request->message,
-        ];
-
-        Mail::to('media@qizhong.land')->send(new VisitorContact($data));
-
-        Session::flash('message', trans('website.message_sent_successfully'));
-        return redirect()->route('message.show', app()->getLocale());
-    }
 }

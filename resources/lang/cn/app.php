@@ -11,5 +11,5 @@ return [
     'manage_category' => '类别管理',
     'manage_post' => '文章管理',
     'manage_page' => '页面管理',
-    'manage_gallery' => '相册管理',
+    'manage_photo' => '相片管理',
 ];

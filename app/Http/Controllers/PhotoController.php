@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Gallery;
+use App\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
-class GalleryController extends Controller
+class PhotoController extends Controller
 {
-    /**
+        /**
      * Create a new controller instance.
      *
      * @return void
@@ -27,8 +27,8 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $galleries = Gallery::orderBy('id', 'DESC')->get();
-        return view('admin.gallery.index', compact('galleries'));
+        $photos = Photo::orderBy('id', 'DESC')->get();
+        return view('admin.photo.index', compact('photos'));
     }
 
     /**
@@ -38,7 +38,7 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        return view('admin.gallery.create');
+        return view('admin.photo.create');
     }
 
     /**
@@ -64,63 +64,30 @@ class GalleryController extends Controller
             $fileExt = $image_url->getClientOriginalExtension();
             $fileNameToStore = $fileName . '.' . $fileExt;
 
-            $gallery = new Gallery();
-            $gallery->admin_id = Auth::id();
-            $gallery->image_url = $fileNameToStore;
-            $save = $gallery->save();
+            $photo = new Photo();
+            $photo->admin_id = Auth::id();
+            $photo->image_url = $fileNameToStore;
+            $save = $photo->save();
 
             if ($save) {
-                $image_url->storeAs('public/galleries', $fileNameToStore);
+                $image_url->storeAs('public/photos', $fileNameToStore);
             }
         }
         Session::flash('message', trans('admin_CRUD.image_uploaded_successfully'));
-        return redirect()->route('galleries.index');
+        return redirect()->route('photos.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Gallery  $gallery
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Gallery $gallery)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Gallery  $gallery
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Gallery $gallery)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Gallery  $gallery
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Gallery $gallery)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Gallery  $gallery
+     * @param  \App\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gallery $gallery)
+    public function destroy(Photo $photo)
     {
-        Storage::delete('public/galleries' . $gallery->image_url);
-        $gallery->delete();
+        Storage::delete('public/galleries' . $photo->image_url);
+        $photo->delete();
 
         Session::flash('danger-message', trans('admin_CRUD.images_deleted_successfully'));
         return redirect()->route('galleries.index');

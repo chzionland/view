@@ -14,7 +14,7 @@ return [
     'edit_delete' => '编辑 ｜ 删除',
 
     'thumbnail' => '封面图',
-    'gallery' => '图库',
+    'photo' => '图库',
     'paste_thumbnail_address_here' => '请从图库选择图片，并将图片链接粘贴于此处',
 
     'is_published' => '是否公开发布？',
@@ -84,14 +84,14 @@ return [
     'create_page' => '创建页面',
     'update_page' => '更新页面',
 
-    # Gallery
-    'gallery_list' => '相片索引',
+    # Photo
+    'photo_list' => '相片索引',
     'preview' => '预览',
     'img_url' => '图片链接',
     'uploaded_by' => '上传者',
     'uploaded_at' => '上传于',
     'delete' => '删除',
     'select_image' => '选择图片',
-    'gallery_upload' => '上传相片',
+    'photo_upload' => '上传相片',
     'upload' => '上传',
 ];

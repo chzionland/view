@@ -32,7 +32,8 @@ Route::prefix('admin')->group(function () {
     Route::resource('categories', 'CategoryController');
     Route::resource('posts', 'PostController');
     Route::resource('pages', 'PageController');
-    Route::resource('galleries', 'GalleryController');
+    Route::resource('photos', 'PhotoController');
+    // Route::resource('galleries', 'GalleryController');
 });
 
 Route::group(['prefix' => '{locale?}'], function() {
@@ -43,8 +44,6 @@ Route::group(['prefix' => '{locale?}'], function() {
     Route::get('category/{slug}', 'WebsiteController@category')->name('category');
     Route::get('post/{slug}', 'WebsiteController@post')->name('post');
     Route::get('page/{slug}', 'WebsiteController@page')->name('page');
-    Route::get('contact', 'WebsiteController@showMessageForm')->name('message.show');
-    Route::post('contact', 'WebsiteController@submitMessageForm')->name('message.submit');
 });
 
 
