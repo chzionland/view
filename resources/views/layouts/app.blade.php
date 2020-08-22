@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <title>{{ $title }}</title>
+    <title>{{ 'CMS-' . $title }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
@@ -47,6 +47,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.dashboard', app()->getLocale()) }}">{{ __('app.dashboard') }}</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('subjects.index', app()->getLocale()) }}">{{ __('app.manage_subject') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('photos.index', app()->getLocale()) }}">{{ __('app.manage_photo') }}</a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('categories.index', app()->getLocale()) }}">{{ __('app.manage_category') }}</a>
                         </li>
@@ -59,12 +67,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('pages.index', app()->getLocale()) }}">{{ __('app.manage_page') }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('subjects.index', app()->getLocale()) }}">{{ __('app.manage_subject') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('photos.index', app()->getLocale()) }}">{{ __('app.manage_photo') }}</a>
-                        </li>
+
                         <!-- Authentication Links -->
                         @guest
                             {{-- @if (Route::has('login')) --}}
