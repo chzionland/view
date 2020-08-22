@@ -9,7 +9,13 @@ class Post extends Model
 {
     use HasTranslations;
 
-    protected $fillable = ['admin_id', 'thumbnail', 'title', 'slug', 'sub_title', 'details', 'post_type', 'is_published'];
+    protected $fillable = [
+        'admin_id', 'thumbnail',
+        'title', 'slug', 'sub_title',
+        'is_reproduced', 'source', 'source_url',
+        'author', 'editor',
+        'details', 'post_type', 'is_published',
+    ];
 
     public $translatable = ['title', 'sub_title', 'details'];
 
@@ -21,5 +27,10 @@ class Post extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'category_posts');
+    }
+
+    public function authors()
+    {
+        return $this->belongsToMany(Author::class, 'author_posts');
     }
 }

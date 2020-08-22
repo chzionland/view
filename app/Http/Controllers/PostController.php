@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Author;
 use App\Category;
 use App\Post;
 use Carbon\Carbon;
@@ -28,8 +29,9 @@ class PostController extends Controller
      */
     public function index()
     {
+        $title = trans('admin_CRUD.post_list');
         $posts = Post::orderBy('id', 'DESC')->where('post_type', 'post')->get();
-        return view('admin.post.index', compact('posts'));
+        return view('admin.post.index', compact('title', 'posts'));
     }
 
     /**
@@ -39,8 +41,10 @@ class PostController extends Controller
      */
     public function create()
     {
+        $title = trans('admin_CRUD.create_post');
+        $authors = Author::orderBy('id', 'DESC')->pluck('name', 'id');
         $categories = Category::orderBy('id', 'DESC')->pluck('name', 'id');
-        return view('admin.post.create', compact('categories'));
+        return view('admin.post.create', compact('title', 'authors', 'categories'));
     }
 
     /**
@@ -55,6 +59,8 @@ class PostController extends Controller
             [
                 'title_cn' => 'required|max:191|unique:posts,title->cn',
                 'title_en' => 'required|max:191|unique:posts,title->en',
+                'author_id' => 'required',
+                'category_id' => 'required',
             ],
             [
                 'title_cn.required' => trans('admin_CRUD.is_must'),
@@ -63,8 +69,23 @@ class PostController extends Controller
                 'title_en.max' => trans('admin_CRUD.max_limit'),
                 'title_cn.unique' => trans('admin_CRUD.already_exist'),
                 'title_en.unique' => trans('admin_CRUD.already_exist'),
+                'author_id.required' => trans('admin_CRUD.is_must'),
+                'category_id.required' => trans('admin_CRUD.is_must'),
             ]
         );
+
+        if ($request->is_reproduced == '1') {
+            $this->validate($request,
+                [
+                    'source' => 'required',
+                    'source_url' => 'required',
+                ],
+                [
+                    'source.require' => trans('admin_CRUD.is_must_for_reproduced'),
+                    'source_url.require' => trans('admin_CRUD.is_must_for_reproduced'),
+                ]
+            );
+        }
 
         $post = Post::create([
             'admin_id' => Auth::id(),
@@ -72,6 +93,10 @@ class PostController extends Controller
             'title' => ['cn'=>$request->title_cn, 'en'=>$request->title_en],
             'slug' => str_slug($request->title_en),
             'sub_title' => ['cn'=>$request->sub_title_cn, 'en'=>$request->sub_title_en],
+            'is_reproduced' => $request->is_published,
+            'source' => $request->source,
+            'source_url' => $request->source_url,
+            'editor' => $request->editor,
             'details' => ['cn'=>$request->details_cn, 'en'=>$request->details_en],
             'is_published' => $request->is_published,
             'post_type' => 'post',
@@ -79,6 +104,7 @@ class PostController extends Controller
             'updated_at' => Carbon::now(),
         ]);
 
+        $post->authors()->sync($request->author_id, false);
         $post->categories()->sync($request->category_id, false);
 
         Session::flash('message', trans('admin_CRUD.created_successfully'));
@@ -104,8 +130,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $title = trans('admin_CRUD.update_post');
+        $authors = Author::orderBy('id', 'DESC')->pluck('name', 'id');
         $categories = Category::orderBy('id', 'DESC')->pluck('name', 'id');
-        return view('admin.post.edit', compact('categories', 'post'));
+        return view('admin.post.edit', compact('title', 'authors', 'categories', 'post'));
     }
 
     /**
@@ -121,6 +149,8 @@ class PostController extends Controller
             [
                 'title_cn' => 'required|max:191|unique:posts,title->cn,' . $post->id,
                 'title_en' => 'required|max:191|unique:posts,title->en,' . $post->id,
+                'author_id' => 'required',
+                'category_id' => 'required',
             ],
             [
                 'title_cn.required' => trans('admin_CRUD.is_must'),
@@ -129,18 +159,37 @@ class PostController extends Controller
                 'title_en.max' => trans('admin_CRUD.max_limit'),
                 'title_cn.unique' => trans('admin_CRUD.already_exist'),
                 'title_en.unique' => trans('admin_CRUD.already_exist'),
+                'author_id.required' => trans('admin_CRUD.is_must'),
+                'category_id.required' => trans('admin_CRUD.is_must'),
             ]
         );
+        if ($request->is_reproduced == '1') {
+            $this->validate($request,
+                [
+                    'source' => 'required',
+                    'source_url' => 'required',
+                ],
+                [
+                    'source.require' => trans('admin_CRUD.is_must_for_reproduced'),
+                    'source_url.require' => trans('admin_CRUD.is_must_for_reproduced'),
+                ]
+            );
+        }
         $post->admin_id = Auth::id();
         $post->thumbnail = $request->thumbnail;
         $post->title = ['cn' => $request->title_cn, 'en' => $request->title_en];
         $post->slug = str_slug($request->title_en);
         $post->sub_title = ['cn' => $request->sub_title_cn, 'en' => $request->sub_title_en];
+        $post->is_reproduced = $request->is_reproduced;
+        $post->source = $request->source;
+        $post->source = $request->source_url;
+        $post->editor = $request->editor;
         $post->details = ['cn' => $request->details_cn, 'en' => $request->details_en];
         $post->is_published = $request->is_published;
         $post->post_type = 'post';
         $post->save();
 
+        $post->authors()->sync($request->author_id, false);
         $post->categories()->sync($request->category_id, false);
 
         Session::flash('warning-message', trans('admin_CRUD.updated_successfully'));

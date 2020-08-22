@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header flex justify-between">
-    <h2 class="font-bold text-xl ml-10">{{ __('admin_CRUD.photo_list') }}</h2>
+    <h2 class="font-bold text-xl ml-10">{{ $title }}</h2>
     <a href="{{ route('photos.create', app()->getLocale()) }}" class="btn btn-md btn-primary mr-10">
         <i class="fas fa-plus fa-lg"></i>
     </a>
@@ -12,17 +12,23 @@
         <thead>
             <tr>
                 <th scope="col" width="5">{{ __('#') }}</th>
+                <th scope="col" width="60">{{ __('admin_CRUD.subjects') }}</th>
                 <th scope="col" width="60">{{ __('admin_CRUD.preview') }}</th>
                 <th scope="col" width="80">{{ __('admin_CRUD.img_url') }}</th>
-                <th scope="col" width="30">{{ __('admin_CRUD.uploaded_by') }}</th>
-                <th scope="col" width="60">{{ __('admin_CRUD.uploaded_at') }}</th>
-                <th scope="col" width="30">{{ __('admin_CRUD.delete') }}</th>
+                <th scope="col" width="10">{{ __('admin_CRUD.uploaded_by') }}</th>
+                <th scope="col" width="10">{{ __('admin_CRUD.uploaded_at') }}</th>
+                <th scope="col" width="10">{{ __('admin_CRUD.delete') }}</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($photos as $photo)
                 <tr>
                     <td>{{ $photo->id }}</td>
+                    <td>
+                        @foreach ($photo->subjects as $subject)
+                            {{ $subject->name }};&nbsp;
+                        @endforeach
+                    </td>
                     <td><img width="200" src="{{ asset('storage/photos/' . $photo->image_url) }}" alt="preview"></td>
                     <td>{{ asset('storage/photos/' . $photo->image_url) }}</td>
                     <td>{{ $photo->admin->name }}</td>

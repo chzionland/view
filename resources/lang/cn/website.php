@@ -34,4 +34,9 @@ return [
     'your_phone_required' => '请输入您的手机号码',
     'your_message_required' => '请输入您的留言',
     'message_sent_successfully' => '留言发送成功，感谢您的关注！',
+
+
+    // 禁止转载 No reproduction without permission.
+    // 授权转载 authorized reproduce
+    // 转载注明出处 please indicate the source if authorized
 ];

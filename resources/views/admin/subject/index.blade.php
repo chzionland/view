@@ -3,7 +3,7 @@
 @section('content')
 <div class="card-header flex justify-between">
     <h2 class="font-bold text-xl ml-10">{{ $title }}</h2>
-    <a href="{{ route('categories.create', app()->getLocale()) }}" class="btn btn-md btn-primary mr-10">
+    <a href="{{ route('subjects.create', app()->getLocale()) }}" class="btn btn-md btn-primary mr-10">
         <i class="fas fa-plus fa-lg"></i>
     </a>
 </div>
@@ -12,7 +12,7 @@
         <thead>
             <tr>
                 <th scope="col" width="5">{{ __('#') }}</th>
-                <th scope="col" width="80">{{ __('admin_CRUD.category_name') }}</th>
+                <th scope="col" width="80">{{ __('admin_CRUD.subject_name') }}</th>
                 <th scope="col" width="30">{{ __('admin_CRUD.created_by') }}</th>
                 <th scope="col" width="60">{{ __('admin_CRUD.updated_at') }}</th>
                 <th scope="col" width="60">{{ __('admin_CRUD.publish_status') }}</th>
@@ -20,36 +20,36 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($categories as $category)
+            @foreach ($subjects as $subject)
                 <tr>
-                    <td>{{ $category->id }}</td>
-                    <td>{{ $category->name }}</td>
-                    <td>{{ $category->admin->name }}</td>
-                    <td>{{ $category->updated_at }}</td>
+                    <td>{{ $subject->id }}</td>
+                    <td>{{ $subject->name }}</td>
+                    <td>{{ $subject->admin->name }}</td>
+                    <td>{{ $subject->updated_at }}</td>
                     <td>
-                        @if ($category->is_published == 1)
+                        @if ($subject->is_published == 1)
                             {{ __('admin_CRUD.published') }}
                         @else
                             {{ __('admin_CRUD.draft') }}
                         @endif
                     </td>
                     <td>
-                        <a href="{{ route('categories.edit', [$category->id, app()->getLocale()]) }}" class="btn btn-sm btn-warning px-2">
+                        <a href="{{ route('subjects.edit', [$subject->id, app()->getLocale()]) }}" class="btn btn-sm btn-warning px-2">
                             <i class="fas fa-edit fa-lg"></i>
                         </a>
                         <span class="text-gray-500">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                        <a href="{{ route('categories.destroy', [$category->id, app()->getLocale()]) }}" class="btn btn-sm btn-danger px-2">
+                        <a href="{{ route('subjects.destroy', [$subject->id, app()->getLocale()]) }}" class="btn btn-sm btn-danger px-2">
                             <div style="display: none" id="trans-delete">
                                 {{ trans('admin_CRUD.really_want_to_delete') }}
                             </div>
                             <i onclick="event.preventDefault();
                                 var message = document.getElementById('trans-delete').textContent;
                                 if (confirm(message)) {
-                                    document.getElementById('category-delete-{{$category->id}}').submit()
+                                    document.getElementById('subject-delete-{{$subject->id}}').submit()
                                 }" class="fas fa-times fa-lg"></i>
                             <form style="display: none"
-                                id="{{ 'category-delete-' . $category->id }}" method="POST"
-                                action="{{ route('categories.destroy', [$category->id, app()->getLocale()]) }}">
+                                id="{{ 'subject-delete-' . $subject->id }}" method="POST"
+                                action="{{ route('subjects.destroy', [$subject->id, app()->getLocale()]) }}">
                                 @csrf
                                 @method('delete')
                             </form>

@@ -11,18 +11,22 @@
 
             <div class="card my-5 w-full lg:w-10/12 xl:w-8/12">
                 <div class="card-header">
-                    <h2 class="font-bold text-xl ml-10">{{ __('admin_CRUD.update_post') }}</h2>
+                    <h2 class="font-bold text-xl ml-10">{{ $title }}</h2>
                 </div>
                 <div class="card-body">
 
                     {!! Form::open(['route' => ['posts.update', [$post->id, app()->getLocale()]], 'method'=>'put']) !!}
 
                     {{-- Tumbnail --}}
+                    <div class="form-group">
+                        {{ trans('admin_CRUD.original_photo_preview') }}
+                        <img width="200" src="{{ $post->thumbnail }}" alt="no photo">
+                    </div>
                     <div class="form-group @if($errors->has('thumbnail')) has-error @endif">
                         {!! Form::label('thumbnail', trans('admin_CRUD.thumbnail')) !!}
                         &nbsp;&nbsp;
-                        <a href="#" target="_blank" class="text-primary">
-                            {{ __('admin_CRUD.gallery') }}
+                        <a href="{{ route('photos.index', app()->getLocale()) }}" target="_blank" class="text-primary">
+                            {{ __('admin_CRUD.photos') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>
                         </a>
                         {!! Form::text('thumbnail', $post->thumbnail, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.paste_thumbnail_address_here')]) !!}
@@ -34,7 +38,7 @@
                     {{-- Title --}}
                     <div class="form-group @if($errors->has('title_cn')) has-error @endif">
                         {!! Form::label('title_cn', trans('admin_CRUD.title_cn')) !!}
-                        <span class="text-red-500">*&nbsp;</span>
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
                         {{ App::setLocale('cn') }}
                         {!! Form::text('title_cn', $post->title, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_title_in_cn')]) !!}
                         @if ($errors->has('title_cn'))
@@ -43,7 +47,7 @@
                     </div>
                     <div class="form-group @if($errors->has('title_en')) has-error @endif">
                         {!! Form::label('title_en', trans('admin_CRUD.title_en')) !!}
-                        <span class="text-red-500">*&nbsp;</span>
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
                         {{ App::setLocale('en') }}
                         {!! Form::text('title_en', $post->title, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_title_in_en')]) !!}
                         @if ($errors->has('title_en'))
@@ -69,13 +73,60 @@
                         @endif
                     </div>
 
+                    {{-- Reproduced --}}
+                    <div class="form-group">
+                        {!! Form::label('is_reproduced', trans('admin_CRUD.original_or_reproduced')) !!}
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
+                        {!! Form::select('is_reproduced', [0 => trans('admin_CRUD.original'), 1 => trans('admin_CRUD.reproduced')], isset($post->is_published) ? $post->is_published : null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group @if($errors->has('source')) has-error @endif">
+                        {!! Form::label('source', trans('admin_CRUD.sub_title_cn')) !!}
+                        {!! Form::text('source', $post->source, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_source')]) !!}
+                        @if ($errors->has('source'))
+                            <span class="help-block text-red-500">{!! $errors->first('source') !!}</span>
+                        @endif
+                    </div>
+                    <div class="form-group @if($errors->has('source_url')) has-error @endif">
+                        {!! Form::label('source_url', trans('admin_CRUD.source_url')) !!}
+                        {!! Form::text('source_url', $post->source_url, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_source_url')]) !!}
+                        @if ($errors->has('source_url'))
+                            <span class="help-block text-red-500">{!! $errors->first('source_url') !!}</span>
+                        @endif
+                    </div>
+
+                    {{-- Author --}}
+                    <div class="form-group @if($errors->has('author_id')) has-error @endif">
+                        {!! Form::label('author_id', trans('admin_CRUD.authors')) !!}
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
+                        <a href="{{ route('authors.create', app()->getLocale()) }}" target="_blank" class="text-primary">
+                            {{ __('admin_CRUD.create_author') }}
+                            <i class="fas fa-external-link-alt fa-sm"></i>
+                        </a>
+                        <div style="display: none" id="trans-select-authors">
+                            {{ trans('admin_CRUD.select_authors') }}
+                        </div>
+                        {!! Form::select('author_id[]', $authors, null, ['class' => 'form-control', 'id'=>'author_id', 'multiple'=>'multiple']) !!}
+                        @if ($errors->has('author_id'))
+                            <span class="help-block text-red-500">{!! $errors->first('author_id') !!}</span>
+                        @endif
+                    </div>
+
+                    {{-- Editor --}}
+                    <div class="form-group @if($errors->has('editor')) has-error @endif">
+                        {!! Form::label('editor', trans('admin_CRUD.editor')) !!}
+                        {!! Form::text('editor', $post->editor, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_editor')]) !!}
+                        @if ($errors->has('editor'))
+                            <span class="help-block text-red-500">{!! $errors->first('editor') !!}</span>
+                        @endif
+                    </div>
+
                     {{-- Details --}}
                     <div class="form-group @if($errors->has('details_cn')) has-error @endif">
                         {!! Form::label('details_cn', trans('admin_CRUD.details_cn')) !!}
                         {{ App::setLocale('cn') }}
                         {!! Form::textarea('details_cn', $post->details, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_details_in_cn')]) !!}
                         @if ($errors->has('details_cn'))
-                            <span class="help-block">{!! $errors->first('details_cn') !!}</span>
+                            <span class="help-block text-red-500">{!! $errors->first('details_cn') !!}</span>
                         @endif
                     </div>
                     <div style="display: none" class="form-group @if($errors->has('details_en')) has-error @endif">
@@ -83,7 +134,7 @@
                         {{ App::setLocale('en') }}
                         {!! Form::textarea('details_en', $post->details, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_details_in_en')]) !!}
                         @if ($errors->has('details_en'))
-                            <span class="help-block">{!! $errors->first('details_en') !!}</span>
+                            <span class="help-block text-red-500">{!! $errors->first('details_en') !!}</span>
                         @endif
                     </div>
 
@@ -98,7 +149,7 @@
                         <div style="display: none" id="trans-select-categories">
                             {{ trans('admin_CRUD.select_categories') }}
                         </div>
-                        {!! Form::select('category_id', $categories, null, ['class' => 'form-control', 'id'=>'category_id', 'multiple'=>'multiple']) !!}
+                        {!! Form::select('category_id[]', $categories, null, ['class' => 'form-control', 'id'=>'category_id', 'multiple'=>'multiple']) !!}
                         @if ($errors->has('category_id'))
                             <span class="help-block">{!! $errors->first('category_id') !!}</span>
                         @endif
@@ -107,7 +158,7 @@
                     {{-- Publish Status --}}
                     <div class="form-group">
                         {!! Form::label('is_published', trans('admin_CRUD.is_published')) !!}
-                        <span class="text-red-500">*&nbsp;</span>
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
                         {!! Form::select('is_published', [0 => trans('admin_CRUD.save_as_draft'), 1 => trans('admin_CRUD.publish')], isset($post->is_published) ? $post->is_published : null, ['class' => 'form-control']) !!}
                     </div>
 
@@ -134,11 +185,15 @@
         CKEDITOR.replace('details_cn');
         CKEDITOR.replace('details_en');
 
+        var message = document.getElementById('trans-select-authors').textContent;
+        $('#author_id').select2({
+            placeholder: message
+        }).val({!! json_encode($post->authors()->allRelatedIds()) !!}).trigger('change');
+
         var message = document.getElementById('trans-select-categories').textContent;
         $('#category_id').select2({
             placeholder: message
         }).val({!! json_encode($post->categories()->allRelatedIds()) !!}).trigger('change');
-
     });
 </script>
 @endsection

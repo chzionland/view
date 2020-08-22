@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header flex justify-between">
-    <h2 class="font-bold text-xl ml-10">{{ __('admin_CRUD.post_list') }}</h2>
+    <h2 class="font-bold text-xl ml-10">{{ $title }}</h2>
     <a href="{{ route('posts.create', app()->getLocale()) }}" class="btn btn-md btn-primary mr-10">
         <i class="fas fa-plus fa-lg"></i>
     </a>
@@ -11,13 +11,14 @@
     <table class="table table-bordered mb-0">
         <thead>
             <tr>
-                <th scope="col" width="5">{{ __('#') }}</th>
-                <th scope="col" width="80">{{ __('admin_CRUD.post_title') }}</th>
-                <th scope="col" width="30">{{ __('admin_CRUD.created_by') }}</th>
-                <th scope="col" width="60">{{ __('admin_CRUD.updated_at') }}</th>
-                <th scope="col" width="60">{{ __('admin_CRUD.categories') }}</th>
-                <th scope="col" width="60">{{ __('admin_CRUD.publish_status') }}</th>
-                <th scope="col" width="15">{{ __('admin_CRUD.edit_delete') }}</th>
+                <th scope="col" width="10">{{ __('#') }}</th>
+                <th scope="col" width="60">{{ __('admin_CRUD.post_title') }}</th>
+                <th scope="col" width="30">{{ __('admin_CRUD.original_or_reproduced') }}</th>
+                <th scope="col" width="30">{{ __('admin_CRUD.author') }}</th>
+                <th scope="col" width="30">{{ __('admin_CRUD.updated_at') }}</th>
+                <th scope="col" width="30">{{ __('admin_CRUD.categories') }}</th>
+                <th scope="col" width="30">{{ __('admin_CRUD.publish_status') }}</th>
+                <th scope="col" width="30">{{ __('admin_CRUD.edit_delete') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +26,18 @@
                 <tr>
                     <td>{{ $post->id }}</td>
                     <td>{{ $post->title }}</td>
-                    <td>{{ $post->admin->name }}</td>
+                    <td>
+                        @if ($post->is_reproduced == 1)
+                            {{ __('admin_CRUD.reproduced') }}
+                        @else
+                            {{ __('admin_CRUD.original') }}
+                        @endif
+                    </td>
+                    <td>
+                        @foreach ($post->authors as $author)
+                            {{ $author->name }};&nbsp;
+                        @endforeach
+                    </td>
                     <td>{{ $post->updated_at }}</td>
                     <td>
                         @foreach ($post->categories as $category)

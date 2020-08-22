@@ -25,10 +25,12 @@ class AdminController extends Controller
      */
     public function index()
     {
+        $title = trans('app.dashboard');
+
         $categories = Category::orderBy('updated_at', 'DESC')->limit('5')->get();
         $posts = Post::orderBy('updated_at', 'DESC')->where('post_type', 'post')->limit('5')->get();
         $pages = Post::orderBy('updated_at', 'DESC')->where('post_type', 'page')->limit('5')->get();
 
-        return view('admin.dashboard', compact('categories', 'posts', 'pages'));
+        return view('admin.dashboard', compact('title', 'categories', 'posts', 'pages'));
     }
 }

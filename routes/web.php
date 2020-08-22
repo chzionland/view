@@ -30,10 +30,11 @@ Route::prefix('admin')->group(function () {
 
     # CMS
     Route::resource('categories', 'CategoryController');
+    Route::resource('authors', 'AuthorController');
     Route::resource('posts', 'PostController');
     Route::resource('pages', 'PageController');
+    Route::resource('subjects', 'SubjectController');
     Route::resource('photos', 'PhotoController');
-    // Route::resource('galleries', 'GalleryController');
 });
 
 Route::group(['prefix' => '{locale?}'], function() {

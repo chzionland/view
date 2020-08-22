@@ -21,11 +21,19 @@ class CreatePostsTable extends Migration
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
 
             $table->string('thumbnail')->nullable();
-            $table->string('title')->unique();
+            $table->string('title')->unique();        # translatable
             $table->string('slug')->unique();
-            $table->string('sub_title')->nullable();
-            $table->text('details');
-            $table->string('post_type')->nullable();
+            $table->string('sub_title')->nullable();  # translatable
+
+            $table->enum('is_reproduced', ['0', '1']);
+            $table->string('source')->nullable();
+            $table->text('source_url')->nullable();
+
+            $table->string('author')->nullable();
+            $table->string('editor')->nullable();
+
+            $table->text('details');                  # translatable
+            $table->string('post_type');
             $table->enum('is_published', ['0', '1']);
         });
     }

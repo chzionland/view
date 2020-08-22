@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Author;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class CategoryController extends Controller
+class AuthorController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    * Create a new controller instance.
+    *
+    * @return void
+    */
     public function __construct()
     {
         $this->middleware('auth:admin');
@@ -28,9 +27,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $title = trans('admin_CRUD.category_list');
-        $categories = Category::orderBy('id', 'DESC')->get();
-        return view('admin.category.index', compact('title', 'categories'));
+        $title = trans('admin_CRUD.author_list');
+        $authors = Author::orderBy('id', 'DESC')->get();
+        return view('admin.author.index', compact('title', 'authors'));
     }
 
     /**
@@ -40,8 +39,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $title = trans('admin_CRUD.create_category');
-        return view('admin.category.create', compact('title'));
+        $title = trans('admin_CRUD.create_author');
+        return view('admin.author.create', compact('title'));
     }
 
     /**
@@ -67,7 +66,7 @@ class CategoryController extends Controller
             ]
         );
 
-        Category::create([
+        Author::create([
             'admin_id' => Auth::id(),
             'thumbnail' => $request->thumbnail,
             'name' => ['cn'=>$request->name_cn, 'en'=>$request->name_en],
@@ -78,45 +77,45 @@ class CategoryController extends Controller
         ]);
 
         Session::flash('message', trans('admin_CRUD.created_successfully'));
-        return redirect()->route('categories.index');
+        return redirect()->route('authors.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Author $author)
     {
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Author $author)
     {
-        $title = trans('admin_CRUD.update_category');
-        return view('admin.category.edit', compact('title', 'category'));
+        $title = trans('admin_CRUD.update_author');
+        return view('admin.author.edit', compact('title', 'author'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  \App\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Author $author)
     {
         $this->validate($request,
             [
-                'name_cn' => 'required|max:191|unique:categories,name->cn,' . $category->id,
-                'name_en' => 'required|max:191|unique:categories,name->en,' . $category->id,
+                'name_cn' => 'required|max:191|unique:categories,name->cn,' . $author->id,
+                'name_en' => 'required|max:191|unique:categories,name->en,' . $author->id,
             ],
             [
                 'name_cn.required' => trans('admin_CRUD.is_must'),
@@ -128,28 +127,28 @@ class CategoryController extends Controller
             ]
         );
 
-        $category->thumbnail = $request->thumbnail;
-        $category->admin_id = Auth::id();
-        $category->name = ['cn' => $request->name_cn, 'en' => $request->name_en];
-        $category->slug = str_slug($request->name_en);
-        $category->is_published = $request->is_published;
-        $category->save();
+        $author->thumbnail = $request->thumbnail;
+        $author->admin_id = Auth::id();
+        $author->name = ['cn' => $request->name_cn, 'en' => $request->name_en];
+        $author->slug = str_slug($request->name_en);
+        $author->is_published = $request->is_published;
+        $author->save();
 
         Session::flash('warning-message', trans('admin_CRUD.updated_successfully'));
-        return redirect()->route('categories.index');
+        return redirect()->route('authors.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Author $author)
     {
-        $category->delete();
+        $author->delete();
 
         Session::flash('danger-message', trans('admin_CRUD.deleted_successfully'));
-        return redirect()->route('categories.index');
+        return redirect()->route('authors.index');
     }
 }

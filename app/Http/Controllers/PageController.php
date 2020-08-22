@@ -27,8 +27,9 @@ class PageController extends Controller
      */
     public function index()
     {
+        $title = trans('admin_CRUD.page_list');
         $pages = Post::orderBy('id', 'DESC')->where('post_type', 'page')->get();
-        return view('admin.page.index', compact('pages'));
+        return view('admin.page.index', compact('title', 'pages'));
     }
 
     /**
@@ -38,7 +39,8 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view('admin.page.create');
+        $title = trans('admin_CRUD.create_page');
+        return view('admin.page.create', compact('title'));
     }
 
     /**
@@ -89,7 +91,8 @@ class PageController extends Controller
      */
     public function edit(Post $page)
     {
-        return view('admin.page.edit', compact('page'));
+        $title = trans('admin_CRUD.update_page');
+        return view('admin.page.edit', compact('title', 'page'));
     }
 
     /**

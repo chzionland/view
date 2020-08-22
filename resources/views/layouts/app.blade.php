@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <title>{{ "CMS-" . __('app.app_name')}}</title>
+    <title>{{ $title }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
@@ -51,10 +51,16 @@
                             <a class="nav-link" href="{{ route('categories.index', app()->getLocale()) }}">{{ __('app.manage_category') }}</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('authors.index', app()->getLocale()) }}">{{ __('app.manage_author') }}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('posts.index', app()->getLocale()) }}">{{ __('app.manage_post') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('pages.index', app()->getLocale()) }}">{{ __('app.manage_page') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('subjects.index', app()->getLocale()) }}">{{ __('app.manage_subject') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('photos.index', app()->getLocale()) }}">{{ __('app.manage_photo') }}</a>

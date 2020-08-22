@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header flex justify-between">
-    <h2 class="font-bold text-xl ml-10">{{ __('admin_CRUD.page_list') }}</h2>
+    <h2 class="font-bold text-xl ml-10">{{ $title }}</h2>
     <a href="{{ route('pages.create', app()->getLocale()) }}" class="btn btn-md btn-primary mr-10">
         <i class="fas fa-plus fa-lg"></i>
     </a>

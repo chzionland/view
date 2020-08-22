@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use Carbon\Carbon;
+use App\Subject;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Mockery\Matcher\Subset;
 
-class CategoryController extends Controller
+class SubjectController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -20,7 +20,6 @@ class CategoryController extends Controller
     {
         $this->middleware('auth:admin');
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -28,9 +27,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $title = trans('admin_CRUD.category_list');
-        $categories = Category::orderBy('id', 'DESC')->get();
-        return view('admin.category.index', compact('title', 'categories'));
+        $title = trans('admin_CRUD.subject_list');
+        $subjects = Subject::orderBy('id', 'DESC')->get();
+        return view('admin.subject.index', compact('title', 'subjects'));
     }
 
     /**
@@ -40,8 +39,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $title = trans('admin_CRUD.create_category');
-        return view('admin.category.create', compact('title'));
+        $title = trans('admin_CRUD.create_subject');
+        return view('admin.subject.create', compact('title'));
     }
 
     /**
@@ -54,8 +53,8 @@ class CategoryController extends Controller
     {
         $this->validate($request,
             [
-                'name_cn' => 'required|max:191|unique:categories,name->cn',
-                'name_en' => 'required|max:191|unique:categories,name->en',
+                'name_cn' => 'required|max:191|unique:subjects,name->cn',
+                'name_en' => 'required|max:191|unique:subjects,name->en',
             ],
             [
                 'name_cn.required' => trans('admin_CRUD.is_must'),
@@ -67,9 +66,8 @@ class CategoryController extends Controller
             ]
         );
 
-        Category::create([
+        Subject::create([
             'admin_id' => Auth::id(),
-            'thumbnail' => $request->thumbnail,
             'name' => ['cn'=>$request->name_cn, 'en'=>$request->name_en],
             'slug' => str_slug($request->name_en),
             'is_published' => $request->is_published,
@@ -78,45 +76,45 @@ class CategoryController extends Controller
         ]);
 
         Session::flash('message', trans('admin_CRUD.created_successfully'));
-        return redirect()->route('categories.index');
+        return redirect()->route('subjects.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Subject $subject)
     {
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Subject $subject)
     {
-        $title = trans('admin_CRUD.update_category');
-        return view('admin.category.edit', compact('title', 'category'));
+        $title = trans('admin_CRUD.update_subject');
+        return view('admin.subject.edit', compact('title', 'subject'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Subject $subject)
     {
         $this->validate($request,
             [
-                'name_cn' => 'required|max:191|unique:categories,name->cn,' . $category->id,
-                'name_en' => 'required|max:191|unique:categories,name->en,' . $category->id,
+                'name_cn' => 'required|max:191|unique:subjects,name->cn,' . $subject->id,
+                'name_en' => 'required|max:191|unique:subjects,name->en,' . $subject->id,
             ],
             [
                 'name_cn.required' => trans('admin_CRUD.is_must'),
@@ -128,28 +126,27 @@ class CategoryController extends Controller
             ]
         );
 
-        $category->thumbnail = $request->thumbnail;
-        $category->admin_id = Auth::id();
-        $category->name = ['cn' => $request->name_cn, 'en' => $request->name_en];
-        $category->slug = str_slug($request->name_en);
-        $category->is_published = $request->is_published;
-        $category->save();
+        $subject->admin_id = Auth::id();
+        $subject->name = ['cn' => $request->name_cn, 'en' => $request->name_en];
+        $subject->slug = str_slug($request->name_en);
+        $subject->is_published = $request->is_published;
+        $subject->save();
 
         Session::flash('warning-message', trans('admin_CRUD.updated_successfully'));
-        return redirect()->route('categories.index');
+        return redirect()->route('subjects.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Subject $subject)
     {
-        $category->delete();
+        $subject->delete();
 
         Session::flash('danger-message', trans('admin_CRUD.deleted_successfully'));
-        return redirect()->route('categories.index');
+        return redirect()->route('subjects.index');
     }
 }

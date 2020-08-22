@@ -7,18 +7,22 @@
 
             <div class="card my-5 w-full lg:w-10/12 xl:w-8/12">
                 <div class="card-header">
-                    <h2 class="font-bold text-xl ml-10">{{ __('admin_CRUD.update_page') }}</h2>
+                    <h2 class="font-bold text-xl ml-10">{{ $title }}</h2>
                 </div>
                 <div class="card-body">
 
                     {!! Form::open(['route' => ['pages.update', [$page->id, app()->getLocale()]], 'method'=>'put']) !!}
 
                     {{-- Tumbnail --}}
+                    <div class="form-group">
+                        {{ trans('admin_CRUD.original_photo_preview') }}
+                        <img width="200" src="{{ $page->thumbnail }}" alt="no photo">
+                    </div>
                     <div class="form-group @if($errors->has('thumbnail')) has-error @endif">
                         {!! Form::label('thumbnail', trans('admin_CRUD.thumbnail')) !!}
                         &nbsp;&nbsp;
                         <a href="#" target="_blank" class="text-primary">
-                            {{ __('admin_CRUD.gallery') }}
+                            {{ __('admin_CRUD.photo') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>
                         </a>
                         {!! Form::text('thumbnail', $page->thumbnail, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.paste_thumbnail_address_here')]) !!}
@@ -30,7 +34,7 @@
                     {{-- Title --}}
                     <div class="form-group @if($errors->has('title_cn')) has-error @endif">
                         {!! Form::label('title_cn', trans('admin_CRUD.title_cn')) !!}
-                        <span class="text-red-500">*&nbsp;</span>
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
                         {{ App::setLocale('cn') }}
                         {!! Form::text('title_cn', $page->title, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_title_in_cn')]) !!}
                         @if ($errors->has('title_cn'))
@@ -39,7 +43,7 @@
                     </div>
                     <div class="form-group @if($errors->has('title_en')) has-error @endif">
                         {!! Form::label('title_en', trans('admin_CRUD.title_en')) !!}
-                        <span class="text-red-500">*&nbsp;</span>
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
                         {{ App::setLocale('en') }}
                         {!! Form::text('title_en', $page->title, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_title_in_en')]) !!}
                         @if ($errors->has('title_en'))
@@ -71,7 +75,7 @@
                         {{ App::setLocale('cn') }}
                         {!! Form::textarea('details_cn', $page->details, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_details_in_cn')]) !!}
                         @if ($errors->has('details_cn'))
-                            <span class="help-block">{!! $errors->first('details_cn') !!}</span>
+                            <span class="help-block text-red-500">{!! $errors->first('details_cn') !!}</span>
                         @endif
                     </div>
                     <div style="display: none" class="form-group @if($errors->has('details_en')) has-error @endif">
@@ -79,14 +83,14 @@
                         {{ App::setLocale('en') }}
                         {!! Form::textarea('details_en', $page->details, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_details_in_en')]) !!}
                         @if ($errors->has('details_en'))
-                            <span class="help-block">{!! $errors->first('details_en') !!}</span>
+                            <span class="help-block text-red-500">{!! $errors->first('details_en') !!}</span>
                         @endif
                     </div>
 
                     {{-- Publish Status --}}
                     <div class="form-group">
                         {!! Form::label('is_published', trans('admin_CRUD.is_published')) !!}
-                        <span class="text-red-500">*&nbsp;</span>
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
                         {!! Form::select('is_published', [0 => trans('admin_CRUD.save_as_draft'), 1 => trans('admin_CRUD.publish')], isset($page->is_published) ? $page->is_published : null, ['class' => 'form-control']) !!}
                     </div>
 

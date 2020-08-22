@@ -11,41 +11,33 @@
                 </div>
                 <div class="card-body">
 
-                    {!! Form::open(['route' => ['categories.update', [$category->id, app()->getLocale()]], 'method'=>'put']) !!}
-
-                    <div class="form-group">
-                        {{ trans('admin_CRUD.original_photo_preview') }}
-                        <img width="200" src="{{ $category->thumbnail }}" alt="no photo">
-                    </div>
+                    {!! Form::open(['route' => ['authors.store', app()->getLocale()]]) !!}
 
                     <div class="form-group @if($errors->has('thumbnail')) has-error @endif">
                         {!! Form::label('thumbnail', trans('admin_CRUD.thumbnail')) !!}
-                        &nbsp;&nbsp;
                         <a href="{{ route('photos.index', app()->getLocale()) }}" target="_blank" class="text-primary">
                             {{ __('admin_CRUD.photos') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>
                         </a>
-                        {!! Form::text('thumbnail', $category->thumbnail, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.paste_thumbnail_address_here')]) !!}
+                        {!! Form::text('thumbnail', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.paste_thumbnail_address_here')]) !!}
                         @if ($errors->has('thumbnail'))
                             <span class="help-block text-red-500">{!! $errors->first('thumbnail') !!}</span>
                         @endif
                     </div>
 
                     <div class="form-group @if($errors->has('name_cn')) has-error @endif">
-                        {!! Form::label('name_cn', trans('admin_CRUD.category_name_cn')) !!}
+                        {!! Form::label('name_cn', trans('admin_CRUD.author_name_cn')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {{ App::setLocale('cn') }}
-                        {!! Form::text('name_cn', $category->name, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_category_name_in_cn')]) !!}
+                        {!! Form::text('name_cn', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_author_name_in_cn')]) !!}
                         @if ($errors->has('name_cn'))
                             <span class="help-block text-red-500">{!! $errors->first('name_cn') !!}</span>
                         @endif
                     </div>
 
                     <div class="form-group @if($errors->has('name_en')) has-error @endif">
-                        {!! Form::label('name_en', trans('admin_CRUD.category_name_en')) !!}
+                        {!! Form::label('name_en', trans('admin_CRUD.author_name_en')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {{ App::setLocale('en') }}
-                        {!! Form::text('name_en', $category->name, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_category_name_in_en')]) !!}
+                        {!! Form::text('name_en', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_author_name_in_en')]) !!}
                         @if ($errors->has('name_en'))
                             <span class="help-block text-red-500">{!! $errors->first('name_en') !!}</span>
                         @endif
@@ -54,10 +46,10 @@
                     <div class="form-group">
                         {!! Form::label('is_published', trans('admin_CRUD.is_published')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {!! Form::select('is_published', [0 => trans('admin_CRUD.save_as_draft'), 1 => trans('admin_CRUD.publish')], isset($category->is_published) ? $category->is_published : null, ['class' => 'form-control']) !!}
+                        {!! Form::select('is_published', [0 => trans('admin_CRUD.save_as_draft'), 1 => trans('admin_CRUD.publish')], null, ['class' => 'form-control']) !!}
                     </div>
 
-                    {!! Form::submit(trans('admin_CRUD.update'), ['class' => 'btn btn-warning']) !!}
+                    {!! Form::submit(trans('admin_CRUD.create'), ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>

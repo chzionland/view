@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
-            <h2>{{ __('website.site_name') }} · {{ __('website.category_list') }}</h2>
+            <h2>{{ __('website.category_list') }}</h2>
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@
             @endif
         @endforeach
 
-        @if (count($uncategorized_posts) > 0)
+        {{-- @if (count($uncategorized_posts) > 0)
         <div class="post-preview">
             <h3 class="post-name text-center mb-4">{{ __('website.uncategorized_posts') }}</h3>
 
@@ -70,7 +70,7 @@
 
             </div>
         </div>
-        @endif
+        @endif --}}
 
       </div>
     </div>
