@@ -10,9 +10,9 @@ class Author extends Model
 {
     use HasTranslations;
 
-    protected $fillable = ['admin_id', 'thumbnail', 'name', 'slug', 'is_published'];
+    protected $fillable = ['admin_id', 'thumbnail', 'name', 'slug', 'intro', 'is_published'];
 
-    public $translatable = ['name'];
+    public $translatable = ['name', 'intro'];
 
     public function admin()
     {

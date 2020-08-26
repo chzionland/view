@@ -3,9 +3,8 @@
 use App\Category;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class CategoriesTableSeeder extends Seeder
+class CategoryTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,40 +15,40 @@ class CategoriesTableSeeder extends Seeder
     {
         Category::create([
             'admin_id' => '1',
-            'name' => ['cn'=>'长江计划', 'en'=>'Rever Development'],
-            'slug' => 'rever_development',
+            'name' => ['cn'=>'未分类', 'en'=>'uncategorized'],
+            'slug' => 'uncategorized',
             'is_published' => '1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
         Category::create([
-            'admin_id' => '2',
-            'name' => ['cn'=>'历史档案', 'en'=>'History'],
-            'slug' => 'history',
+            'admin_id' => '1',
+            'name' => ['cn'=>'南德理论', 'en'=>'Land Theory'],
+            'slug' => 'land-theory',
             'is_published' => '1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
         Category::create([
-            'admin_id' => '3',
-            'name' => ['cn'=>'发射卫星', 'en'=>'Satellite'],
-            'slug' => 'satellite',
+            'admin_id' => '1',
+            'name' => ['cn'=>'南德往事', 'en'=>'Land History'],
+            'slug' => 'land-history',
             'is_published' => '1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
         Category::create([
-            'admin_id' => '4',
-            'name' => ['cn'=>'换飞机', 'en'=>'Airplane'],
-            'slug' => 'airplane',
+            'admin_id' => '1',
+            'name' => ['cn'=>'万尾鲨鱼苗', 'en'=>'Shark Pups'],
+            'slug' => 'shark-pups',
             'is_published' => '1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
         Category::create([
-            'admin_id' => '5',
-            'name' => ['cn'=>'鲨鱼苗', 'en'=>'Babyshark'],
-            'slug' => 'babyshark',
+            'admin_id' => '1',
+            'name' => ['cn'=>'长江计划', 'en'=>'Yangtze Project'],
+            'slug' => 'shark-pups',
             'is_published' => '1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

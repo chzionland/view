@@ -14,7 +14,12 @@
                     <h2>{{ $title }}</h2>
                 </div>
                 <div class="card-body">
-                    {!! Form::open(['route' => ['photos.store', app()->getLocale()], 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['route' => ['photos.update', [$photo->id, app()->getLocale()]], 'method'=>'put']) !!}
+
+                    <div class="form-group">
+                        {{ trans('admin_CRUD.original_photo_preview') }}
+                        <img width="200" src="{{ $photo->image_url }}" alt="no photo">
+                    </div>
 
                     {{-- Category --}}
                     <div class="form-group @if($errors->has('category_id')) has-error @endif">
@@ -34,29 +39,19 @@
                         @endif
                     </div>
 
-                    {{-- Upload --}}
-                    <div class="form-group @if($errors->has('image_url')) has-error @endif">
-                        {!! Form::file('image_url[]', ['multiple' => 'multiple']) !!}
-                        <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        @if ($errors->has('image_url'))
-                            <span class="help-block text-red-500">{!! $errors->first('image_url') !!}</span>
-                        @endif
-                    </div>
-                    <div>{{ __('admin_CRUD.support_multi_photo') }}</div>
-                    <div>{{ __('admin_CRUD.support_png_jpg_jpeg') }}</div>
-                    <br>
-
                     {{-- Intro --}}
                     <div class="form-group @if($errors->has('intro_cn')) has-error @endif">
                         {!! Form::label('intro_cn', trans('admin_CRUD.intro_cn')) !!}
-                        {!! Form::textarea('intro_cn', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_cn')]) !!}
+                        {{ App::setLocale('cn') }}
+                        {!! Form::textarea('intro_cn', $photo->intro, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_cn')]) !!}
                         @if ($errors->has('intro_cn'))
                             <span class="help-block text-red-500">{!! $errors->first('intro_cn') !!}</span>
                         @endif
                     </div>
                     <div style="display: none" class="form-group @if($errors->has('intro_en')) has-error @endif">
                         {!! Form::label('intro_en', trans('admin_CRUD.intro_en')) !!}
-                        {!! Form::textarea('intro_en', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_en')]) !!}
+                        {{ App::setLocale('en') }}
+                        {!! Form::textarea('intro_en', $photo->intro, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_en')]) !!}
                         @if ($errors->has('intro_en'))
                             <span class="help-block text-red-500">{!! $errors->first('intro_en') !!}</span>
                         @endif
@@ -66,10 +61,10 @@
                     <div class="form-group">
                         {!! Form::label('is_published', trans('admin_CRUD.is_published')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {!! Form::select('is_published', [0 => trans('admin_CRUD.save_as_draft'), 1 => trans('admin_CRUD.publish')], null, ['class' => 'form-control']) !!}
+                        {!! Form::select('is_published', [0 => trans('admin_CRUD.save_as_draft'), 1 => trans('admin_CRUD.publish')], isset($post->is_published) ? $post->is_published : null, ['class' => 'form-control']) !!}
                     </div>
 
-                    {!! Form::submit(trans('admin_CRUD.upload'), ['class' => 'btn btn-sm btn-primary']) !!}
+                    {!! Form::submit(trans('admin_CRUD.update'), ['class' => 'btn btn-sm btn-warning']) !!}
                     {!! Form::close() !!}
                 </br>
             </div>
@@ -88,7 +83,7 @@
         var message = document.getElementById('trans-select-categories').textContent;
         $('#category_id').select2({
             placeholder: message
-        });
+        }).val({!! json_encode($photo->categories()->allRelatedIds()) !!}).trigger('change');
     });
 </script>
 @endsection

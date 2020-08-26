@@ -8,16 +8,12 @@ use Spatie\Translatable\HasTranslations;
 class Post extends Model
 {
     use HasTranslations;
-
     protected $fillable = [
-        'admin_id', 'thumbnail',
-        'title', 'slug', 'sub_title',
-        'is_reproduced', 'source', 'source_url',
-        'author', 'editor',
-        'details', 'post_type', 'is_published',
+        'admin_id', 'thumbnail', 'title', 'slug', 'sub_title',
+        'is_reproduced', 'source', 'source_url', 'author', 'editor',
+        'intro', 'details', 'post_type', 'is_published',
     ];
-
-    public $translatable = ['title', 'sub_title', 'details'];
+    public $translatable = ['title', 'sub_title', 'intro', 'details'];
 
     public function admin()
     {

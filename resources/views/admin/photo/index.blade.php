@@ -12,7 +12,7 @@
         <thead>
             <tr>
                 <th scope="col" width="5">{{ __('#') }}</th>
-                <th scope="col" width="60">{{ __('admin_CRUD.subjects') }}</th>
+                <th scope="col" width="60">{{ __('admin_CRUD.categories') }}</th>
                 <th scope="col" width="60">{{ __('admin_CRUD.preview') }}</th>
                 <th scope="col" width="80">{{ __('admin_CRUD.img_url') }}</th>
                 <th scope="col" width="10">{{ __('admin_CRUD.uploaded_by') }}</th>
@@ -25,8 +25,8 @@
                 <tr>
                     <td>{{ $photo->id }}</td>
                     <td>
-                        @foreach ($photo->subjects as $subject)
-                            {{ $subject->name }};&nbsp;
+                        @foreach ($photo->categories as $category)
+                            {{ $category->name }};&nbsp;
                         @endforeach
                     </td>
                     <td><img width="200" src="{{ asset('storage/photos/' . $photo->image_url) }}" alt="preview"></td>
@@ -34,6 +34,10 @@
                     <td>{{ $photo->admin->name }}</td>
                     <td>{{ $photo->created_at }}</td>
                     <td>
+                        <a href="{{ route('photos.edit', [$photo->id, app()->getLocale()]) }}" class="btn btn-sm btn-warning px-2">
+                            <i class="fas fa-edit fa-lg"></i>
+                        </a>
+                        <span class="text-gray-500">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
                         <a href="{{ route('photos.destroy', [$photo->id, app()->getLocale()]) }}" class="btn btn-sm btn-danger px-2">
                             <div style="display: none" id="trans-delete">
                                 {{ trans('admin_CRUD.really_want_to_delete') }}

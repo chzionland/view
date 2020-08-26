@@ -23,6 +23,7 @@ class CreateAuthorsTable extends Migration
             $table->string('thumbnail')->nullable();
             $table->string('name')->unique();    # translatable
             $table->string('slug')->unique();
+            $table->text('intro')->nullable();   # translatable
             $table->enum('is_published', ['0', '1']);
         });
     }

@@ -8,7 +8,9 @@ return [
 
     'categories' => '类别',
     'authors' => '作者',
-    'subjects' => '主题',
+    'posts' => '文章',
+    'pages' => '页面',
+    'photos' => '图库',
 
     'original_or_reproduced' => '是否原创',
     'original' => '原创',
@@ -21,12 +23,12 @@ return [
     'edit_delete' => '编辑 ｜ 删除',
 
     'thumbnail' => '封面图',
-    'photos' => '图库',
-    'paste_thumbnail_address_here' => '请从图库选择相片，然后将相片链接粘贴于此处',
+    'paste_thumbnail_address_here' => '从图库选择相片，将链接粘贴于此处，可稍后更新',
 
     'is_published' => '是否公开发布？',
     'publish' => '公开发布',
     'save_as_draft' => '仅保存为草稿',
+    'no' => '否',
 
     'create' => '创建',
     'is_must' => '该字段必填',
@@ -47,18 +49,16 @@ return [
     'author_name' => '作者名',
     'post_title' => '文章标题',
     'page_title' => '页面标题',
-    'subject_name' => '主题名称',
 
-    'latest_categories' => '最近更新的文章类别',
+    'latest_categories' => '最近更新的类别',
     'latest_posts' => '最近更新的文章',
     'latest_pages' => '最近更新的页面',
-    'latest_subjects' => '最近更新的相片主题',
     'latest_photos' => '最近上传的相片',
 
     'original_photo_preview' => '旧封面图预览',
 
     # Category
-    'category_list' => '文章类别列表',
+    'category_list' => '类别列表',
     'create_category' => '创建类别',
     'update_category' => '更新类别',
 
@@ -92,6 +92,9 @@ return [
     'sub_title_en' => '副标题（英文）',
     'input_sub_title_in_en' => '请用英文输入副标题',
 
+    'is_top' => '是否置顶',
+    'top' => '置顶',
+
     'source' => '来源',
     'input_source' => '请输入文章来源的机构（转载必填）',
     'source_url' => '原文链接',
@@ -102,6 +105,11 @@ return [
     'select_authors' => '-- 请选择作者（可多选）--',
     'editor' => '编辑',
     'input_editor' => '请输入编辑人员',
+
+    'intro_cn' => '简介（中文）',
+    'input_intro_in_cn' => '请用中文输入简介',
+    'intro_en' => '简介（英文）',
+    'input_intro_in_en' => '请用英文输入简介',
 
     'details_cn' => '内容（中文）',
     'input_details_in_cn' => '请用中文输入内容',
@@ -115,17 +123,6 @@ return [
     'create_page' => '创建页面',
     'update_page' => '更新页面',
 
-    # Subject
-    'subject_list' => '相片主题列表',
-    'create_subject' => '创建主题',
-    'select_subjects' => '-- 请选择主题（可多选）--',
-    'update_subject' => '更新主题',
-
-    'subject_name_cn' => '主题名称（中文）',
-    'input_subject_name_in_cn' => '请用中文输入主题名称',
-    'subject_name_en' => '主题名称（英文）',
-    'input_subject_name_in_en' => '请用英文输入主题名称',
-
     # Photo
     'photo_list' => '相片列表',
     'preview' => '预览',
@@ -135,9 +132,8 @@ return [
     'delete' => '删除',
     'select_image' => '请选择相片',
     'photo_upload' => '上传相片',
-    'input_subject' => '请输入相片主题',
     'support_multi_photo' => '支持多图上传',
     'support_png_jpg_jpeg' => '支持 png, jpg, jpeg 格式',
     'upload' => '上传',
-
+    'update_photo_info' => '更新相片信息',
 ];

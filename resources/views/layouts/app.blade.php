@@ -47,27 +47,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.dashboard', app()->getLocale()) }}">{{ __('app.dashboard') }}</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('subjects.index', app()->getLocale()) }}">{{ __('app.manage_subject') }}</a>
+                            <a class="nav-link" href="{{ route('categories.index', app()->getLocale()) }}">{{ __('admin_CRUD.categories') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('photos.index', app()->getLocale()) }}">{{ __('app.manage_photo') }}</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('categories.index', app()->getLocale()) }}">{{ __('app.manage_category') }}</a>
+                            <a class="nav-link" href="{{ route('authors.index', app()->getLocale()) }}">{{ __('admin_CRUD.authors') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('authors.index', app()->getLocale()) }}">{{ __('app.manage_author') }}</a>
+                            <a class="nav-link" href="{{ route('posts.index', app()->getLocale()) }}">{{ __('admin_CRUD.posts') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('posts.index', app()->getLocale()) }}">{{ __('app.manage_post') }}</a>
+                            <a class="nav-link" href="{{ route('pages.index', app()->getLocale()) }}">{{ __('admin_CRUD.pages') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pages.index', app()->getLocale()) }}">{{ __('app.manage_page') }}</a>
+                            <a class="nav-link" href="{{ route('photos.index', app()->getLocale()) }}">{{ __('admin_CRUD.photos') }}</a>
                         </li>
-
                         <!-- Authentication Links -->
                         @guest
                             {{-- @if (Route::has('login')) --}}

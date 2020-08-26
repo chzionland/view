@@ -22,4 +22,9 @@ class Category extends Model
     {
         return $this->belongsToMany(Post::class, 'category_posts');
     }
+
+    public function photos()
+    {
+        return $this->belongsToMany(Photo::class, 'category_posts');
+    }
 }

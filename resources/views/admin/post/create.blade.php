@@ -65,6 +65,13 @@
                         @endif
                     </div>
 
+                    {{-- Is Top --}}
+                    <div class="form-group">
+                        {!! Form::label('is_top', trans('admin_CRUD.is_top')) !!}
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
+                        {!! Form::select('is_top', [0 => trans('admin_CRUD.no'), 1 => trans('admin_CRUD.top')], null, ['class' => 'form-control']) !!}
+                    </div>
+
                     {{-- Reproduced --}}
                     <div class="form-group">
                         {!! Form::label('is_reproduced', trans('admin_CRUD.original_or_reproduced')) !!}
@@ -109,6 +116,22 @@
                         {!! Form::text('editor', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_editor')]) !!}
                         @if ($errors->has('editor'))
                             <span class="help-block text-red-500">{!! $errors->first('editor') !!}</span>
+                        @endif
+                    </div>
+
+                    {{-- Intro --}}
+                    <div class="form-group @if($errors->has('intro_cn')) has-error @endif">
+                        {!! Form::label('intro_cn', trans('admin_CRUD.intro_cn')) !!}
+                        {!! Form::textarea('intro_cn', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_cn')]) !!}
+                        @if ($errors->has('intro_cn'))
+                            <span class="help-block text-red-500">{!! $errors->first('intro_cn') !!}</span>
+                        @endif
+                    </div>
+                    <div style="display: none" class="form-group @if($errors->has('intro_en')) has-error @endif">
+                        {!! Form::label('intro_en', trans('admin_CRUD.intro_en')) !!}
+                        {!! Form::textarea('intro_en', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_en')]) !!}
+                        @if ($errors->has('intro_en'))
+                            <span class="help-block text-red-500">{!! $errors->first('intro_en') !!}</span>
                         @endif
                     </div>
 

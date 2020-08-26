@@ -25,13 +25,15 @@ class CreatePostsTable extends Migration
             $table->string('slug')->unique();
             $table->string('sub_title')->nullable();  # translatable
 
+            $table->enum('is_top', ['0', '1']);
+            $table->enum('limit', ['0', '1']);
+
             $table->enum('is_reproduced', ['0', '1']);
             $table->string('source')->nullable();
             $table->text('source_url')->nullable();
 
-            $table->string('author')->nullable();
             $table->string('editor')->nullable();
-
+            $table->text('intro')->nullable();        # translatable
             $table->text('details');                  # translatable
             $table->string('post_type');
             $table->enum('is_published', ['0', '1']);

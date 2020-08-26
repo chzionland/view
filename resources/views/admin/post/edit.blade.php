@@ -73,6 +73,13 @@
                         @endif
                     </div>
 
+                    {{-- Is Top --}}
+                    <div class="form-group">
+                        {!! Form::label('is_top', trans('admin_CRUD.is_top')) !!}
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
+                        {!! Form::select('is_top', [0 => trans('admin_CRUD.no'), 1 => trans('admin_CRUD.top')], isset($post->is_published) ? $post->is_published : null, ['class' => 'form-control']) !!}
+                    </div>
+
                     {{-- Reproduced --}}
                     <div class="form-group">
                         {!! Form::label('is_reproduced', trans('admin_CRUD.original_or_reproduced')) !!}
@@ -120,6 +127,24 @@
                         @endif
                     </div>
 
+                    {{-- Intro --}}
+                    <div class="form-group @if($errors->has('intro_cn')) has-error @endif">
+                        {!! Form::label('intro_cn', trans('admin_CRUD.intro_cn')) !!}
+                        {{ App::setLocale('cn') }}
+                        {!! Form::textarea('intro_cn', $post->intro, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_cn')]) !!}
+                        @if ($errors->has('intro_cn'))
+                            <span class="help-block text-red-500">{!! $errors->first('intro_cn') !!}</span>
+                        @endif
+                    </div>
+                    <div style="display: none" class="form-group @if($errors->has('intro_en')) has-error @endif">
+                        {!! Form::label('intro_en', trans('admin_CRUD.intro_en')) !!}
+                        {{ App::setLocale('en') }}
+                        {!! Form::textarea('intro_en', $post->intro, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_en')]) !!}
+                        @if ($errors->has('intro_en'))
+                            <span class="help-block text-red-500">{!! $errors->first('intro_en') !!}</span>
+                        @endif
+                    </div>
+
                     {{-- Details --}}
                     <div class="form-group @if($errors->has('details_cn')) has-error @endif">
                         {!! Form::label('details_cn', trans('admin_CRUD.details_cn')) !!}
@@ -140,10 +165,10 @@
 
                     {{-- Category --}}
                     <div class="form-group @if($errors->has('category_id')) has-error @endif">
-                        {!! Form::label('category_id', trans('admin_CRUD.category')) !!}
+                        {!! Form::label('category_id', trans('admin_CRUD.categories')) !!}
                         &nbsp;&nbsp;
                         <a href="{{ route('categories.create', app()->getLocale()) }}" target="_blank" class="text-primary">
-                            {{ __('admin_CRUD.add_category') }}
+                            {{ __('admin_CRUD.create_category') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>
                         </a>
                         <div style="display: none" id="trans-select-categories">

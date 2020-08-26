@@ -93,10 +93,13 @@ class PostController extends Controller
             'title' => ['cn'=>$request->title_cn, 'en'=>$request->title_en],
             'slug' => str_slug($request->title_en),
             'sub_title' => ['cn'=>$request->sub_title_cn, 'en'=>$request->sub_title_en],
+            'is_top' => $request->is_top,
+            'limit' => '0',
             'is_reproduced' => $request->is_published,
             'source' => $request->source,
             'source_url' => $request->source_url,
             'editor' => $request->editor,
+            'intro' => ['cn'=>$request->intro_cn, 'en'=>$request->intro_en],
             'details' => ['cn'=>$request->details_cn, 'en'=>$request->details_en],
             'is_published' => $request->is_published,
             'post_type' => 'post',
@@ -180,10 +183,13 @@ class PostController extends Controller
         $post->title = ['cn' => $request->title_cn, 'en' => $request->title_en];
         $post->slug = str_slug($request->title_en);
         $post->sub_title = ['cn' => $request->sub_title_cn, 'en' => $request->sub_title_en];
+        $post->is_top = $request->is_top;
+        $post->limit = '0';
         $post->is_reproduced = $request->is_reproduced;
         $post->source = $request->source;
         $post->source = $request->source_url;
         $post->editor = $request->editor;
+        $post->intro = ['cn' => $request->intro_cn, 'en' => $request->intro_en];
         $post->details = ['cn' => $request->details_cn, 'en' => $request->details_en];
         $post->is_published = $request->is_published;
         $post->post_type = 'post';
