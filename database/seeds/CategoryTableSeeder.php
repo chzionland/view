@@ -48,7 +48,7 @@ class CategoryTableSeeder extends Seeder
         Category::create([
             'admin_id' => '1',
             'name' => ['cn'=>'长江计划', 'en'=>'Yangtze Project'],
-            'slug' => 'shark-pups',
+            'slug' => 'yangtze-project',
             'is_published' => '1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
