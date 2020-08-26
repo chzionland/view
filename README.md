@@ -26,13 +26,18 @@ php artisan migrate
 ```
 
 ```bash
-php artisan tinker
-# add admin
+php artisan db:seed --class=CategoryTableSeeder
+php artisan db:seed --class=AuthorTableSeeder
 ```
 
 ```bash
-php artisan db:seed --class=CategoryTableSeeder
-php artisan db:seed --class=AuthorTableSeeder
+php artisan tinker
+```
+
+```php
+>>> factory(App\Admin::class, 1)->create();
+>>> factory(App\Post::class, 100)->create();
+>>> factory(App\CategoryPost::class, 100)->create();
 ```
 
 - Use storage
@@ -40,3 +45,13 @@ php artisan db:seed --class=AuthorTableSeeder
 ```bash
 php artisan storage:link
 ```
+
+- Mail setup
+    - visit <htps://mailtrap.io/>
+    - put laravel mail credentials in `.env` file
+
+## History Versions
+
+- This is the first version (v_1.0), the features:
+    - Admin login
+    - Admin can manage galleries, posts, categories, and pages
