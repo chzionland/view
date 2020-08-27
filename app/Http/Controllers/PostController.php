@@ -95,7 +95,7 @@ class PostController extends Controller
             'sub_title' => ['cn'=>$request->sub_title_cn, 'en'=>$request->sub_title_en],
             'is_top' => $request->is_top,
             'limit' => '0',
-            'is_reproduced' => $request->is_published,
+            'is_reproduced' => $request->is_reproduced,
             'source' => $request->source,
             'source_url' => $request->source_url,
             'editor' => $request->editor,
