@@ -1,3 +1,17 @@
+## How it was Built
+
+- [Blog Website (Admin)](https://www.sheldonl.com/2020/08/08/00.md)
+
+- [Blog Website (App Config)](https://www.sheldonl.com/2020/08/09/00.md)
+
+- [Blog Website (CMS)](https://www.sheldonl.com/2020/08/11/00.md)
+
+- [Blog Website (Front End)](https://www.sheldonl.com/2020/08/24/00.md)
+
+## How to Deploy
+
+- [Blog Website (Deployment)](https://www.sheldonl.com/2020/08/24/00.md)
+
 ## How to Run Locally
 
 - Clone this repo `git clone git@github.com:chzionland/blog.git`;
@@ -61,19 +75,3 @@ php artisan config:cache
 ```bash
 php artisan serve
 ```
-
-## How it was Built
-
-- [Blog Web Site (Admin)](https://www.sheldonl.com/2020/08/08/00.md)
-
-- [Blog Web Site (App Config)](https://www.sheldonl.com/2020/08/09/00.md)
-
-- [Blog Web Site (CMS)](https://www.sheldonl.com/2020/08/11/00.md)
-
-- [Blog Web Site (Front End)](https://www.sheldonl.com/2020/08/24/00.md)
-
-
-
-
-
-
