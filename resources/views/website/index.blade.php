@@ -43,7 +43,7 @@
                     </p>
                 @endif
                 <p class="content-preview">
-                    {{ substr($post->intro, 100) }}...
+                    {{ $post->intro }}
                 </p>
             </div>
           </div>
