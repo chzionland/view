@@ -134,6 +134,7 @@ return [
     'photo_upload' => '上传相片',
     'support_multi_photo' => '支持多图上传',
     'support_png_jpg_jpeg' => '支持 png, jpg, jpeg 格式',
+    'should_smaller_than_500k' => '图片应当小于 500 Kb',
     'upload' => '上传',
     'update_photo_info' => '更新相片信息',
 ];
