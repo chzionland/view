@@ -84,10 +84,10 @@
                     <div class="form-group">
                         {!! Form::label('is_reproduced', trans('admin_CRUD.original_or_reproduced')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {!! Form::select('is_reproduced', [0 => trans('admin_CRUD.original'), 1 => trans('admin_CRUD.reproduced')], isset($post->is_published) ? $post->is_published : null, ['class' => 'form-control']) !!}
+                        {!! Form::select('is_reproduced', [0 => trans('admin_CRUD.original'), 1 => trans('admin_CRUD.reproduced')], isset($post->is_reproduced) ? $post->is_reproduced : null, ['class' => 'form-control']) !!}
                     </div>
                     <div class="form-group @if($errors->has('source')) has-error @endif">
-                        {!! Form::label('source', trans('admin_CRUD.sub_title_cn')) !!}
+                        {!! Form::label('source', trans('admin_CRUD.source')) !!}
                         {!! Form::text('source', $post->source, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_source')]) !!}
                         @if ($errors->has('source'))
                             <span class="help-block text-red-500">{!! $errors->first('source') !!}</span>
