@@ -173,8 +173,8 @@ class PostController extends Controller
                     'source_url' => 'required',
                 ],
                 [
-                    'source.require' => trans('admin_CRUD.is_must_for_reproduced'),
-                    'source_url.require' => trans('admin_CRUD.is_must_for_reproduced'),
+                    'source.required' => trans('admin_CRUD.is_must_for_reproduced'),
+                    'source_url.required' => trans('admin_CRUD.is_must_for_reproduced'),
                 ]
             );
         }

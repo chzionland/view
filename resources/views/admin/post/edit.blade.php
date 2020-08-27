@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12 flex justify-center">
 
-            <div class="card my-5 w-full lg:w-10/12 xl:w-8/12">
+            <div class="card my-5 w-full xl:w-10/12">
                 <div class="card-header">
                     <h2 class="font-bold text-xl ml-10">{{ $title }}</h2>
                 </div>
