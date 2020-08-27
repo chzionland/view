@@ -107,8 +107,8 @@ class PostController extends Controller
             'updated_at' => Carbon::now(),
         ]);
 
-        $post->authors()->sync($request->author_id, false);
-        $post->categories()->sync($request->category_id, false);
+        $post->authors()->sync($request->author_id, true);
+        $post->categories()->sync($request->category_id, true);
 
         Session::flash('message', trans('admin_CRUD.created_successfully'));
         return redirect()->route('posts.index');
@@ -195,8 +195,8 @@ class PostController extends Controller
         $post->post_type = 'post';
         $post->save();
 
-        $post->authors()->sync($request->author_id, false);
-        $post->categories()->sync($request->category_id, false);
+        $post->authors()->sync($request->author_id, true);
+        $post->categories()->sync($request->category_id, true);
 
         Session::flash('warning-message', trans('admin_CRUD.updated_successfully'));
         return redirect()->route('posts.index');

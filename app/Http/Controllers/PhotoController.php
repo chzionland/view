@@ -78,7 +78,8 @@ class PhotoController extends Controller
             $photo->intro = ['cn' => $request->intro_cn, 'en' => $request->intro_en];
             $photo->is_published = $request->is_published;
             $save = $photo->save();
-            $photo->categories()->sync($request->category_id, false);
+
+            $photo->categories()->sync($request->category_id, true);
 
             if ($save) {
                 $image_url->storeAs('public/photos', $fileNameToStore);
@@ -128,7 +129,7 @@ class PhotoController extends Controller
         $photo->intro = ['cn' => $request->intro_cn, 'en' => $request->intro_en];
         $photo->is_published = $request->is_published;
         $photo->save();
-        $photo->categories()->sync($request->category_id, false);
+        $photo->categories()->sync($request->category_id, true);
 
         Session::flash('warning-message', trans('admin_CRUD.updated_successfully'));
         return redirect()->route('photos.index');
