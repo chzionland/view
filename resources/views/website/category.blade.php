@@ -34,7 +34,7 @@
                 </p>
 
                 <p class="content-preview">
-                    {{ substr($post->details, 100) }}...
+                    {{ $post->intro }}
                 </p>
             </div>
           </div>
