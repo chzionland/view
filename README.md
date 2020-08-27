@@ -46,12 +46,34 @@ php artisan tinker
 php artisan storage:link
 ```
 
+- Config
+
+```bash
+php artisan config:cache
+```
+
 - Mail setup
     - visit <htps://mailtrap.io/>
-    - put laravel mail credentials in `.env` file
+    - put laravel mail credentials in `.env` file 
 
-## History Versions
+- Serve 
 
-- This is the first version (v_1.0), the features:
-    - Admin login
-    - Admin can manage galleries, posts, categories, and pages
+```bash
+php artisan serve
+```
+
+## How it was Built
+
+- [Blog Web Site (Admin)](https://www.sheldonl.com/2020/08/08/00.md)
+
+- [Blog Web Site (App Config)](https://www.sheldonl.com/2020/08/09/00.md)
+
+- [Blog Web Site (CMS)](https://www.sheldonl.com/2020/08/11/00.md)
+
+- [Blog Web Site (Front End)](https://www.sheldonl.com/2020/08/24/00.md)
+
+
+
+
+
+
