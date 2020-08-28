@@ -77,7 +77,7 @@
                     <div class="form-group">
                         {!! Form::label('is_top', trans('admin_CRUD.is_top')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {!! Form::select('is_top', [0 => trans('admin_CRUD.no'), 1 => trans('admin_CRUD.top')], isset($post->is_published) ? $post->is_published : null, ['class' => 'form-control']) !!}
+                        {!! Form::select('is_top', [0 => trans('admin_CRUD.no'), 1 => trans('admin_CRUD.top')], isset($post->is_top) ? $post->is_top : null, ['class' => 'form-control']) !!}
                     </div>
 
                     {{-- Reproduced --}}
