@@ -72,6 +72,7 @@ class CategoryController extends Controller
             'thumbnail' => $request->thumbnail,
             'name' => ['cn'=>$request->name_cn, 'en'=>$request->name_en],
             'slug' => str_slug($request->name_en),
+            'is_column' => $request->is_column,
             'is_published' => $request->is_published,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
@@ -132,6 +133,7 @@ class CategoryController extends Controller
         $category->admin_id = Auth::id();
         $category->name = ['cn' => $request->name_cn, 'en' => $request->name_en];
         $category->slug = str_slug($request->name_en);
+        $category->is_column = $request->is_column;
         $category->is_published = $request->is_published;
         $category->save();
 

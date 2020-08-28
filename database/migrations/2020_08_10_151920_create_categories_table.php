@@ -23,6 +23,7 @@ class CreateCategoriesTable extends Migration
             $table->string('thumbnail')->nullable();
             $table->string('name')->unique();    # translatable
             $table->string('slug')->unique();
+            $table->enum('is_column', ['0', '1']);
             $table->enum('is_published', ['0', '1']);
         });
     }

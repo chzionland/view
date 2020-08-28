@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasTranslations;
 
-    protected $fillable = ['admin_id', 'thumbnail', 'name', 'slug', 'is_published'];
+    protected $fillable = ['admin_id', 'thumbnail', 'name', 'slug', 'is_column', 'is_published'];
 
     public $translatable = ['name'];
 
