@@ -187,7 +187,7 @@ class PostController extends Controller
         $post->limit = '0';
         $post->is_reproduced = $request->is_reproduced;
         $post->source = $request->source;
-        $post->source = $request->source_url;
+        $post->source_url = $request->source_url;
         $post->editor = $request->editor;
         $post->intro = ['cn' => $request->intro_cn, 'en' => $request->intro_en];
         $post->details = ['cn' => $request->details_cn, 'en' => $request->details_en];
