@@ -18,9 +18,9 @@
   <link href="{{ asset('website/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300&display=swap" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link href="{{ asset('website/css/clean-blog.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('website/css/clean-blog.css') }}" rel="stylesheet">
 
     <style>
     /* Nav bar fixed top */
@@ -89,25 +89,25 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto" style="align-items: center;">
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('index', app()->getLocale()) }}" style="font-size: 18px;">
+            <a class="nav-link" href="{{ route('index', app()->getLocale()) }}">
                 {{ __('website.home') }}
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('category_list', app()->getLocale()) }}" style="font-size: 18px;">
+            <a class="nav-link" href="{{ route('category_list', app()->getLocale()) }}">
                 {{ __('website.category_list') }}
             </a>
           </li>
           @php ($pages = getPages())
           @foreach ($pages as $page)
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('page', [$page->slug, app()->getLocale()]) }}" style="font-size: 18px;">
+                <a class="nav-link" href="{{ route('page', [$page->slug, app()->getLocale()]) }}">
                     {{ $page->title }}
                 </a>
             </li>
           @endforeach
           <li class="nav-item">
-            <a class="nav-link" href="https://www.qizhong.land#contact" target="_blank" style="font-size: 18px;">
+            <a class="nav-link" href="https://www.qizhong.land#contact" target="_blank">
                 {{ __('website.contact_us') }}&nbsp;<i class="fas fa-external-link-alt fa-xs"></i>
             </a>
           </li>

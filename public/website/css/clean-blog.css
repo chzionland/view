@@ -7,7 +7,7 @@
 body {
   font-size: 20px;
   color: #212529;
-  font-family: 'Lora', 'Times New Roman', serif;
+  font-family: 'Noto Sans SC', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 p {
@@ -25,8 +25,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 800;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-family: 'Noto Sans SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -95,20 +95,20 @@ img::-moz-selection {
 }
 
 #mainNav .navbar-brand {
-  font-weight: 800;
+  font-weight: 700;
   color: #343a40;
 }
 
 #mainNav .navbar-toggler {
-  font-size: 12px;
-  font-weight: 800;
+  font-size: 1rem;
+  font-weight: 600;
   padding: 13px;
   text-transform: uppercase;
   color: #343a40;
 }
 
 #mainNav .navbar-nav > li.nav-item > a {
-  font-size: 12px;
+  font-size: 1rem;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -215,19 +215,21 @@ header.masthead .site-heading h1 {
 
 header.masthead .page-heading .subheading,
 header.masthead .site-heading .subheading {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 300;
   line-height: 1.1;
   display: block;
   margin: 10px 0 0;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Noto Sans SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-
-@media only screen and (min-width: 768px) {
-  header.masthead .page-heading h1,
-  header.masthead .site-heading h1 {
-    font-size: 80px;
-  }
+@media only screen and (min-width: 992px) {
+    header.masthead .page-heading h1,
+    header.masthead .site-heading h1 {
+      font-size: 60px;
+    }
+    header.masthead .site-heading .subheading {
+      font-size: 24px;
+    }
 }
 
 header.masthead .post-heading h1 {
@@ -244,14 +246,14 @@ header.masthead .post-heading .subheading {
   font-size: 24px;
   font-weight: 600;
   margin: 10px 0 30px;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Noto Sans SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 header.masthead .post-heading .meta {
   font-size: 20px;
   font-weight: 300;
   font-style: italic;
-  font-family: 'Lora', 'Times New Roman', serif;
+  font-family: 'Noto Sans SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 header.masthead .post-heading .meta a {
@@ -329,13 +331,13 @@ header.masthead .post-heading .meta a {
   border-radius: 0;
   background: none;
   box-shadow: none !important;
-  font-family: 'Lora', 'Times New Roman', serif;
+  font-family: 'Noto Sans SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .floating-label-form-group input::-webkit-input-placeholder,
 .floating-label-form-group textarea::-webkit-input-placeholder {
   color: #868e96;
-  font-family: 'Lora', 'Times New Roman', serif;
+  font-family: 'Noto Sans SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .floating-label-form-group label {
