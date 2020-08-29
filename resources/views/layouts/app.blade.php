@@ -45,13 +45,13 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pages.index', app()->getLocale()) }}">{{ __('admin_CRUD.pages') }}</a>
+                            <a class="nav-link" href="{{ route('admin.dashboard', app()->getLocale()) }}">{{ __('app.dashboard') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('newses.index', app()->getLocale()) }}">{{ __('admin_CRUD.newses') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.dashboard', app()->getLocale()) }}">{{ __('app.dashboard') }}</a>
+                            <a class="nav-link" href="{{ route('pages.index', app()->getLocale()) }}">{{ __('admin_CRUD.pages') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('categories.index', app()->getLocale()) }}">{{ __('admin_CRUD.categories') }}</a>

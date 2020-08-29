@@ -187,6 +187,12 @@
                         {!! Form::select('is_published', [0 => trans('admin_CRUD.save_as_draft'), 1 => trans('admin_CRUD.publish')], isset($post->is_published) ? $post->is_published : null, ['class' => 'form-control']) !!}
                     </div>
 
+                    {{-- Created Date --}}
+                    <div class="form-group">
+                        {!! Form::label('created_at', trans('admin_CRUD.created_at')) !!}
+                        {!! Form::date('created_at', $post->created_at, ['class' => 'form-control', 'min'=>'1960-01-01', 'placeholder' => trans('admin_CRUD.default_is_today')]) !!}
+                    </div>
+
                     {!! Form::submit(trans('admin_CRUD.update'), ['class' => 'btn btn-warning']) !!}
                     {!! Form::close() !!}
 

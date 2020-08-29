@@ -4,6 +4,7 @@ return [
 
     # General
     'created_by' => '创建者',
+    'created_at' => '创建于',
     'updated_at' => '更新于',
 
     'categories' => '类别',
@@ -103,7 +104,7 @@ return [
     'source' => '来源',
     'input_source' => '请输入文章来源的机构（转载必填）',
     'source_url' => '原文链接',
-    'input_source_url' => '请输入文章来源的链接（转载必填）',
+    'input_source_url' => '请输入文章来源的链接',
     'is_must_for_reproduced' => '转载文章必填',
 
     'author' => '作者',
@@ -122,6 +123,7 @@ return [
     'input_details_in_en' => '请用英文输入内容',
 
     'select_categories' => '-- 请选择类别（可多选）--',
+    'default_is_today' => '默认为今天',
 
     # News
     'news_list' => '快讯列表',

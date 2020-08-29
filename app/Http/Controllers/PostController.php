@@ -78,13 +78,17 @@ class PostController extends Controller
             $this->validate($request,
                 [
                     'source' => 'required',
-                    'source_url' => 'required',
                 ],
                 [
                     'source.required' => trans('admin_CRUD.is_must_for_reproduced'),
-                    'source_url.required' => trans('admin_CRUD.is_must_for_reproduced'),
                 ]
             );
+        }
+
+        if ($request->created_at) {
+            $created_at = $request->created_at;
+        } else {
+            $created_at = Carbon::now();
         }
 
         $post = Post::create([
@@ -103,7 +107,7 @@ class PostController extends Controller
             'details' => ['cn'=>$request->details_cn, 'en'=>$request->details_en],
             'is_published' => $request->is_published,
             'post_type' => 'post',
-            'created_at' => Carbon::now(),
+            'created_at' => $created_at,
             'updated_at' => Carbon::now(),
         ]);
 
@@ -170,13 +174,17 @@ class PostController extends Controller
             $this->validate($request,
                 [
                     'source' => 'required',
-                    'source_url' => 'required',
                 ],
                 [
                     'source.required' => trans('admin_CRUD.is_must_for_reproduced'),
-                    'source_url.required' => trans('admin_CRUD.is_must_for_reproduced'),
                 ]
             );
+        }
+
+        if ($request->created_at) {
+            $created_at = $request->created_at;
+        } else {
+            $created_at = Carbon::now();
         }
         $post->admin_id = Auth::id();
         $post->thumbnail = $request->thumbnail;
@@ -192,6 +200,7 @@ class PostController extends Controller
         $post->intro = ['cn' => $request->intro_cn, 'en' => $request->intro_en];
         $post->details = ['cn' => $request->details_cn, 'en' => $request->details_en];
         $post->is_published = $request->is_published;
+        $post->created_at = $created_at;
         $post->post_type = 'post';
         $post->save();
 

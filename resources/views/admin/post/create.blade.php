@@ -175,6 +175,12 @@
                         {!! Form::select('is_published', [0 => trans('admin_CRUD.save_as_draft'), 1 => trans('admin_CRUD.publish')], null, ['class' => 'form-control']) !!}
                     </div>
 
+                    {{-- Created Date --}}
+                    <div class="form-group">
+                        {!! Form::label('created_at', trans('admin_CRUD.created_at')) !!}
+                        {!! Form::date('created_at', null, ['class' => 'form-control', 'min'=>'1960-01-01', 'placeholder' => trans('admin_CRUD.default_is_today')]) !!}
+                    </div>
+
                     {!! Form::submit(trans('admin_CRUD.create'), ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}
 
