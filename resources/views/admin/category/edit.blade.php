@@ -13,11 +13,11 @@
 
                     {!! Form::open(['route' => ['categories.update', [$category->id, app()->getLocale()]], 'method'=>'put']) !!}
 
+                    {{-- Tumbnail --}}
                     <div class="form-group">
                         {{ trans('admin_CRUD.original_photo_preview') }}
                         <img width="200" src="{{ $category->thumbnail }}" alt="no photo">
                     </div>
-
                     <div class="form-group @if($errors->has('thumbnail')) has-error @endif">
                         {!! Form::label('thumbnail', trans('admin_CRUD.thumbnail')) !!}
                         &nbsp;&nbsp;
@@ -31,6 +31,7 @@
                         @endif
                     </div>
 
+                    {{-- Name --}}
                     <div class="form-group @if($errors->has('name_cn')) has-error @endif">
                         {!! Form::label('name_cn', trans('admin_CRUD.category_name_cn')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
@@ -40,7 +41,6 @@
                             <span class="help-block text-red-500">{!! $errors->first('name_cn') !!}</span>
                         @endif
                     </div>
-
                     <div class="form-group @if($errors->has('name_en')) has-error @endif">
                         {!! Form::label('name_en', trans('admin_CRUD.category_name_en')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
@@ -51,6 +51,14 @@
                         @endif
                     </div>
 
+                    {{-- Is Column --}}
+                    <div class="form-group">
+                        {!! Form::label('is_column', trans('admin_CRUD.set_column_or_not')) !!}
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
+                        {!! Form::select('is_column', [0 => trans('admin_CRUD.no'), 1 => trans('admin_CRUD.column')], isset($category->is_column) ? $category->is_column : null, ['class' => 'form-control']) !!}
+                    </div>
+
+                    {{-- Publish Status --}}
                     <div class="form-group">
                         {!! Form::label('is_published', trans('admin_CRUD.is_published')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>

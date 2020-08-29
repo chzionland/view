@@ -16,6 +16,7 @@
                 <div class="card-body">
                     {!! Form::open(['route' => ['photos.update', [$photo->id, app()->getLocale()]], 'method'=>'put']) !!}
 
+                    {{-- Tumbnail --}}
                     <div class="form-group">
                         {{ trans('admin_CRUD.original_photo_preview') }}
                         <img width="200" src="{{ $photo->image_url }}" alt="no photo">

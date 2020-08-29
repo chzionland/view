@@ -14,8 +14,8 @@ class WebsiteController extends Controller
     public function index()
     {
         $posts = Post::orderBy('id', 'DESC')->where('post_type', 'post')->where('is_published', '1')->paginate(5)->onEachSide(1);
-
-        return view('website.index', compact('posts'));
+        $newses = Post::orderBy('id', 'DESC')->where('post_type', 'news')->where('is_published', '1')->paginate(5)->onEachSide(1);
+        return view('website.index', compact('posts', 'newses'));
     }
 
     public function categoryList()
@@ -37,6 +37,15 @@ class WebsiteController extends Controller
         if ($category) {
             $posts = $category->posts()->orderBy('post_id', 'DESC')->where('is_published', '1')->paginate(5);
             return view('website.category', compact('category', 'posts'));
+        }
+    }
+
+    public function column($slug)
+    {
+        $column = Category::where('slug', $slug)->where('is_published', '1')->first();
+        if ($column) {
+            $posts = $column->posts()->orderBy('post_id', 'DESC')->where('is_published', '1')->paginate(5);
+            return view('website.column', compact('column', 'posts'));
         }
     }
 

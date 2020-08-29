@@ -98,6 +98,14 @@
                 {{ __('website.category_list') }}
             </a>
           </li>
+          @php ($columns = getColumns())
+          @foreach ($columns as $column)
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('column', [$column->slug, app()->getLocale()]) }}">
+                    {{ $column->name }}
+                </a>
+            </li>
+          @endforeach
           @php ($pages = getPages())
           @foreach ($pages as $page)
             <li class="nav-item">

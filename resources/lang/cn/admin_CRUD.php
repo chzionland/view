@@ -10,6 +10,7 @@ return [
     'authors' => '作者',
     'posts' => '文章',
     'pages' => '页面',
+    'newses' => '快讯',
     'photos' => '图库',
 
     'original_or_reproduced' => '是否原创',
@@ -49,6 +50,7 @@ return [
     'author_name' => '作者名',
     'post_title' => '文章标题',
     'page_title' => '页面标题',
+    'news_title' => '快讯标题',
 
     'latest_categories' => '最近更新的类别',
     'latest_posts' => '最近更新的文章',
@@ -66,6 +68,9 @@ return [
     'input_category_name_in_cn' => '请用中文输入类别名称',
     'category_name_en' => '类别名称（英文）',
     'input_category_name_in_en' => '请用英文输入类别名称',
+    'is_column' => '专栏否',
+    'set_column_or_not' => '是否设为专栏',
+    'column' => '专栏',
 
     # Author
     'author_list' => '作者列表',
@@ -117,6 +122,11 @@ return [
     'input_details_in_en' => '请用英文输入内容',
 
     'select_categories' => '-- 请选择类别（可多选）--',
+
+    # News
+    'news_list' => '快讯列表',
+    'create_news' => '创建快讯',
+    'update_news' => '更新快讯',
 
     # Page
     'page_list' => '页面列表',

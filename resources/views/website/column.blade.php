@@ -2,13 +2,13 @@
 
 @section('content')
 <!-- Page Header -->
-  <header class="masthead" style="background-image: url({{ $category->thumbnail }})">
+  <header class="masthead" style="background-image: url({{ $column->thumbnail }})">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
-            <h2>{{ $category->name }}</h2>
+            <h2>{{ $column->name }}</h2>
           </div>
         </div>
       </div>

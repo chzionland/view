@@ -17,7 +17,7 @@
                 <th scope="col" width="80">{{ __('admin_CRUD.img_url') }}</th>
                 <th scope="col" width="10">{{ __('admin_CRUD.uploaded_by') }}</th>
                 <th scope="col" width="10">{{ __('admin_CRUD.uploaded_at') }}</th>
-                <th scope="col" width="10">{{ __('admin_CRUD.delete') }}</th>
+                <th scope="col" width="10">{{ __('admin_CRUD.edit_delete') }}</th>
             </tr>
         </thead>
         <tbody>
