@@ -20,6 +20,7 @@
   <div class="container">
 
     {{-- News --}}
+    @if (count($newses) > 0)
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
             <h2 class="post-title">{{ trans("admin_CRUD.newses") }}</h2>
@@ -44,16 +45,16 @@
         </div>
     </div>
     <hr>
+    @endif
 
     {{-- Posts --}}
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-
+        <h2 class="post-title">{{ trans("admin_CRUD.latest_posts") }}</h2>
         @foreach ($posts as $post)
           <div class="post-preview">
             <a href="{{ route('post', [$post->slug, app()->getLocale()]) }}">
-              <h2 class="post-title">{{ $post->title }}</h2>
-              <h3 class="post-subtitle">{{ $post->sub_title }}</h3>
+              <h3 class="post-subtitle">{{ $post->title }}</h3>
             </a>
             <div class="post-meta">
                 <p>

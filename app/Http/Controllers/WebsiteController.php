@@ -13,8 +13,8 @@ class WebsiteController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('id', 'DESC')->where('post_type', 'post')->where('is_published', '1')->paginate(5)->onEachSide(1);
-        $newses = Post::orderBy('id', 'DESC')->where('post_type', 'news')->where('is_published', '1')->paginate(5)->onEachSide(1);
+        $posts = Post::latest()->where('post_type', 'post')->where('is_published', '1')->paginate(5)->onEachSide(1);
+        $newses = Post::latest()->where('post_type', 'news')->where('is_published', '1')->paginate(5)->onEachSide(1);
         return view('website.index', compact('posts', 'newses'));
     }
 
