@@ -8,7 +8,7 @@ use App\Post;
 class WebsiteController extends Controller
 {
     public function index()
-    {   $title = trans('website.hoem');
+    {   $title = trans('website.home');
         $categories = Category::orderBy('name', 'ASC')->where('is_published', '1')->get();
         $posts = Post::latest()->where('post_type', 'post')->where('is_published', '1')->paginate(5)->onEachSide(1);
         return view('website.index', compact('title', 'posts', 'categories'));
