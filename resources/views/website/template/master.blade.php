@@ -93,11 +93,11 @@
                 {{ __('website.home') }}
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('category_list', app()->getLocale()) }}">
                 {{ __('website.category_list') }}
             </a>
-          </li>
+          </li> --}}
           @php ($columns = getColumns())
           @foreach ($columns as $column)
             <li class="nav-item">

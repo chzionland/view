@@ -53,8 +53,8 @@ class AuthorController extends Controller
     {
         $this->validate($request,
             [
-                'name_cn' => 'required|max:191|unique:categories,name->cn',
-                'name_en' => 'required|max:191|unique:categories,name->en',
+                'name_cn' => 'required|max:191|unique:author,name->cn',
+                'name_en' => 'required|max:191|unique:author,name->en',
             ],
             [
                 'name_cn.required' => trans('admin_CRUD.is_must'),
@@ -115,8 +115,8 @@ class AuthorController extends Controller
     {
         $this->validate($request,
             [
-                'name_cn' => 'required|max:191|unique:categories,name->cn,' . $author->id,
-                'name_en' => 'required|max:191|unique:categories,name->en,' . $author->id,
+                'name_cn' => 'required|max:191|unique:author,name->cn,' . $author->id,
+                'name_en' => 'required|max:191|unique:author,name->en,' . $author->id,
             ],
             [
                 'name_cn.required' => trans('admin_CRUD.is_must'),
