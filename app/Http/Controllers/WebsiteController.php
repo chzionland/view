@@ -3,40 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Mail\VisitorContact;
 use App\Post;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
 
 class WebsiteController extends Controller
 {
     public function index()
-    {
+    {   $title = trans('website.hoem');
+        $categories = Category::orderBy('name', 'ASC')->where('is_published', '1')->get();
         $posts = Post::latest()->where('post_type', 'post')->where('is_published', '1')->paginate(5)->onEachSide(1);
-        $newses = Post::latest()->where('post_type', 'news')->where('is_published', '1')->paginate(5)->onEachSide(1);
-        return view('website.index', compact('posts', 'newses'));
+        return view('website.index', compact('title', 'posts', 'categories'));
     }
 
     public function categoryList()
     {
+        $title = trans('website.category_list');
         $categories = Category::orderBy('name', 'ASC')->where('is_published', '1')->get();
-        $posts = Post::orderBy('id', 'DESC')->where('is_published', '1')->where('post_type', 'post')->get();
-        $uncategorized_posts = [];
-        foreach ($posts as $post) {
-            if (count($post->categories) == 0) {
-                $uncategorized_posts[] = $post;
-            }
-        }
-        return view('website.category-list', compact('categories', 'uncategorized_posts'));
+        return view('website.category-list', compact('title', 'categories'));
     }
 
     public function category($slug)
     {
         $category = Category::where('slug', $slug)->where('is_published', '1')->first();
         if ($category) {
+            $title = $category->title;
             $posts = $category->posts()->orderBy('post_id', 'DESC')->where('is_published', '1')->paginate(5);
-            return view('website.category', compact('category', 'posts'));
+            return view('website.category', compact('title', 'category', 'posts'));
         }
     }
 
@@ -44,8 +35,9 @@ class WebsiteController extends Controller
     {
         $column = Category::where('slug', $slug)->where('is_published', '1')->first();
         if ($column) {
+            $title = $column->title;
             $posts = $column->posts()->orderBy('post_id', 'DESC')->where('is_published', '1')->paginate(5);
-            return view('website.column', compact('column', 'posts'));
+            return view('website.column', compact('title', 'column', 'posts'));
         }
     }
 
@@ -53,7 +45,8 @@ class WebsiteController extends Controller
     {
         $post = Post::where('slug', $slug)->where('post_type', 'post')->where('is_published', '1')->first();
         if ($post) {
-            return view('website.post', compact('post'));
+            $title = $post->title;
+            return view('website.post', compact('title', 'post'));
         }
     }
 
@@ -61,11 +54,8 @@ class WebsiteController extends Controller
     {
         $page = Post::where('slug', $slug)->where('post_type', 'page')->where('is_published', '1')->first();
         if ($page) {
-            return view('website.page', compact('page'));
+            $title = $page->title;
+            return view('website.page', compact('title', 'page'));
         }
-    }
-
-    public function showMessageForm() {
-        return view('website.message');
     }
 }

@@ -9,7 +9,7 @@
   <meta name="author" content="">
 
   <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-  <title>{{ __('app.app_name') }}</title>
+  <title>{{ $title }}</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{{ asset('website/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
