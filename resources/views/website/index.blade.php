@@ -19,7 +19,7 @@
   <!-- Main Content -->
   <div class="container">
 
-    {{-- News --}}
+    {{-- News
     @if (count($newses) > 0)
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
@@ -45,7 +45,7 @@
         </div>
     </div>
     <hr>
-    @endif
+    @endif --}}
 
     {{-- Posts --}}
     <div class="row">
