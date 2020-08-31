@@ -30,7 +30,7 @@ class PostController extends Controller
     public function index()
     {
         $title = trans('admin_CRUD.post_list');
-        $posts = Post::orderBy('id', 'DESC')->where('post_type', 'post')->get();
+        $posts = Post::latest()->where('post_type', 'post')->get();
         return view('admin.post.index', compact('title', 'posts'));
     }
 
@@ -42,7 +42,7 @@ class PostController extends Controller
     public function create()
     {
         $title = trans('admin_CRUD.create_post');
-        $authors = Author::orderBy('id', 'DESC')->pluck('name', 'id');
+        $authors = Author::orderBy('name', 'ASC')->pluck('name', 'id');
         $categories = Category::orderBy('id', 'DESC')->pluck('name', 'id');
         return view('admin.post.create', compact('title', 'authors', 'categories'));
     }
