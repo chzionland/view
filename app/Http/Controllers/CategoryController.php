@@ -29,8 +29,8 @@ class CategoryController extends Controller
     public function index()
     {
         $title = trans('admin_CRUD.category_list');
-        $columns = Category::orderBy('id', 'DESC')->get();
-        $categories = Category::orderBy('id', 'DESC')->get();
+        $columns = Category::latest()->get();
+        $categories = Category::latest()->get();
         return view('admin.category.index', compact('title', 'columns', 'categories'));
     }
 

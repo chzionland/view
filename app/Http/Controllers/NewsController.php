@@ -28,7 +28,7 @@ class NewsController extends Controller
     public function index()
     {
         $title = trans('admin_CRUD.news_list');
-        $newses = Post::orderBy('id', 'DESC')->where('post_type', 'news')->get();
+        $newses = Post::latest()->where('post_type', 'news')->get();
         return view('admin.news.index', compact('title', 'newses'));
     }
 

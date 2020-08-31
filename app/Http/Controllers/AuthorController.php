@@ -28,7 +28,7 @@ class AuthorController extends Controller
     public function index()
     {
         $title = trans('admin_CRUD.author_list');
-        $authors = Author::orderBy('id', 'DESC')->get();
+        $authors = Author::latest()->get();
         return view('admin.author.index', compact('title', 'authors'));
     }
 

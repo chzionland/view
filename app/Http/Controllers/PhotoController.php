@@ -30,7 +30,7 @@ class PhotoController extends Controller
     public function index()
     {
         $title = trans('admin_CRUD.photo_list');
-        $photos = Photo::orderBy('id', 'DESC')->get();
+        $photos = Photo::latest()->get();
         return view('admin.photo.index', compact('title', 'photos'));
     }
 
@@ -42,7 +42,7 @@ class PhotoController extends Controller
     public function create()
     {
         $title = trans('admin_CRUD.photo_upload');
-        $categories = Category::orderBy('id', 'DESC')->pluck('name', 'id');
+        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         return view('admin.photo.create', compact('title', 'categories'));
     }
 

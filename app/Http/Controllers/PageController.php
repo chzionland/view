@@ -28,7 +28,7 @@ class PageController extends Controller
     public function index()
     {
         $title = trans('admin_CRUD.page_list');
-        $pages = Post::orderBy('id', 'DESC')->where('post_type', 'page')->get();
+        $pages = Post::latest()->where('post_type', 'page')->get();
         return view('admin.page.index', compact('title', 'pages'));
     }
 
