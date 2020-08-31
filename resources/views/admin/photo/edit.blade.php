@@ -43,16 +43,14 @@
                     {{-- Intro --}}
                     <div class="form-group @if($errors->has('intro_cn')) has-error @endif">
                         {!! Form::label('intro_cn', trans('admin_CRUD.intro_cn')) !!}
-                        {{ App::setLocale('cn') }}
-                        {!! Form::textarea('intro_cn', $photo->intro, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_cn')]) !!}
+                        {!! Form::textarea('intro_cn', $photo->getTranslation('intro', 'cn'), ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_cn')]) !!}
                         @if ($errors->has('intro_cn'))
                             <span class="help-block text-red-500">{!! $errors->first('intro_cn') !!}</span>
                         @endif
                     </div>
                     <div style="display: none" class="form-group @if($errors->has('intro_en')) has-error @endif">
                         {!! Form::label('intro_en', trans('admin_CRUD.intro_en')) !!}
-                        {{ App::setLocale('en') }}
-                        {!! Form::textarea('intro_en', $photo->intro, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_en')]) !!}
+                        {!! Form::textarea('intro_en', $photo->getTranslation('intro', 'en'), ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_en')]) !!}
                         @if ($errors->has('intro_en'))
                             <span class="help-block text-red-500">{!! $errors->first('intro_en') !!}</span>
                         @endif

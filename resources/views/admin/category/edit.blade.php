@@ -35,8 +35,7 @@
                     <div class="form-group @if($errors->has('name_cn')) has-error @endif">
                         {!! Form::label('name_cn', trans('admin_CRUD.category_name_cn')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {{ App::setLocale('cn') }}
-                        {!! Form::text('name_cn', $category->name, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_category_name_in_cn')]) !!}
+                        {!! Form::text('name_cn', $category->getTranslation('name', 'cn'), ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_category_name_in_cn')]) !!}
                         @if ($errors->has('name_cn'))
                             <span class="help-block text-red-500">{!! $errors->first('name_cn') !!}</span>
                         @endif
@@ -44,8 +43,7 @@
                     <div class="form-group @if($errors->has('name_en')) has-error @endif">
                         {!! Form::label('name_en', trans('admin_CRUD.category_name_en')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {{ App::setLocale('en') }}
-                        {!! Form::text('name_en', $category->name, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_category_name_in_en')]) !!}
+                        {!! Form::text('name_en', $category->getTranslation('name', 'en'), ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_category_name_in_en')]) !!}
                         @if ($errors->has('name_en'))
                             <span class="help-block text-red-500">{!! $errors->first('name_en') !!}</span>
                         @endif
