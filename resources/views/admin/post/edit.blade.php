@@ -39,8 +39,7 @@
                     <div class="form-group @if($errors->has('title_cn')) has-error @endif">
                         {!! Form::label('title_cn', trans('admin_CRUD.title_cn')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {{ App::setLocale('cn') }}
-                        {!! Form::text('title_cn', $post->title, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_title_in_cn')]) !!}
+                        {!! Form::text('title_cn', $post->getTranslation('title', 'cn'), ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_title_in_cn')]) !!}
                         @if ($errors->has('title_cn'))
                             <span class="help-block text-red-500">{!! $errors->first('title_cn') !!}</span>
                         @endif
@@ -48,8 +47,7 @@
                     <div class="form-group @if($errors->has('title_en')) has-error @endif">
                         {!! Form::label('title_en', trans('admin_CRUD.title_en')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {{ App::setLocale('en') }}
-                        {!! Form::text('title_en', $post->title, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_title_in_en')]) !!}
+                        {!! Form::text('title_en', $post->getTranslation('title', 'en'), ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_title_in_en')]) !!}
                         @if ($errors->has('title_en'))
                             <span class="help-block text-red-500">{!! $errors->first('title_en') !!}</span>
                         @endif
@@ -58,16 +56,14 @@
                     {{-- Sub Title --}}
                     <div class="form-group @if($errors->has('sub_title_cn')) has-error @endif">
                         {!! Form::label('sub_title_cn', trans('admin_CRUD.sub_title_cn')) !!}
-                        {{ App::setLocale('cn') }}
-                        {!! Form::text('sub_title_cn', $post->sub_title, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_sub_title_in_cn')]) !!}
+                        {!! Form::text('sub_title_cn', $post->getTranslation('sub_title', 'cn'), ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_sub_title_in_cn')]) !!}
                         @if ($errors->has('sub_title_cn'))
                             <span class="help-block text-red-500">{!! $errors->first('sub_title_cn') !!}</span>
                         @endif
                     </div>
                     <div style="display: none" class="form-group @if($errors->has('sub_title_en')) has-error @endif">
                         {!! Form::label('sub_title_en', trans('admin_CRUD.sub_title_en')) !!}
-                        {{ App::setLocale('en') }}
-                        {!! Form::text('sub_title_en', $post->sub_title, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_sub_title_in_en')]) !!}
+                        {!! Form::text('sub_title_en', $post->getTranslation('sub_title', 'en'), ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_sub_title_in_en')]) !!}
                         @if ($errors->has('sub_title_en'))
                             <span class="help-block text-red-500">{!! $errors->first('sub_title_en') !!}</span>
                         @endif
@@ -130,16 +126,14 @@
                     {{-- Intro --}}
                     <div class="form-group @if($errors->has('intro_cn')) has-error @endif">
                         {!! Form::label('intro_cn', trans('admin_CRUD.intro_cn')) !!}
-                        {{ App::setLocale('cn') }}
-                        {!! Form::textarea('intro_cn', $post->intro, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_cn')]) !!}
+                        {!! Form::textarea('intro_cn', $post->getTranslation('intro', 'cn'), ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_cn')]) !!}
                         @if ($errors->has('intro_cn'))
                             <span class="help-block text-red-500">{!! $errors->first('intro_cn') !!}</span>
                         @endif
                     </div>
                     <div style="display: none" class="form-group @if($errors->has('intro_en')) has-error @endif">
                         {!! Form::label('intro_en', trans('admin_CRUD.intro_en')) !!}
-                        {{ App::setLocale('en') }}
-                        {!! Form::textarea('intro_en', $post->intro, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_en')]) !!}
+                        {!! Form::textarea('intro_en', $post->getTranslation('intro', 'en'), ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_en')]) !!}
                         @if ($errors->has('intro_en'))
                             <span class="help-block text-red-500">{!! $errors->first('intro_en') !!}</span>
                         @endif
@@ -148,16 +142,14 @@
                     {{-- Details --}}
                     <div class="form-group @if($errors->has('details_cn')) has-error @endif">
                         {!! Form::label('details_cn', trans('admin_CRUD.details_cn')) !!}
-                        {{ App::setLocale('cn') }}
-                        {!! Form::textarea('details_cn', $post->details, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_details_in_cn')]) !!}
+                        {!! Form::textarea('details_cn', $post->getTranslation('details', 'cn'), ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_details_in_cn')]) !!}
                         @if ($errors->has('details_cn'))
                             <span class="help-block text-red-500">{!! $errors->first('details_cn') !!}</span>
                         @endif
                     </div>
                     <div style="display: none" class="form-group @if($errors->has('details_en')) has-error @endif">
                         {!! Form::label('details_en', trans('admin_CRUD.details_en')) !!}
-                        {{ App::setLocale('en') }}
-                        {!! Form::textarea('details_en', $post->details, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_details_in_en')]) !!}
+                        {!! Form::textarea('details_en', $post->getTranslation('details', 'en'), ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_details_in_en')]) !!}
                         @if ($errors->has('details_en'))
                             <span class="help-block text-red-500">{!! $errors->first('details_en') !!}</span>
                         @endif

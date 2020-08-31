@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Spatie\Translatable\TranslatableServiceProvider;
 
 class PostController extends Controller
 {
@@ -186,8 +187,6 @@ class PostController extends Controller
         } else {
             $created_at = Carbon::now();
         }
-
-        dd(request()->all());
 
         $post->admin_id = Auth::id();
         $post->thumbnail = $request->thumbnail;
