@@ -11,7 +11,7 @@ class WebsiteController extends Controller
     {   $title = trans('website.home');
         $categories = Category::orderBy('name', 'ASC')->where('is_published', '1')->get();
         $posts = Post::orderBy('is_top', 'DESC')->latest()->where('post_type', 'post')->where('is_published', '1')->paginate(5)->onEachSide(1);
-        return view('website.index', compact('title', 'top_posts', 'categories'));
+        return view('website.index', compact('title', 'posts', 'categories'));
     }
 
     public function categoryList()
