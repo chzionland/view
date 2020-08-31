@@ -29,6 +29,25 @@ h6 {
   font-family: 'Noto Sans SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.h1, h1 {
+    font-size: 2rem;
+}
+.h2, h2 {
+    font-size: 1.75rem;
+}
+.h3, h3 {
+    font-size: 1.5rem;
+}
+.h4, h4 {
+    font-size: 1.25rem;
+}
+.h5, h5 {
+    font-size: 1.2rem;
+}
+.h6, h6 {
+    font-size: 1.1rem;
+}
+
 a {
   color: #212529;
   transition: all 0.2s;
@@ -285,6 +304,7 @@ header.masthead .post-heading .meta a {
 }
 
 .post-preview > a > .post-subtitle {
+  font-size: 1.25rem;
   font-weight: 300;
   margin: 0 0 10px;
 }
@@ -308,7 +328,10 @@ header.masthead .post-heading .meta a {
 
 @media only screen and (min-width: 768px) {
   .post-preview > a > .post-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
+  }
+  .post-preview > a > .post-subtitle {
+    font-size: 1.5rem;
   }
 }
 
