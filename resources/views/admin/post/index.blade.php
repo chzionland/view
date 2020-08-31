@@ -13,6 +13,7 @@
             <tr>
                 <th scope="col" width="10">{{ __('#') }}</th>
                 <th scope="col" width="60">{{ __('admin_CRUD.post_title') }}</th>
+                <th scope="col" width="30">{{ __('admin_CRUD.is_top') }}</th>
                 <th scope="col" width="30">{{ __('admin_CRUD.original_or_reproduced') }}</th>
                 <th scope="col" width="30">{{ __('admin_CRUD.author') }}</th>
                 <th scope="col" width="30">{{ __('admin_CRUD.updated_at') }}</th>
@@ -26,6 +27,13 @@
                 <tr>
                     <td>{{ $post->id }}</td>
                     <td>{{ $post->title }}</td>
+                    <td>
+                        @if ($post->is_top == 1)
+                            {{ __('admin_CRUD.top') }}
+                        @else
+                            {{ __('admin_CRUD.no') }}
+                        @endif
+                    </td>
                     <td>
                         @if ($post->is_reproduced == 1)
                             {{ __('admin_CRUD.reproduced') }}
