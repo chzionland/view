@@ -16,7 +16,7 @@
                     {{-- Tumbnail --}}
                     <div class="form-group">
                         {{ trans('admin_CRUD.original_photo_preview') }}
-                        <img width="200" src="{{ $page->thumbnail }}" alt="no photo">
+                        <img width="200" src="{{ $page->thumbnail }}" alt="">
                     </div>
                     <div class="form-group @if($errors->has('thumbnail')) has-error @endif">
                         {!! Form::label('thumbnail', trans('admin_CRUD.thumbnail')) !!}
