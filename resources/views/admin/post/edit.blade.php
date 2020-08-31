@@ -198,15 +198,15 @@
 
 @section('javascript')
 <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
-<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js""></script>
+{{-- <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js""></script> --}}
 <script src="{{ asset('js/select2.min.js') }}" type="text/javascript"></script>
 
 <script type="text/javascript">
 
     $(document).ready(function () {
 
-        CKEDITOR.replace('details_cn');
-        CKEDITOR.replace('details_en');
+        // CKEDITOR.replace('details_cn');
+        // CKEDITOR.replace('details_en');
 
         var message = document.getElementById('trans-select-authors').textContent;
         $('#author_id').select2({
