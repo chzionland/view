@@ -22,7 +22,7 @@
                         {!! Form::label('thumbnail', trans('admin_CRUD.thumbnail')) !!}
                         &nbsp;&nbsp;
                         <a href="#" target="_blank" class="text-primary">
-                            {{ __('admin_CRUD.photo') }}
+                            {{ __('admin_CRUD.photos') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>
                         </a>
                         {!! Form::text('thumbnail', $news->thumbnail, [

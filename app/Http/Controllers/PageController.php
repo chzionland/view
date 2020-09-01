@@ -86,13 +86,16 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Post  $page
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $page)
+    public function edit($id)
     {
-        $title = trans('admin_CRUD.update_page');
-        return view('admin.page.edit', compact('title', 'page'));
+        $title = trans('admin_CRUD.update_news');
+        $page = Post::where('id', $id)->first();
+        if ($page) {
+            return view('admin.page.edit', compact('title', 'page'));
+        }
     }
 
     /**
@@ -135,14 +138,16 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Post  $page
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $page)
+    public function destroy($id)
     {
-        $page->delete();
-
-        Session::flash('danger-message', trans('admin_CRUD.deleted_successfully'));
-        return redirect()->route('pages.index');
+        $page = Post::where('id', $id)->first();
+        if ($page) {
+            $page->delete();
+            Session::flash('danger-message', trans('admin_CRUD.deleted_successfully'));
+            return redirect()->route('pages.index');
+        }
     }
 }

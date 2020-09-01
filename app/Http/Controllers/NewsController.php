@@ -103,7 +103,10 @@ class NewsController extends Controller
     public function edit($id)
     {
         $title = trans('admin_CRUD.update_news');
-        return view('admin.news.edit', compact('title', 'news'));
+        $news = Post::where('id', $id)->first();
+        if ($news) {
+            return view('admin.news.edit', compact('title', 'news'));
+        }
     }
 
     /**
@@ -149,11 +152,13 @@ class NewsController extends Controller
      * @param  \App\Post $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $news)
+    public function destroy($id)
     {
-        $news->delete();
-
-        Session::flash('danger-message', trans('admin_CRUD.deleted_successfully'));
-        return redirect()->route('newses.index');
+        $news = Post::where('id', $id)->first();
+        if ($news) {
+            $news->delete();
+            Session::flash('danger-message', trans('admin_CRUD.deleted_successfully'));
+            return redirect()->route('newses.index');
+        }
     }
 }
