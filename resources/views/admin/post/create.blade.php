@@ -143,7 +143,7 @@
                             <span class="help-block text-red-500">{!! $errors->first('details_cn') !!}</span>
                         @endif
                     </div>
-                    <div style="display: none" class="form-group @if($errors->has('details_en')) has-error @endif">
+                    <div  class="form-group @if($errors->has('details_en')) has-error @endif">
                         {!! Form::label('details_en', trans('admin_CRUD.details_en')) !!}
                         {!! Form::textarea('details_en', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_details_in_en')]) !!}
                         @if ($errors->has('details_en'))
