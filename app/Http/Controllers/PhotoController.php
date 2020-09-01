@@ -64,13 +64,6 @@ class PhotoController extends Controller
                 "image_url.required" => trans("admin_CRUD.select_image"),
             ]
         );
-
-        if ($request->intro_en) {
-            $intro_en = $request->intro_en;
-        } else {
-            $intro_en = '';
-        }
-
         foreach ($request->image_url as $image_url) {
 
             $current_timestamp = Carbon::now()->timestamp;
@@ -82,7 +75,7 @@ class PhotoController extends Controller
             $photo = new Photo();
             $photo->admin_id = Auth::id();
             $photo->image_url = $fileNameToStore;
-            $photo->intro = ['cn' => $request->intro_cn, 'en' => $intro_en];
+            $photo->intro = ['cn' => $request->intro_cn, 'en' => $request->intro_en];
             $photo->is_published = $request->is_published;
             $save = $photo->save();
 
@@ -132,14 +125,8 @@ class PhotoController extends Controller
             ]
         );
 
-        if ($request->intro_en) {
-            $intro_en = $request->intro_en;
-        } else {
-            $intro_en = '';
-        }
-
         $photo->admin_id = Auth::id();
-        $photo->intro = ['cn' => $request->intro_cn, 'en' => $intro_en];
+        $photo->intro = ['cn' => $request->intro_cn, 'en' => $request->intro_en];
         $photo->is_published = $request->is_published;
         $photo->save();
         $photo->categories()->sync($request->category_id, true);

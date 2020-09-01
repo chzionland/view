@@ -66,25 +66,13 @@ class PageController extends Controller
             ]
         );
 
-        if ($request->sub_title_en) {
-            $sub_title_en = $request->sub_title_en;
-        } else {
-            $sub_title_en = '';
-        }
-
-        if ($request->details_en) {
-            $details_en = $request->details_en;
-        } else {
-            $details_en = '';
-        }
-
         Post::create([
             'admin_id' => Auth::id(),
             'thumbnail' => $request->thumbnail,
             'title' => ['cn'=>$request->title_cn, 'en'=>$request->title_en],
             'slug' => str_slug($request->title_en),
-            'sub_title' => ['cn'=>$request->sub_title_cn, 'en'=>$sub_title_en],
-            'details' => ['cn'=>$request->details_cn, 'en'=>$details_en],
+            'sub_title' => ['cn'=>$request->sub_title_cn, 'en'=>$request->sub_title_en],
+            'details' => ['cn'=>$request->details_cn, 'en'=>$request->details_en],
             'is_published' => $request->is_published,
             'post_type' => 'page',
             'created_at' => Carbon::now(),
@@ -130,25 +118,12 @@ class PageController extends Controller
                 'title_en.unique' => trans('admin_CRUD.already_exist'),
             ]
         );
-
-        if ($request->sub_title_en) {
-            $sub_title_en = $request->sub_title_en;
-        } else {
-            $sub_title_en = '';
-        }
-
-        if ($request->details_en) {
-            $details_en = $request->details_en;
-        } else {
-            $details_en = '';
-        }
-
         $page->admin_id = Auth::id();
         $page->thumbnail = $request->thumbnail;
         $page->title = ['cn' => $request->title_cn, 'en' => $request->title_en];
         $page->slug = str_slug($request->title_en);
-        $page->sub_title = ['cn' => $request->sub_title_cn, 'en' => $sub_title_en];
-        $page->details = ['cn' => $request->details_cn, 'en' => $details_en];
+        $page->sub_title = ['cn' => $request->sub_title_cn, 'en' => $request->sub_title_en];
+        $page->details = ['cn' => $request->details_cn, 'en' => $request->details_en];
         $page->is_published = $request->is_published;
         $page->post_type = 'page';
         $page->save();
