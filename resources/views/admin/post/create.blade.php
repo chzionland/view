@@ -25,7 +25,10 @@
                             {{ __('admin_CRUD.photos') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>
                         </a>
-                        {!! Form::text('thumbnail', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.paste_thumbnail_address_here')]) !!}
+                        {!! Form::text('thumbnail', null, [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.paste_thumbnail_address_here')
+                        ]) !!}
                         @if ($errors->has('thumbnail'))
                             <span class="help-block text-red-500">{!! $errors->first('thumbnail') !!}</span>
                         @endif
@@ -35,7 +38,10 @@
                     <div class="form-group @if($errors->has('title_cn')) has-error @endif">
                         {!! Form::label('title_cn', trans('admin_CRUD.title_cn')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {!! Form::text('title_cn', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_title_in_cn')]) !!}
+                        {!! Form::text('title_cn', null, [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_title_in_cn')
+                        ]) !!}
                         @if ($errors->has('title_cn'))
                             <span class="help-block text-red-500">{!! $errors->first('title_cn') !!}</span>
                         @endif
@@ -43,7 +49,10 @@
                     <div class="form-group @if($errors->has('title_en')) has-error @endif">
                         {!! Form::label('title_en', trans('admin_CRUD.title_en')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {!! Form::text('title_en', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_title_in_en')]) !!}
+                        {!! Form::text('title_en', null, [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_title_in_en')
+                        ]) !!}
                         @if ($errors->has('title_en'))
                             <span class="help-block text-red-500">{!! $errors->first('title_en') !!}</span>
                         @endif
@@ -52,14 +61,20 @@
                     {{-- Sub Title --}}
                     <div class="form-group @if($errors->has('sub_title_cn')) has-error @endif">
                         {!! Form::label('sub_title_cn', trans('admin_CRUD.sub_title_cn')) !!}
-                        {!! Form::text('sub_title_cn', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_sub_title_in_cn')]) !!}
+                        {!! Form::text('sub_title_cn', null, [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_sub_title_in_cn'),
+                        ]) !!}
                         @if ($errors->has('sub_title_cn'))
                             <span class="help-block text-red-500">{!! $errors->first('sub_title_cn') !!}</span>
                         @endif
                     </div>
                     <div class="form-group @if($errors->has('sub_title_en')) has-error @endif">
                         {!! Form::label('sub_title_en', trans('admin_CRUD.sub_title_en')) !!}
-                        {!! Form::text('sub_title_en', 'Subtitle in English', ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_sub_title_in_en')]) !!}
+                        {!! Form::text('sub_title_en', 'Subtitle in English', [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_sub_title_in_en'),
+                        ]) !!}
                         @if ($errors->has('sub_title_en'))
                             <span class="help-block text-red-500">{!! $errors->first('sub_title_en') !!}</span>
                         @endif
@@ -80,14 +95,20 @@
                     </div>
                     <div class="form-group @if($errors->has('source')) has-error @endif">
                         {!! Form::label('source', trans('admin_CRUD.source')) !!}
-                        {!! Form::text('source', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_source')]) !!}
+                        {!! Form::text('source', null, [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_source')
+                        ]) !!}
                         @if ($errors->has('source'))
                             <span class="help-block text-red-500">{!! $errors->first('source') !!}</span>
                         @endif
                     </div>
                     <div class="form-group @if($errors->has('source_url')) has-error @endif">
                         {!! Form::label('source_url', trans('admin_CRUD.source_url')) !!}
-                        {!! Form::text('source_url', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_source_url')]) !!}
+                        {!! Form::text('source_url', null, [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_source_url')
+                        ]) !!}
                         @if ($errors->has('source_url'))
                             <span class="help-block text-red-500">{!! $errors->first('source_url') !!}</span>
                         @endif
@@ -104,7 +125,11 @@
                         <div style="display: none" id="trans-select-authors">
                             {{ trans('admin_CRUD.select_authors') }}
                         </div>
-                        {!! Form::select('author_id[]', $authors, null, ['class' => 'form-control', 'id'=>'author_id', 'multiple'=>'multiple']) !!}
+                        {!! Form::select('author_id[]', $authors, null, [
+                            'class' => 'form-control',
+                            'id'=>'author_id',
+                            'multiple'=>'multiple'
+                        ]) !!}
                         @if ($errors->has('author_id'))
                             <span class="help-block text-red-500">{!! $errors->first('author_id') !!}</span>
                         @endif
@@ -113,7 +138,10 @@
                     {{-- Editor --}}
                     <div class="form-group @if($errors->has('editor')) has-error @endif">
                         {!! Form::label('editor', trans('admin_CRUD.editor')) !!}
-                        {!! Form::text('editor', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_editor')]) !!}
+                        {!! Form::text('editor', null, [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_editor'),
+                        ]) !!}
                         @if ($errors->has('editor'))
                             <span class="help-block text-red-500">{!! $errors->first('editor') !!}</span>
                         @endif
@@ -122,14 +150,20 @@
                     {{-- Intro --}}
                     <div class="form-group @if($errors->has('intro_cn')) has-error @endif">
                         {!! Form::label('intro_cn', trans('admin_CRUD.intro_cn')) !!}
-                        {!! Form::textarea('intro_cn', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_cn')]) !!}
+                        {!! Form::textarea('intro_cn', null, [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_intro_in_cn'),
+                        ]) !!}
                         @if ($errors->has('intro_cn'))
                             <span class="help-block text-red-500">{!! $errors->first('intro_cn') !!}</span>
                         @endif
                     </div>
                     <div class="form-group @if($errors->has('intro_en')) has-error @endif">
                         {!! Form::label('intro_en', trans('admin_CRUD.intro_en')) !!}
-                        {!! Form::textarea('intro_en', 'Introduction in English', ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_en')]) !!}
+                        {!! Form::textarea('intro_en', 'Introduction in English', [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_intro_in_en'),
+                        ]) !!}
                         @if ($errors->has('intro_en'))
                             <span class="help-block text-red-500">{!! $errors->first('intro_en') !!}</span>
                         @endif
@@ -138,14 +172,20 @@
                     {{-- Details --}}
                     <div class="form-group @if($errors->has('details_cn')) has-error @endif">
                         {!! Form::label('details_cn', trans('admin_CRUD.details_cn')) !!}
-                        {!! Form::textarea('details_cn', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_details_in_cn')]) !!}
+                        {!! Form::textarea('details_cn', null, [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_details_in_cn'),
+                        ]) !!}
                         @if ($errors->has('details_cn'))
                             <span class="help-block text-red-500">{!! $errors->first('details_cn') !!}</span>
                         @endif
                     </div>
                     <div  class="form-group @if($errors->has('details_en')) has-error @endif">
                         {!! Form::label('details_en', trans('admin_CRUD.details_en')) !!}
-                        {!! Form::textarea('details_en', 'Details in English', ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_details_in_en')]) !!}
+                        {!! Form::textarea('details_en', 'Details in English', [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_details_in_en'),
+                        ]) !!}
                         @if ($errors->has('details_en'))
                             <span class="help-block text-red-500">{!! $errors->first('details_en') !!}</span>
                         @endif
@@ -162,7 +202,11 @@
                         <div style="display: none" id="trans-select-categories">
                             {{ trans('admin_CRUD.select_categories') }}
                         </div>
-                        {!! Form::select('category_id[]', $categories, null, ['class' => 'form-control', 'id'=>'category_id', 'multiple'=>'multiple']) !!}
+                        {!! Form::select('category_id[]', $categories, null, [
+                            'class' => 'form-control',
+                            'id'=>'category_id',
+                            'multiple'=>'multiple'
+                        ]) !!}
                         @if ($errors->has('category_id'))
                             <span class="help-block text-red-500">{!! $errors->first('category_id') !!}</span>
                         @endif
@@ -172,13 +216,20 @@
                     <div class="form-group">
                         {!! Form::label('is_published', trans('admin_CRUD.is_published')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {!! Form::select('is_published', [0 => trans('admin_CRUD.save_as_draft'), 1 => trans('admin_CRUD.publish')], null, ['class' => 'form-control']) !!}
+                        {!! Form::select('is_published', [
+                            0 => trans('admin_CRUD.save_as_draft'),
+                            1 => trans('admin_CRUD.publish')
+                        ], null, ['class' => 'form-control']) !!}
                     </div>
 
                     {{-- Created Date --}}
                     <div class="form-group">
                         {!! Form::label('created_at', trans('admin_CRUD.created_at')) !!}
-                        {!! Form::date('created_at', null, ['class' => 'form-control', 'min'=>'1960-01-01', 'placeholder' => trans('admin_CRUD.default_is_today')]) !!}
+                        {!! Form::date('created_at', null, [
+                            'class' => 'form-control',
+                            'min'=>'1970-01-01',
+                            'placeholder' => trans('admin_CRUD.default_is_today')
+                        ]) !!}
                     </div>
 
                     {!! Form::submit(trans('admin_CRUD.create'), ['class' => 'btn btn-primary']) !!}

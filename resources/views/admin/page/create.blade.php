@@ -64,14 +64,20 @@
                     {{-- Details --}}
                     <div class="form-group @if($errors->has('details_cn')) has-error @endif">
                         {!! Form::label('details_cn', trans('admin_CRUD.details_cn')) !!}
-                        {!! Form::textarea('details_cn', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_details_in_cn')]) !!}
+                        {!! Form::textarea('details_cn', null, [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_details_in_cn'),
+                        ]) !!}
                         @if ($errors->has('details_cn'))
                             <span class="help-block text-red-500">{!! $errors->first('details_cn') !!}</span>
                         @endif
                     </div>
                     <div class="form-group @if($errors->has('details_en')) has-error @endif">
                         {!! Form::label('details_en', trans('admin_CRUD.details_en')) !!}
-                        {!! Form::textarea('details_en', 'Details in English', ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_details_in_en')]) !!}
+                        {!! Form::textarea('details_en', 'Details in English', [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_details_in_en')
+                        ]) !!}
                         @if ($errors->has('details_en'))
                             <span class="help-block text-red-500">{!! $errors->first('details_en') !!}</span>
                         @endif
@@ -81,7 +87,10 @@
                     <div class="form-group">
                         {!! Form::label('is_published', trans('admin_CRUD.is_published')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {!! Form::select('is_published', [0 => trans('admin_CRUD.save_as_draft'), 1 => trans('admin_CRUD.publish')], null, ['class' => 'form-control']) !!}
+                        {!! Form::select('is_published', [
+                            0 => trans('admin_CRUD.save_as_draft'),
+                            1 => trans('admin_CRUD.publish')
+                        ], null, ['class' => 'form-control']) !!}
                     </div>
 
                     {!! Form::submit(trans('admin_CRUD.create'), ['class' => 'btn btn-primary']) !!}

@@ -27,8 +27,11 @@
                         <div style="display: none" id="trans-select-categories">
                             {{ trans('admin_CRUD.select_categories') }}
                         </div>
-
-                        {!! Form::select('category_id[]', $categories, null, ['class' => 'form-control', 'id'=>'category_id', 'multiple'=>'multiple']) !!}
+                        {!! Form::select('category_id[]', $categories, null, [
+                            'class' => 'form-control',
+                            'id'=>'category_id',
+                            'multiple'=>'multiple'
+                        ]) !!}
                         @if ($errors->has('category_id'))
                             <span class="help-block text-red-500">{!! $errors->first('category_id') !!}</span>
                         @endif
@@ -50,14 +53,20 @@
                     {{-- Intro --}}
                     <div class="form-group @if($errors->has('intro_cn')) has-error @endif">
                         {!! Form::label('intro_cn', trans('admin_CRUD.intro_cn')) !!}
-                        {!! Form::textarea('intro_cn', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_cn')]) !!}
+                        {!! Form::textarea('intro_cn', null, [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_intro_in_cn'),
+                        ]) !!}
                         @if ($errors->has('intro_cn'))
                             <span class="help-block text-red-500">{!! $errors->first('intro_cn') !!}</span>
                         @endif
                     </div>
                     <div class="form-group @if($errors->has('intro_en')) has-error @endif">
                         {!! Form::label('intro_en', trans('admin_CRUD.intro_en')) !!}
-                        {!! Form::textarea('intro_en', 'Introduction in English', ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_intro_in_en')]) !!}
+                        {!! Form::textarea('intro_en', 'Introduction in English', [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_intro_in_en'),
+                        ]) !!}
                         @if ($errors->has('intro_en'))
                             <span class="help-block text-red-500">{!! $errors->first('intro_en') !!}</span>
                         @endif
@@ -67,7 +76,10 @@
                     <div class="form-group">
                         {!! Form::label('is_published', trans('admin_CRUD.is_published')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {!! Form::select('is_published', [0 => trans('admin_CRUD.save_as_draft'), 1 => trans('admin_CRUD.publish')], null, ['class' => 'form-control']) !!}
+                        {!! Form::select('is_published', [
+                            0 => trans('admin_CRUD.save_as_draft'),
+                            1 => trans('admin_CRUD.publish')
+                        ], null, ['class' => 'form-control']) !!}
                     </div>
 
                     {!! Form::submit(trans('admin_CRUD.upload'), ['class' => 'btn btn-sm btn-primary']) !!}

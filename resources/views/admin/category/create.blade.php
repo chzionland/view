@@ -20,7 +20,10 @@
                             {{ __('admin_CRUD.photos') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>
                         </a>
-                        {!! Form::text('thumbnail', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.paste_thumbnail_address_here')]) !!}
+                        {!! Form::text('thumbnail', null, [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.paste_thumbnail_address_here')
+                        ]) !!}
                         @if ($errors->has('thumbnail'))
                             <span class="help-block text-red-500">{!! $errors->first('thumbnail') !!}</span>
                         @endif
@@ -30,7 +33,10 @@
                     <div class="form-group @if($errors->has('name_cn')) has-error @endif">
                         {!! Form::label('name_cn', trans('admin_CRUD.category_name_cn')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {!! Form::text('name_cn', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_category_name_in_cn')]) !!}
+                        {!! Form::text('name_cn', null, [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_category_name_in_cn')
+                        ]) !!}
                         @if ($errors->has('name_cn'))
                             <span class="help-block text-red-500">{!! $errors->first('name_cn') !!}</span>
                         @endif
@@ -38,7 +44,10 @@
                     <div class="form-group @if($errors->has('name_en')) has-error @endif">
                         {!! Form::label('name_en', trans('admin_CRUD.category_name_en')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {!! Form::text('name_en', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_category_name_in_en')]) !!}
+                        {!! Form::text('name_en', null, [
+                            'class' => 'form-control',
+                            'placeholder' => trans('admin_CRUD.input_category_name_in_en')
+                        ]) !!}
                         @if ($errors->has('name_en'))
                             <span class="help-block text-red-500">{!! $errors->first('name_en') !!}</span>
                         @endif
@@ -48,14 +57,20 @@
                     <div class="form-group">
                         {!! Form::label('is_column', trans('admin_CRUD.set_column_or_not')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {!! Form::select('is_column', [0 => trans('admin_CRUD.no'), 1 => trans('admin_CRUD.column')], null, ['class' => 'form-control']) !!}
+                        {!! Form::select('is_column', [
+                            0 => trans('admin_CRUD.no'),
+                            1 => trans('admin_CRUD.column')
+                        ], null, ['class' => 'form-control']) !!}
                     </div>
 
                     {{-- Publish Status --}}
                     <div class="form-group">
                         {!! Form::label('is_published', trans('admin_CRUD.is_published')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {!! Form::select('is_published', [0 => trans('admin_CRUD.save_as_draft'), 1 => trans('admin_CRUD.publish')], null, ['class' => 'form-control']) !!}
+                        {!! Form::select('is_published', [
+                            0 => trans('admin_CRUD.save_as_draft'),
+                            1 => trans('admin_CRUD.publish')
+                        ], null, ['class' => 'form-control']) !!}
                     </div>
 
                     {!! Form::submit(trans('admin_CRUD.create'), ['class' => 'btn btn-primary']) !!}
