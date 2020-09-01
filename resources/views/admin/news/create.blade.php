@@ -55,7 +55,7 @@
                     </div>
                     <div class="form-group @if($errors->has('sub_title_en')) has-error @endif">
                         {!! Form::label('sub_title_en', trans('admin_CRUD.sub_title_en')) !!}
-                        {!! Form::text('sub_title_en', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_sub_title_in_en')]) !!}
+                        {!! Form::text('sub_title_en', 'Subtitle in English', ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_sub_title_in_en')]) !!}
                         @if ($errors->has('sub_title_en'))
                             <span class="help-block text-red-500">{!! $errors->first('sub_title_en') !!}</span>
                         @endif
@@ -71,7 +71,7 @@
                     </div>
                     <div class="form-group @if($errors->has('details_en')) has-error @endif">
                         {!! Form::label('details_en', trans('admin_CRUD.details_en')) !!}
-                        {!! Form::textarea('details_en', null, ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_details_in_en')]) !!}
+                        {!! Form::textarea('details_en', 'Details in English', ['class' => 'form-control', 'placeholder' => trans('admin_CRUD.input_details_in_en')]) !!}
                         @if ($errors->has('details_en'))
                             <span class="help-block text-red-500">{!! $errors->first('details_en') !!}</span>
                         @endif

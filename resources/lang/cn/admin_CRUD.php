@@ -35,7 +35,7 @@ return [
     'create' => '创建',
     'is_must' => '该字段必填',
     'already_exist' => '该条目已存在',
-    'max_limit' => '最长不可超过191个字节',
+    'max_limit' => '最长不可超过80个字节(40个汉字)',
     'created_successfully' => '创建成功！',
 
     'update' => '更新',

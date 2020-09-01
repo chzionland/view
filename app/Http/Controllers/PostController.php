@@ -157,8 +157,8 @@ class PostController extends Controller
     {
         $this->validate($request,
             [
-                'title_cn' => 'required|max:191|unique:posts,title->cn,' . $post->id,
-                'title_en' => 'required|max:191|unique:posts,title->en,' . $post->id,
+                'title_cn' => 'required|max:85|unique:posts,title->cn,' . $post->id,
+                'title_en' => 'required|max:85|unique:posts,title->en,' . $post->id,
                 'author_id' => 'required',
                 'category_id' => 'required',
             ],
