@@ -138,6 +138,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+
+        dd($post->getTranslation('details', 'en'));
         $title = trans('admin_CRUD.update_post');
         $authors = Author::orderBy('id', 'DESC')->pluck('name', 'id');
         $categories = Category::orderBy('id', 'DESC')->pluck('name', 'id');

@@ -10,7 +10,7 @@
 
 ## How to Deploy
 
-- [Blog Website (Deployment)](https://www.sheldonl.com/2020/08/24/00.md)
+- [Blog Website (Deployment)](https://www.sheldonl.com/2020/08/27/00.md)
 
 ## How to Run Locally
 
