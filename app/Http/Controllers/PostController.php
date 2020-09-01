@@ -209,8 +209,6 @@ class PostController extends Controller
         $post->authors()->sync($request->author_id, true);
         $post->categories()->sync($request->category_id, true);
 
-        dd(request()->all());
-
         Session::flash('warning-message', trans('admin_CRUD.updated_successfully'));
         return redirect()->route('posts.index');
     }
