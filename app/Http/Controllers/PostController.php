@@ -110,6 +110,8 @@ class PostController extends Controller
             $created_at = Carbon::now();
         }
 
+        dd(request()->all());
+
         $post = Post::create([
             'admin_id' => Auth::id(),
             'thumbnail' => $request->thumbnail,
@@ -223,6 +225,8 @@ class PostController extends Controller
         } else {
             $created_at = Carbon::now();
         }
+
+        dd(request()->all());
 
         $post->admin_id = Auth::id();
         $post->thumbnail = $request->thumbnail;
