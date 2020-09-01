@@ -66,13 +66,25 @@ class NewsController extends Controller
             ]
         );
 
+        if ($request->sub_title_en) {
+            $sub_title_en = $request->sub_title_en;
+        } else {
+            $sub_title_en = '';
+        }
+
+        if ($request->details_en) {
+            $details_en = $request->details_en;
+        } else {
+            $details_en = '';
+        }
+
         Post::create([
             'admin_id' => Auth::id(),
             'thumbnail' => $request->thumbnail,
             'title' => ['cn'=>$request->title_cn, 'en'=>$request->title_en],
             'slug' => str_slug($request->title_en),
-            'sub_title' => ['cn'=>$request->sub_title_cn, 'en'=>$request->sub_title_en],
-            'details' => ['cn'=>$request->details_cn, 'en'=>$request->details_en],
+            'sub_title' => ['cn'=>$request->sub_title_cn, 'en'=>$sub_title_en],
+            'details' => ['cn'=>$request->details_cn, 'en'=>$details_en],
             'is_published' => $request->is_published,
             'post_type' => 'news',
             'created_at' => Carbon::now(),
@@ -129,12 +141,25 @@ class NewsController extends Controller
                 'title_en.unique' => trans('admin_CRUD.already_exist'),
             ]
         );
+
+        if ($request->sub_title_en) {
+            $sub_title_en = $request->sub_title_en;
+        } else {
+            $sub_title_en = '';
+        }
+
+        if ($request->details_en) {
+            $details_en = $request->details_en;
+        } else {
+            $details_en = '';
+        }
+
         $news->admin_id = Auth::id();
         $news->thumbnail = $request->thumbnail;
         $news->title = ['cn' => $request->title_cn, 'en' => $request->title_en];
         $news->slug = str_slug($request->title_en);
-        $news->sub_title = ['cn' => $request->sub_title_cn, 'en' => $request->sub_title_en];
-        $news->details = ['cn' => $request->details_cn, 'en' => $request->details_en];
+        $news->sub_title = ['cn' => $request->sub_title_cn, 'en' => $sub_title_en];
+        $news->details = ['cn' => $request->details_cn, 'en' => $details_en];
         $news->is_published = $request->is_published;
         $news->post_type = 'news';
         $news->save();

@@ -66,12 +66,18 @@ class AuthorController extends Controller
             ]
         );
 
+        if ($request->intro_en) {
+            $intro_en = $request->intro_en;
+        } else {
+            $intro_en = '';
+        }
+
         Author::create([
             'admin_id' => Auth::id(),
             'thumbnail' => $request->thumbnail,
             'name' => ['cn'=>$request->name_cn, 'en'=>$request->name_en],
             'slug' => str_slug($request->name_en),
-            'intro' => ['cn' => $request->intro_cn, 'en' => $request->intro_en],
+            'intro' => ['cn' => $request->intro_cn, 'en' => $intro_en],
             'is_published' => $request->is_published,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
@@ -128,11 +134,17 @@ class AuthorController extends Controller
             ]
         );
 
+        if ($request->intro_en) {
+            $intro_en = $request->intro_en;
+        } else {
+            $intro_en = '';
+        }
+
         $author->thumbnail = $request->thumbnail;
         $author->admin_id = Auth::id();
         $author->name = ['cn' => $request->name_cn, 'en' => $request->name_en];
         $author->slug = str_slug($request->name_en);
-        $author->intro = ['cn' => $request->intro_cn, 'en' => $request->intro_en];
+        $author->intro = ['cn' => $request->intro_cn, 'en' => $intro_en];
         $author->is_published = $request->is_published;
         $author->save();
 
