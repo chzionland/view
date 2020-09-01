@@ -155,8 +155,8 @@ class PostController extends Controller
     {
         $this->validate($request,
             [
-                'title_cn' => 'required|max:191|unique:posts,title->cn,' . $post->id,
-                'title_en' => 'required|max:191|unique:posts,title->en,' . $post->id,
+                'title_cn' => 'required|max:191|unique:posts,title->cn,' . $post->id . ',id',
+                'title_en' => 'required|max:191|unique:posts,title->en,' . $post->id . ',id',
                 'author_id' => 'required',
                 'category_id' => 'required',
             ],
@@ -208,6 +208,8 @@ class PostController extends Controller
 
         $post->authors()->sync($request->author_id, true);
         $post->categories()->sync($request->category_id, true);
+
+        dd(request()->all());
 
         Session::flash('warning-message', trans('admin_CRUD.updated_successfully'));
         return redirect()->route('posts.index');
