@@ -33,7 +33,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('authors', 'AuthorController');
     Route::resource('posts', 'PostController');
     Route::resource('pages', 'PageController');
-    Route::resource('newses', 'NewsController');
+    Route::resource('news', 'NewsController');
     Route::resource('photos', 'PhotoController');
 });
 

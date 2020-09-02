@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NewsRequest;
 use App\Post;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -52,21 +51,22 @@ class NewsController extends Controller
      */
     public function store(NewsRequest $request)
     {
+        $validated = $request->validated();
+
         Post::create([
             'admin_id' => Auth::id(),
-            'thumbnail' => $request->thumbnail,
-            'title' => ['cn'=>$request->title_cn, 'en'=>$request->title_en],
-            'slug' => str_slug($request->title_en),
-            'sub_title' => ['cn'=>$request->sub_title_cn, 'en'=>$request->sub_title_en],
-            'details' => ['cn'=>$request->details_cn, 'en'=>$request->details_en],
+            'thumbnail' => $validated['thumbnail'],
+            'title' => ['cn' => $validated['title_cn'], 'en' => $validated['title_en']],
+            'slug' => str_slug($validated['title_en']),
+            'sub_title' => ['cn' => $validated['sub_title_cn'], 'en' => $validated['sub_title_en']],
+            'is_top' => $request->is_top,
+            'details' => ['cn' => $validated['details_cn'], 'en' => $validated['details_en']],
             'is_published' => $request->is_published,
             'post_type' => 'news',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
         ]);
 
         Session::flash('message', trans('admin_CRUD.created_successfully'));
-        return redirect()->route('newses.index');
+        return redirect()->route('news.index');
     }
 
     public function show($id)
@@ -93,37 +93,26 @@ class NewsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $news
+     * @param  \App\Post $news
      * @return \Illuminate\Http\Response
      */
     public function update(NewsRequest $request, Post $news)
     {
-        $this->validate($request,
-            [
-                'title_cn' => 'required|max:191|unique:posts,title->cn,' . $news->id,
-                'title_en' => 'required|max:191|unique:posts,title->en,' . $news->id,
-            ],
-            [
-                'title_cn.required' => trans('admin_CRUD.is_must'),
-                'title_en.required' => trans('admin_CRUD.is_must'),
-                'title_cn.max' => trans('admin_CRUD.max_limit'),
-                'title_en.max' => trans('admin_CRUD.max_limit'),
-                'title_cn.unique' => trans('admin_CRUD.already_exist'),
-                'title_en.unique' => trans('admin_CRUD.already_exist'),
-            ]
-        );
+        $validated = $request->validated();
+
         $news->admin_id = Auth::id();
-        $news->thumbnail = $request->thumbnail;
-        $news->title = ['cn' => $request->title_cn, 'en' => $request->title_en];
-        $news->slug = str_slug($request->title_en);
-        $news->sub_title = ['cn' => $request->sub_title_cn, 'en' => $request->sub_title_en];
-        $news->details = ['cn' => $request->details_cn, 'en' => $request->details_en];
+        $news->thumbnail = $validated['thumbnail'];
+        $news->title = ['cn' => $validated['title_cn'], 'en' => $validated['title_en']];
+        $news->slug = str_slug($validated['title_en']);
+        $news->sub_title = ['cn' => $validated['sub_title_cn'], 'en' => $validated['sub_title_en']];
+        $news->is_top = $request->is_top;
+        $news->details = ['cn' => $validated['details_cn'], 'en' => $validated['details_en']];
         $news->is_published = $request->is_published;
         $news->post_type = 'news';
         $news->save();
 
         Session::flash('warning-message', trans('admin_CRUD.updated_successfully'));
-        return redirect()->route('newses.index');
+        return redirect()->route('news.index');
     }
 
     /**
@@ -138,7 +127,7 @@ class NewsController extends Controller
         if ($news) {
             $news->delete();
             Session::flash('danger-message', trans('admin_CRUD.deleted_successfully'));
-            return redirect()->route('newses.index');
+            return redirect()->route('news.index');
         }
     }
 }

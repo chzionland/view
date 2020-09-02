@@ -3,7 +3,7 @@
 @section('content')
 <div class="card-header flex justify-between">
     <h2 class="font-bold text-xl ml-10">{{ $title }}</h2>
-    <a href="{{ route('newses.create', app()->getLocale()) }}" class="btn btn-md btn-primary mr-10">
+    <a href="{{ route('news.create', app()->getLocale()) }}" class="btn btn-md btn-primary mr-10">
         <i class="fas fa-plus fa-lg"></i>
     </a>
 </div>
@@ -34,11 +34,11 @@
                         @endif
                     </td>
                     <td>
-                        <a href="{{ route('newses.edit', [$news->id, app()->getLocale()]) }}" class="btn btn-sm btn-warning px-2">
+                        <a href="{{ route('news.edit', [$news->id, app()->getLocale()]) }}" class="btn btn-sm btn-warning px-2">
                             <i class="fas fa-edit fa-lg"></i>
                         </a>
                         <span class="text-gray-500">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                        <a href="{{ route('newses.destroy', [$news->id, app()->getLocale()]) }}" class="btn btn-sm btn-danger px-2">
+                        <a href="{{ route('news.destroy', [$news->id, app()->getLocale()]) }}" class="btn btn-sm btn-danger px-2">
                             <div style="display: none" id="trans-delete">
                                 {{ trans('admin_CRUD.really_want_to_delete') }}
                             </div>
@@ -49,7 +49,7 @@
                                 }" class="fas fa-times fa-lg"></i>
                             <form style="display: none"
                                 id="{{ 'news-delete-' . $news->id }}" method="POST"
-                                action="{{ route('newses.destroy', [$news->id, app()->getLocale()]) }}">
+                                action="{{ route('news.destroy', [$news->id, app()->getLocale()]) }}">
                                 @csrf
                                 @method('delete')
                             </form>

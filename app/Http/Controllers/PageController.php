@@ -52,6 +52,8 @@ class PageController extends Controller
      */
     public function store(PageRequest $request)
     {
+        $validated = $request->validated();
+
         if ($request->created_at) {
             $created_at = $request->created_at;
         } else {
@@ -60,12 +62,12 @@ class PageController extends Controller
 
         Post::create([
             'admin_id' => Auth::id(),
-            'thumbnail' => $request->thumbnail,
-            'title' => ['cn'=>$request->title_cn, 'en'=>$request->title_en],
-            'slug' => str_slug($request->title_en),
-            'sub_title' => ['cn'=>$request->sub_title_cn, 'en'=>$request->sub_title_en],
+            'thumbnail' => $validated['thumbnail'],
+            'title' => ['cn' => $validated['title_cn'], 'en' => $validated['title_en']],
+            'slug' => str_slug($validated['title_en']),
+            'sub_title' => ['cn' => $validated['sub_title_cn'], 'en' => $validated['sub_title_en']],
             'is_top' => $request->is_top,
-            'details' => ['cn'=>$request->details_cn, 'en'=>$request->details_en],
+            'details' => ['cn' => $validated['details_cn'], 'en' => $validated['details_en']],
             'is_published' => $request->is_published,
             'post_type' => 'page',
             'created_at' => $created_at,
@@ -103,6 +105,8 @@ class PageController extends Controller
      */
     public function update(PageRequest $request, Post $page)
     {
+        $validated = $request->validated();
+
         if ($request->created_at) {
             $created_at = $request->created_at;
         } else {
@@ -110,12 +114,12 @@ class PageController extends Controller
         }
 
         $page->admin_id = Auth::id();
-        $page->thumbnail = $request->thumbnail;
-        $page->title = ['cn' => $request->title_cn, 'en' => $request->title_en];
-        $page->slug = str_slug($request->title_en);
-        $page->sub_title = ['cn' => $request->sub_title_cn, 'en' => $request->sub_title_en];
+        $page->thumbnail = $validated['thumbnail'];
+        $page->title = ['cn' => $validated['title_cn'], 'en' => $validated['title_en']];
+        $page->slug = str_slug($validated['title_en']);
+        $page->sub_title = ['cn' => $validated['sub_title_cn'], 'en' => $validated['sub_title_en']];
         $page->is_top = $request->is_top;
-        $page->details = ['cn' => $request->details_cn, 'en' => $request->details_en];
+        $page->details = ['cn' => $validated['details_cn'], 'en' => $validated['details_en']];
         $page->is_published = $request->is_published;
         $page->post_type = 'page';
         $page->created_at = $created_at;

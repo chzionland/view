@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-body">
 
-                    {!! Form::open(['route' => ['newses.store', app()->getLocale()]]) !!}
+                    {!! Form::open(['route' => ['news.store', app()->getLocale()]]) !!}
 
                     {{-- Tumbnail --}}
                     <div class="form-group @if($errors->has('thumbnail')) has-error @endif">
@@ -74,6 +74,16 @@
                         @if ($errors->has('sub_title_en'))
                             <span class="help-block text-red-500">{!! $errors->first('sub_title_en') !!}</span>
                         @endif
+                    </div>
+
+                    {{-- Is Top --}}
+                    <div class="form-group">
+                        {!! Form::label('is_top', trans('admin_CRUD.is_top')) !!}
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
+                        {!! Form::select('is_top', [
+                            0 => trans('admin_CRUD.no'),
+                            1 => trans('admin_CRUD.top')
+                        ], null, ['class' => 'form-control']) !!}
                     </div>
 
                     {{-- Details --}}

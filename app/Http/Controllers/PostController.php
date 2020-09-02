@@ -81,7 +81,6 @@ class PostController extends Controller
             'is_published' => $request->is_published,
             'post_type' => 'post',
             'created_at' => $created_at,
-            'updated_at' => Carbon::now(),
         ]);
 
         $post->authors()->sync($request->author_id, true);

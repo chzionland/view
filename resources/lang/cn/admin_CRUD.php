@@ -11,7 +11,7 @@ return [
     'authors' => '作者',
     'posts' => '文章',
     'pages' => '页面',
-    'newses' => '快讯',
+    'news' => '快讯',
     'photos' => '图库',
 
     'original_or_reproduced' => '是否原创',

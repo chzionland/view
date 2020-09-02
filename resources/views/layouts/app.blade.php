@@ -48,7 +48,7 @@
                             <a class="nav-link" href="{{ route('admin.dashboard', app()->getLocale()) }}">{{ __('app.dashboard') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('newses.index', app()->getLocale()) }}">{{ __('admin_CRUD.newses') }}</a>
+                            <a class="nav-link" href="{{ route('news.index', app()->getLocale()) }}">{{ __('admin_CRUD.news') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('pages.index', app()->getLocale()) }}">{{ __('admin_CRUD.pages') }}</a>
