@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use App\Author;
 use App\Category;
 use App\Http\Requests\PostRequest;
-use App\Http\Requests\StorePostRequest;
 use App\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Spatie\Translatable\TranslatableServiceProvider;
 
 class PostController extends Controller
 {
