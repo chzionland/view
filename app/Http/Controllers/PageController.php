@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PageRequest;
 use App\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -49,22 +50,13 @@ class PageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PageRequest $request)
     {
-        $this->validate($request,
-            [
-                'title_cn' => 'required|max:191|unique:posts,title->cn',
-                'title_en' => 'required|max:191|unique:posts,title->en',
-            ],
-            [
-                'title_cn.required' => trans('admin_CRUD.is_must'),
-                'title_en.required' => trans('admin_CRUD.is_must'),
-                'title_cn.max' => trans('admin_CRUD.max_limit'),
-                'title_en.max' => trans('admin_CRUD.max_limit'),
-                'title_cn.unique' => trans('admin_CRUD.already_exist'),
-                'title_en.unique' => trans('admin_CRUD.already_exist'),
-            ]
-        );
+        if ($request->created_at) {
+            $created_at = $request->created_at;
+        } else {
+            $created_at = Carbon::now();
+        }
 
         Post::create([
             'admin_id' => Auth::id(),
@@ -72,15 +64,19 @@ class PageController extends Controller
             'title' => ['cn'=>$request->title_cn, 'en'=>$request->title_en],
             'slug' => str_slug($request->title_en),
             'sub_title' => ['cn'=>$request->sub_title_cn, 'en'=>$request->sub_title_en],
+            'is_top' => $request->is_top,
             'details' => ['cn'=>$request->details_cn, 'en'=>$request->details_en],
             'is_published' => $request->is_published,
             'post_type' => 'page',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'created_at' => $created_at,
         ]);
 
         Session::flash('message', trans('admin_CRUD.created_successfully'));
         return redirect()->route('pages.index');
+    }
+
+    public function show($id){
+
     }
 
     /**
@@ -105,30 +101,24 @@ class PageController extends Controller
      * @param  \App\Post  $page
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $page)
+    public function update(PageRequest $request, Post $page)
     {
-        $this->validate($request,
-            [
-                'title_cn' => 'required|max:191|unique:posts,title->cn,' . $page->id,
-                'title_en' => 'required|max:191|unique:posts,title->en,' . $page->id,
-            ],
-            [
-                'title_cn.required' => trans('admin_CRUD.is_must'),
-                'title_en.required' => trans('admin_CRUD.is_must'),
-                'title_cn.max' => trans('admin_CRUD.max_limit'),
-                'title_en.max' => trans('admin_CRUD.max_limit'),
-                'title_cn.unique' => trans('admin_CRUD.already_exist'),
-                'title_en.unique' => trans('admin_CRUD.already_exist'),
-            ]
-        );
+        if ($request->created_at) {
+            $created_at = $request->created_at;
+        } else {
+            $created_at = Carbon::now();
+        }
+
         $page->admin_id = Auth::id();
         $page->thumbnail = $request->thumbnail;
         $page->title = ['cn' => $request->title_cn, 'en' => $request->title_en];
         $page->slug = str_slug($request->title_en);
         $page->sub_title = ['cn' => $request->sub_title_cn, 'en' => $request->sub_title_en];
+        $page->is_top = $request->is_top;
         $page->details = ['cn' => $request->details_cn, 'en' => $request->details_en];
         $page->is_published = $request->is_published;
         $page->post_type = 'page';
+        $page->created_at = $created_at;
         $page->save();
 
         Session::flash('warning-message', trans('admin_CRUD.updated_successfully'));

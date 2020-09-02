@@ -58,13 +58,6 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        // if ($request->is_reproduced == '1') {
-        //     $this->validate($request,
-        //         ['source' => 'required'],
-        //         ['source.required' => trans('admin_CRUD.is_must_for_reproduced')]
-        //     );
-        // }
-
         if ($request->created_at) {
             $created_at = $request->created_at;
         } else {
@@ -132,13 +125,6 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-        // if ($request->is_reproduced == '1') {
-        //     $this->validate($request,
-        //         ['source' => 'required'],
-        //         ['source.required' => trans('admin_CRUD.is_must_for_reproduced')]
-        //     );
-        // }
-
         if ($request->created_at) {
             $created_at = $request->created_at;
         } else {
@@ -159,8 +145,8 @@ class PostController extends Controller
         $post->intro = ['cn' => $request->intro_cn, 'en' => $request->intro_en];
         $post->details = ['cn' => $request->details_cn, 'en' => $request->details_en];
         $post->is_published = $request->is_published;
-        $post->created_at = $created_at;
         $post->post_type = 'post';
+        $post->created_at = $created_at;
         $post->save();
 
         $post->authors()->sync($request->author_id, true);

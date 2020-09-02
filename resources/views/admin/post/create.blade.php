@@ -84,7 +84,10 @@
                     <div class="form-group">
                         {!! Form::label('is_top', trans('admin_CRUD.is_top')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        {!! Form::select('is_top', [0 => trans('admin_CRUD.no'), 1 => trans('admin_CRUD.top')], null, ['class' => 'form-control']) !!}
+                        {!! Form::select('is_top', [
+                            0 => trans('admin_CRUD.no'),
+                            1 => trans('admin_CRUD.top')
+                        ], null, ['class' => 'form-control']) !!}
                     </div>
 
                     {{-- Reproduced --}}

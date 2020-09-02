@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NewsRequest;
 use App\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -49,23 +50,8 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
-        $this->validate($request,
-            [
-                'title_cn' => 'required|max:191|unique:posts,title->cn',
-                'title_en' => 'required|max:191|unique:posts,title->en',
-            ],
-            [
-                'title_cn.required' => trans('admin_CRUD.is_must'),
-                'title_en.required' => trans('admin_CRUD.is_must'),
-                'title_cn.max' => trans('admin_CRUD.max_limit'),
-                'title_en.max' => trans('admin_CRUD.max_limit'),
-                'title_cn.unique' => trans('admin_CRUD.already_exist'),
-                'title_en.unique' => trans('admin_CRUD.already_exist'),
-            ]
-        );
-
         Post::create([
             'admin_id' => Auth::id(),
             'thumbnail' => $request->thumbnail,
@@ -83,12 +69,6 @@ class NewsController extends Controller
         return redirect()->route('newses.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
@@ -116,7 +96,7 @@ class NewsController extends Controller
      * @param  \App\Post  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $news)
+    public function update(NewsRequest $request, Post $news)
     {
         $this->validate($request,
             [

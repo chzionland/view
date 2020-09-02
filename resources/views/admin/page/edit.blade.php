@@ -80,6 +80,18 @@
                         @endif
                     </div>
 
+                    {{-- Is Top --}}
+                    <div class="form-group">
+                        {!! Form::label('is_top', trans('admin_CRUD.is_top')) !!}
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
+                        {!! Form::select('is_top', [
+                                0 => trans('admin_CRUD.no'),
+                                1 => trans('admin_CRUD.top')
+                            ], isset($page->is_top) ? $page->is_top : null,
+                            ['class' => 'form-control']
+                        ) !!}
+                    </div>
+
                     {{-- Details --}}
                     <div class="form-group @if($errors->has('details_cn')) has-error @endif">
                         {!! Form::label('details_cn', trans('admin_CRUD.details_cn')) !!}
@@ -113,6 +125,15 @@
                             ], isset($page->is_published) ? $page->is_published : null,
                             ['class' => 'form-control']
                         ) !!}
+                    </div>
+
+                    {{-- Created Date --}}
+                    <div class="form-group">
+                        {!! Form::label('created_at', trans('admin_CRUD.created_at')) !!}
+                        {!! Form::date('created_at', $page->created_at, [
+                            'class' => 'form-control', 'min'=>'1970-01-01',
+                            'placeholder' => trans('admin_CRUD.default_is_today')
+                        ]) !!}
                     </div>
 
                     {!! Form::submit(trans('admin_CRUD.update'), ['class' => 'btn btn-warning']) !!}
