@@ -10,21 +10,11 @@ use Illuminate\Support\Facades\Session;
 
 class NewsController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth:admin');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $title = trans('admin_CRUD.news_list');
@@ -32,23 +22,12 @@ class NewsController extends Controller
         return view('admin.news.index', compact('title', 'newses'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $title = trans('admin_CRUD.create_news');
         return view('admin.news.create', compact('title'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(NewsRequest $request)
     {
         $validated = $request->validated();
@@ -69,33 +48,17 @@ class NewsController extends Controller
         return redirect()->route('news.index');
     }
 
-    public function show($id)
+    public function show(Post $news)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Post $news)
     {
         $title = trans('admin_CRUD.update_news');
-        $news = Post::where('id', $id)->first();
-        if ($news) {
-            return view('admin.news.edit', compact('title', 'news'));
-        }
+        return view('admin.news.edit', compact('title', 'news'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post $news
-     * @return \Illuminate\Http\Response
-     */
     public function update(NewsRequest $request, Post $news)
     {
         $validated = $request->validated();
@@ -115,19 +78,11 @@ class NewsController extends Controller
         return redirect()->route('news.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Post $news
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Post $news)
     {
-        $news = Post::where('id', $id)->first();
-        if ($news) {
-            $news->delete();
-            Session::flash('danger-message', trans('admin_CRUD.deleted_successfully'));
-            return redirect()->route('news.index');
-        }
+        $news->delete();
+
+        Session::flash('danger-message', trans('admin_CRUD.deleted_successfully'));
+        return redirect()->route('news.index');
     }
 }
