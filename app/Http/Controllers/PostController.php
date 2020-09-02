@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Author;
 use App\Category;
+use App\Http\Requests\PostRequest;
+use App\Http\Requests\StorePostRequest;
 use App\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -54,37 +56,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $this->validate($request,
-            [
-                'title_cn' => 'required|max:191|unique:posts,title->cn',
-                'title_en' => 'required|max:191|unique:posts,title->en',
-                'author_id' => 'required',
-                'category_id' => 'required',
-            ],
-            [
-                'title_cn.required' => trans('admin_CRUD.is_must'),
-                'title_en.required' => trans('admin_CRUD.is_must'),
-                'title_cn.max' => trans('admin_CRUD.max_limit'),
-                'title_en.max' => trans('admin_CRUD.max_limit'),
-                'title_cn.unique' => trans('admin_CRUD.already_exist'),
-                'title_en.unique' => trans('admin_CRUD.already_exist'),
-                'author_id.required' => trans('admin_CRUD.is_must'),
-                'category_id.required' => trans('admin_CRUD.is_must'),
-            ]
-        );
-
-        if ($request->is_reproduced == '1') {
-            $this->validate($request,
-                [
-                    'source' => 'required',
-                ],
-                [
-                    'source.required' => trans('admin_CRUD.is_must_for_reproduced'),
-                ]
-            );
-        }
+        // if ($request->is_reproduced == '1') {
+        //     $this->validate($request,
+        //         ['source' => 'required'],
+        //         ['source.required' => trans('admin_CRUD.is_must_for_reproduced')]
+        //     );
+        // }
 
         if ($request->created_at) {
             $created_at = $request->created_at;
@@ -138,8 +117,6 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-
-        // dd($post->translate('details', 'en'));
         $title = trans('admin_CRUD.update_post');
         $authors = Author::orderBy('id', 'DESC')->pluck('name', 'id');
         $categories = Category::orderBy('id', 'DESC')->pluck('name', 'id');
@@ -153,36 +130,14 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        $this->validate($request,
-            [
-                'title_cn' => 'required|max:85|unique:posts,title->cn,' . $post->id,
-                'title_en' => 'required|max:85|unique:posts,title->en,' . $post->id,
-                'author_id' => 'required',
-                'category_id' => 'required',
-            ],
-            [
-                'title_cn.required' => trans('admin_CRUD.is_must'),
-                'title_en.required' => trans('admin_CRUD.is_must'),
-                'title_cn.max' => trans('admin_CRUD.max_limit'),
-                'title_en.max' => trans('admin_CRUD.max_limit'),
-                'title_cn.unique' => trans('admin_CRUD.already_exist'),
-                'title_en.unique' => trans('admin_CRUD.already_exist'),
-                'author_id.required' => trans('admin_CRUD.is_must'),
-                'category_id.required' => trans('admin_CRUD.is_must'),
-            ]
-        );
-        if ($request->is_reproduced == '1') {
-            $this->validate($request,
-                [
-                    'source' => 'required',
-                ],
-                [
-                    'source.required' => trans('admin_CRUD.is_must_for_reproduced'),
-                ]
-            );
-        }
+        // if ($request->is_reproduced == '1') {
+        //     $this->validate($request,
+        //         ['source' => 'required'],
+        //         ['source.required' => trans('admin_CRUD.is_must_for_reproduced')]
+        //     );
+        // }
 
         if ($request->created_at) {
             $created_at = $request->created_at;

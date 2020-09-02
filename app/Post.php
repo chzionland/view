@@ -10,7 +10,7 @@ class Post extends Model
     use HasTranslations;
     protected $fillable = [
         'admin_id', 'thumbnail', 'title', 'slug', 'sub_title',
-        'is_reproduced', 'source', 'source_url', 'author', 'editor',
+        'is_top', 'is_reproduced', 'source', 'source_url', 'editor',
         'intro', 'details', 'post_type', 'is_published',
     ];
     public $translatable = ['title', 'sub_title', 'intro', 'details'];
