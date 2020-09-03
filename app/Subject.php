@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-class Category extends Model
+class Subject extends Model
 {
     use HasTranslations;
 
@@ -17,14 +17,8 @@ class Category extends Model
     {
         return $this->belongsTo(Admin::class);
     }
-
-    public function categories()
+    public function photos()
     {
-        return $this->belongsTo(Category::class);
-    }
-
-    public function posts()
-    {
-        return $this->belongsToMany(Post::class, 'category_posts');
+        return $this->belongsToMany(Photo::class, 'category_posts');
     }
 }
