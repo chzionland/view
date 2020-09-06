@@ -16,27 +16,6 @@
                 <div class="card-body">
                     {!! Form::open(['route' => ['photos.store', app()->getLocale()], 'enctype' => 'multipart/form-data']) !!}
 
-                    {{-- Category --}}
-                    <div class="form-group @if($errors->has('category_id')) has-error @endif">
-                        {!! Form::label('category_id', trans('admin_CRUD.categories')) !!}
-                        <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        <a href="{{ route('categories.create', app()->getLocale()) }}" target="_blank" class="text-primary">
-                            {{ __('admin_CRUD.create_category') }}
-                            <i class="fas fa-external-link-alt fa-sm"></i>
-                        </a>
-                        <div style="display: none" id="trans-select-categories">
-                            {{ trans('admin_CRUD.select_categories') }}
-                        </div>
-                        {!! Form::select('category_id[]', $categories, null, [
-                            'class' => 'form-control',
-                            'id'=>'category_id',
-                            'multiple'=>'multiple'
-                        ]) !!}
-                        @if ($errors->has('category_id'))
-                            <span class="help-block text-red-500">{!! $errors->first('category_id') !!}</span>
-                        @endif
-                    </div>
-
                     {{-- Upload --}}
                     <div class="form-group @if($errors->has('image_url')) has-error @endif">
                         {!! Form::file('image_url[]', ['multiple' => 'multiple']) !!}
@@ -72,6 +51,27 @@
                         @endif
                     </div>
 
+                    {{-- Tag --}}
+                    <div class="form-group @if($errors->has('tag_id')) has-error @endif">
+                        {!! Form::label('tag_id', trans('admin_CRUD.tags')) !!}
+                        <span class="text-red-500">&nbsp;&nbsp;</span>
+                        <a href="{{ route('tags.create', app()->getLocale()) }}" target="_blank" class="text-primary">
+                            {{ __('admin_CRUD.create_tag') }}
+                            <i class="fas fa-external-link-alt fa-sm"></i>
+                        </a>
+                        <div style="display: none" id="trans-select-tags">
+                            {{ trans('admin_CRUD.select_tags') }}
+                        </div>
+                        {!! Form::select('tag_id[]', $tags, null, [
+                            'class' => 'form-control',
+                            'id'=>'tag_id',
+                            'multiple'=>'multiple'
+                        ]) !!}
+                        @if ($errors->has('tag_id'))
+                            <span class="help-block text-red-500">{!! $errors->first('tag_id') !!}</span>
+                        @endif
+                    </div>
+
                     {{-- Publish Status --}}
                     <div class="form-group">
                         {!! Form::label('is_published', trans('admin_CRUD.is_published')) !!}
@@ -98,8 +98,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var message = document.getElementById('trans-select-categories').textContent;
-        $('#category_id').select2({
+        var message = document.getElementById('trans-select-tags').textContent;
+        $('#tag_id').select2({
             placeholder: message
         });
     });

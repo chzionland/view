@@ -12,11 +12,12 @@
         <thead>
             <tr>
                 <th scope="col" width="5">{{ __('#') }}</th>
-                <th scope="col" width="60">{{ __('admin_CRUD.categories') }}</th>
                 <th scope="col" width="60">{{ __('admin_CRUD.preview') }}</th>
                 <th scope="col" width="80">{{ __('admin_CRUD.img_url') }}</th>
+                <th scope="col" width="80">{{ __('admin_CRUD.tags') }}</th>
                 <th scope="col" width="10">{{ __('admin_CRUD.uploaded_by') }}</th>
                 <th scope="col" width="10">{{ __('admin_CRUD.uploaded_at') }}</th>
+                <th scope="col" width="10">{{ __('admin_CRUD.is_published') }}</th>
                 <th scope="col" width="10">{{ __('admin_CRUD.edit_delete') }}</th>
             </tr>
         </thead>
@@ -24,15 +25,22 @@
             @foreach ($photos as $photo)
                 <tr>
                     <td>{{ $photo->id }}</td>
-                    <td>
-                        @foreach ($photo->categories as $category)
-                            {{ $category->name }};&nbsp;
-                        @endforeach
-                    </td>
                     <td><img width="200" src="{{ asset('storage/photos/' . $photo->image_url) }}" alt="preview"></td>
                     <td>{{ asset('storage/photos/' . $photo->image_url) }}</td>
+                    <td>
+                        @foreach ($photo->tags as $tag)
+                            {{ $tag->name }};&nbsp;
+                        @endforeach
+                    </td>
                     <td>{{ $photo->admin->name }}</td>
                     <td>{{ $photo->created_at }}</td>
+                    <td>
+                        @if ($photo->is_published == 1)
+                            {{ __('admin_CRUD.published') }}
+                        @else
+                            {{ __('admin_CRUD.draft') }}
+                        @endif
+                    </td>
                     <td>
                         <a href="{{ route('photos.edit', [$photo->id, app()->getLocale()]) }}" class="btn btn-sm btn-warning px-2">
                             <i class="fas fa-edit fa-lg"></i>

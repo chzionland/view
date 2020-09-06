@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Photo;
 use App\Category;
+use App\Http\Requests\PhotoRequest;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -12,21 +14,12 @@ use Carbon\Carbon;
 
 class PhotoController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('auth:admin');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $title = trans('admin_CRUD.photo_list');
@@ -34,37 +27,18 @@ class PhotoController extends Controller
         return view('admin.photo.index', compact('title', 'photos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $title = trans('admin_CRUD.photo_upload');
-        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
-        return view('admin.photo.create', compact('title', 'categories'));
+        $tags = Tag::orderBy('name', 'ASC')->pluck('name', 'id');
+        return view('admin.photo.create', compact('title', 'tags'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(PhotoRequest $request)
     {
-        $this->validate($request,
-            [
-                "category_id" => "required",
-                "image_url" => "required",
-            ],
-            [
-                "category_id.required" => trans("admin_CRUD.is_must"),
-                "image_url.required" => trans("admin_CRUD.select_image"),
-            ]
-        );
-        foreach ($request->image_url as $image_url) {
+        $validated = $request->validated();
+
+        foreach ($validated['image_url'] as $image_url) {
 
             $current_timestamp = Carbon::now()->timestamp;
             $fileNameWithExt = $image_url->getClientOriginalName();
@@ -75,11 +49,11 @@ class PhotoController extends Controller
             $photo = new Photo();
             $photo->admin_id = Auth::id();
             $photo->image_url = $fileNameToStore;
-            $photo->intro = ['cn' => $request->intro_cn, 'en' => $request->intro_en];
+            $photo->intro = ['cn' => $validated['intro_cn'], 'en' => $validated['intro_en']];
             $photo->is_published = $request->is_published;
             $save = $photo->save();
 
-            $photo->categories()->sync($request->category_id, true);
+            $photo->tags()->sync($request->tag_id, true);
 
             if ($save) {
                 $image_url->storeAs('public/photos', $fileNameToStore);
@@ -94,53 +68,27 @@ class PhotoController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Photo  $photo
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Photo $photo)
     {
         $title = trans('admin_CRUD.update_photo_info');
-        $categories = Category::orderBy('id', 'DESC')->pluck('name', 'id');
-        return view('admin.photo.edit', compact('title', 'photo', 'categories'));
+        $tags = Tag::orderBy('name', 'ASC')->pluck('name', 'id');
+        return view('admin.photo.edit', compact('title', 'photo', 'tags'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Photo  $photo
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Photo $photo)
+    public function update(PhotoRequest $request, Photo $photo)
     {
-        $this->validate($request,
-            [
-                "category_id" => "required",
-            ],
-            [
-                "category_id.required" => trans("admin_CRUD.is_must"),
-            ]
-        );
+        $validated = $request->validated();
 
         $photo->admin_id = Auth::id();
-        $photo->intro = ['cn' => $request->intro_cn, 'en' => $request->intro_en];
+        $photo->intro = ['cn' => $validated['intro_cn'], 'en' => $validated['intro_en']];
         $photo->is_published = $request->is_published;
         $photo->save();
-        $photo->categories()->sync($request->category_id, true);
+        $photo->tags()->sync($request->tag_id, true);
 
         Session::flash('warning-message', trans('admin_CRUD.updated_successfully'));
         return redirect()->route('photos.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Photo  $photo
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Photo $photo)
     {
         Storage::delete('public/photos/' . $photo->image_url);

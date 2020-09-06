@@ -18,29 +18,8 @@
 
                     {{-- Tumbnail --}}
                     <div class="form-group">
-                        {{ trans('admin_CRUD.original_photo_preview') }}
-                        <img width="200" src="{{ $photo->image_url }}" alt="no photo">
-                    </div>
-
-                    {{-- Category --}}
-                    <div class="form-group @if($errors->has('category_id')) has-error @endif">
-                        {!! Form::label('category_id', trans('admin_CRUD.categories')) !!}
-                        <span class="text-red-500">&nbsp;*&nbsp;</span>
-                        <a href="{{ route('categories.create', app()->getLocale()) }}" target="_blank" class="text-primary">
-                            {{ __('admin_CRUD.create_category') }}
-                            <i class="fas fa-external-link-alt fa-sm"></i>
-                        </a>
-                        <div style="display: none" id="trans-select-categories">
-                            {{ trans('admin_CRUD.select_categories') }}
-                        </div>
-                        {!! Form::select('category_id[]', $categories, null, [
-                            'class' => 'form-control',
-                            'id'=>'category_id',
-                            'multiple'=>'multiple'
-                        ]) !!}
-                        @if ($errors->has('category_id'))
-                            <span class="help-block text-red-500">{!! $errors->first('category_id') !!}</span>
-                        @endif
+                        {{ trans('admin_CRUD.photo_preview') }}
+                        <img width="200" src="{{ asset('storage/photos/' . $photo->image_url) }}" alt="no photo">
                     </div>
 
                     {{-- Intro --}}
@@ -62,6 +41,27 @@
                         ]) !!}
                         @if ($errors->has('intro_en'))
                             <span class="help-block text-red-500">{!! $errors->first('intro_en') !!}</span>
+                        @endif
+                    </div>
+
+                    {{-- tag --}}
+                    <div class="form-group @if($errors->has('tag_id')) has-error @endif">
+                        {!! Form::label('tag_id', trans('admin_CRUD.tags')) !!}
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
+                        <a href="{{ route('tags.create', app()->getLocale()) }}" target="_blank" class="text-primary">
+                            {{ __('admin_CRUD.create_tag') }}
+                            <i class="fas fa-external-link-alt fa-sm"></i>
+                        </a>
+                        <div style="display: none" id="trans-select-tags">
+                            {{ trans('admin_CRUD.select_tags') }}
+                        </div>
+                        {!! Form::select('tag_id[]', $tags, null, [
+                            'class' => 'form-control',
+                            'id'=>'tag_id',
+                            'multiple'=>'multiple'
+                        ]) !!}
+                        @if ($errors->has('tag_id'))
+                            <span class="help-block text-red-500">{!! $errors->first('tag_id') !!}</span>
                         @endif
                     </div>
 
@@ -93,10 +93,10 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var message = document.getElementById('trans-select-categories').textContent;
-        $('#category_id').select2({
+        var message = document.getElementById('trans-select-tags').textContent;
+        $('#tag_id').select2({
             placeholder: message
-        }).val({!! json_encode($photo->categories()->allRelatedIds()) !!}).trigger('change');
+        }).val({!! json_encode($photo->tags()->allRelatedIds()) !!}).trigger('change');
     });
 </script>
 @endsection

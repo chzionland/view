@@ -54,6 +54,7 @@ return [
     'latest_photos' => '最近上传的相片',
 
     'original_photo_preview' => '旧封面图预览',
+    'photo_preview' => '封面图预览',
 
     # Category
     'category_name' => '类别名称',
