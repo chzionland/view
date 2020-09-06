@@ -29,7 +29,7 @@
                     <td>{{ $post->id }}</td>
                     <td>
                         <p>{{ $post->getTranslation('title', 'cn') }}</p>
-                        <p>{{ $post->getTranslation('title', 'en') }}</p>
+                        <p style="text-transform: capitalize;">{{ $post->getTranslation('title', 'en') }}</p>
                     </td>
                     <td>
                         @if ($post->is_top == 1)

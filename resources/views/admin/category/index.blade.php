@@ -26,7 +26,7 @@
                     <td>{{ $column->id }}</td>
                     <td>
                         <p>{{ $column->getTranslation('name', 'cn') }}</p>
-                        <p>{{ $column->getTranslation('name', 'en') }}</p>
+                        <p style="text-transform: capitalize;">{{ $column->getTranslation('name', 'en') }}</p>
                     </td>
                     <td>--</td>
                     <td>{{ $column->admin->name }}</td>
@@ -66,11 +66,11 @@
                         <td>{{ $category->id }}</td>
                         <td>
                             <p>{{ $category->getTranslation('name', 'cn') }}</p>
-                            <p>{{ $category->getTranslation('name', 'en') }}</p>
+                            <p style="text-transform: capitalize;">{{ $category->getTranslation('name', 'en') }}</p>
                         </td>
                         <td>
                             <p>{{ $column->getTranslation('name', 'cn') }}</p>
-                            <p>{{ $column->getTranslation('name', 'en') }}</p>
+                            <p style="text-transform: capitalize;">{{ $column->getTranslation('name', 'en') }}</p>
                         </td>
                         <td>{{ $category->admin->name }}</td>
                         <td>{{ $category->updated_at }}</td>
