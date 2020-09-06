@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('stylesheet')
+<link href="{{ asset('css/select2.min.css') }}" rel="stylesheet"/>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -57,17 +61,47 @@
                             <span class="help-block text-red-500">{!! $errors->first('name_en') !!}</span>
                         @endif
                     </div>
+                    <div class="form-group @if($errors->has('slug')) has-error @endif">
+                        @if ($errors->has('slug'))
+                            <span class="help-block text-red-500">{!! $errors->first('slug') !!}</span>
+                        @endif
+                    </div>
 
                     {{-- Is Column --}}
                     <div class="form-group">
                         {!! Form::label('is_column', trans('admin_CRUD.set_column_or_not')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
                         {!! Form::select('is_column', [
-                                0 => trans('admin_CRUD.no'),
-                                1 => trans('admin_CRUD.column')
+                                0 => trans('admin_CRUD.set_as_sub_category'),
+                                1 => trans('admin_CRUD.set_as_column')
                             ], isset($category->is_column) ? $category->is_column : null,
                             ['class' => 'form-control']
                         ) !!}
+                    </div>
+
+                    {{-- Column --}}
+                    <div class="form-group @if($errors->has('category_id')) has-error @endif">
+                        {!! Form::label('category_id',
+                            trans('admin_CRUD.column_belonging') . " (" . trans('admin_CRUD.must_for_sub_category') . ") "
+                        ) !!}
+                        <a href="{{ route('categories.create', app()->getLocale()) }}" target="_blank" class="text-primary">
+                            {{ __('admin_CRUD.create_category') }}
+                            <i class="fas fa-external-link-alt fa-sm"></i>
+                        </a>
+                        <div style="display: none" id="trans-select-column">
+                            {{ trans('admin_CRUD.select_column') }}
+                        </div>
+                        {!! Form::select('category_id', $columns, null, [
+                            'class' => 'form-control',
+                            'id'=>'category_id',
+                        ]) !!}
+                        <input type="button" value="{{ trans('admin_CRUD.clean_selection') }}"
+                            onclick="$('#category_id').val(null).trigger('change')"
+                            class="text-blue-500 px-1 border rounded my-1"
+                        >
+                        @if ($errors->has('category_id'))
+                            <span class="help-block text-red-500">{!! $errors->first('category_id') !!}</span>
+                        @endif
                     </div>
 
                     {{-- Publish Status --}}
@@ -90,4 +124,27 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('javascript')
+<script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ asset('js/select2.min.js') }}" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        let select_column = document.getElementById('trans-select-column').textContent;
+        $('#category_id').select2({
+            placeholder: select_column
+        }).val(null).trigger('change');
+
+        if ({{ $column_belonging_id }} != null){
+            $('#category_id').select2({
+                placeholder: select_column
+            }).val({{ $column_belonging_id }}).trigger('change');
+        }
+
+    });
+</script>
 @endsection

@@ -41,7 +41,7 @@ class PageController extends Controller
             'admin_id' => Auth::id(),
             'thumbnail' => $validated['thumbnail'],
             'title' => ['cn' => $validated['title_cn'], 'en' => $validated['title_en']],
-            'slug' => str_slug($validated['title_en']),
+            'slug' => $validated['slug'],
             'sub_title' => ['cn' => $validated['sub_title_cn'], 'en' => $validated['sub_title_en']],
             'is_top' => $request->is_top,
             'details' => ['cn' => $validated['details_cn'], 'en' => $validated['details_en']],
@@ -75,7 +75,7 @@ class PageController extends Controller
         $page->admin_id = Auth::id();
         $page->thumbnail = $validated['thumbnail'];
         $page->title = ['cn' => $validated['title_cn'], 'en' => $validated['title_en']];
-        $page->slug = str_slug($validated['title_en']);
+        $page->slug = $validated['slug'];
         $page->sub_title = ['cn' => $validated['sub_title_cn'], 'en' => $validated['sub_title_en']];
         $page->is_top = $request->is_top;
         $page->details = ['cn' => $validated['details_cn'], 'en' => $validated['details_en']];

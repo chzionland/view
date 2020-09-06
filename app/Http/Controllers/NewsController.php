@@ -36,7 +36,7 @@ class NewsController extends Controller
             'admin_id' => Auth::id(),
             'thumbnail' => $validated['thumbnail'],
             'title' => ['cn' => $validated['title_cn'], 'en' => $validated['title_en']],
-            'slug' => str_slug($validated['title_en']),
+            'slug' => $validated['slug'],
             'sub_title' => ['cn' => $validated['sub_title_cn'], 'en' => $validated['sub_title_en']],
             'is_top' => $request->is_top,
             'details' => ['cn' => $validated['details_cn'], 'en' => $validated['details_en']],
@@ -66,7 +66,7 @@ class NewsController extends Controller
         $news->admin_id = Auth::id();
         $news->thumbnail = $validated['thumbnail'];
         $news->title = ['cn' => $validated['title_cn'], 'en' => $validated['title_en']];
-        $news->slug = str_slug($validated['title_en']);
+        $news->slug = $validated['slug'];
         $news->sub_title = ['cn' => $validated['sub_title_cn'], 'en' => $validated['sub_title_en']];
         $news->is_top = $request->is_top;
         $news->details = ['cn' => $validated['details_cn'], 'en' => $validated['details_en']];

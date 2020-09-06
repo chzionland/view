@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasTranslations;
 
-    protected $fillable = ['admin_id', 'thumbnail', 'name', 'slug', 'is_column', 'is_published'];
+    protected $fillable = ['admin_id', 'thumbnail', 'name', 'slug', 'is_column', 'category_id', 'is_published'];
 
     public $translatable = ['name'];
 
@@ -18,9 +18,14 @@ class Category extends Model
         return $this->belongsTo(Admin::class);
     }
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
     }
 
     public function posts()

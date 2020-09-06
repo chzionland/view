@@ -57,6 +57,11 @@
                             <span class="help-block text-red-500">{!! $errors->first('title_en') !!}</span>
                         @endif
                     </div>
+                    <div class="form-group @if($errors->has('slug')) has-error @endif">
+                        @if ($errors->has('slug'))
+                            <span class="help-block text-red-500">{!! $errors->first('slug') !!}</span>
+                        @endif
+                    </div>
 
                     {{-- Sub Title --}}
                     <div class="form-group @if($errors->has('sub_title_cn')) has-error @endif">
@@ -258,14 +263,14 @@
         CKEDITOR.replace('details_cn');
         CKEDITOR.replace('details_en');
 
-        var message = document.getElementById('trans-select-authors').textContent;
+        let select_authors = document.getElementById('trans-select-authors').textContent;
         $('#author_id').select2({
-            placeholder: message
+            placeholder: select_authors
         });
 
-        var message = document.getElementById('trans-select-categories').textContent;
+        let select_categories = document.getElementById('trans-select-categories').textContent;
         $('#category_id').select2({
-            placeholder: message
+            placeholder: select_categories
         });
 
     });

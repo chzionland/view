@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubjectPhotosTable extends Migration
+class CreateTagPhotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateSubjectPhotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('subject_photos', function (Blueprint $table) {
+        Schema::create('tag_photos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
-            $table->unsignedBigInteger('subject_id');
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->unsignedBigInteger('tag_id');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
             $table->unsignedBigInteger('photo_id');
             $table->foreign('photo_id')->references('id')->on('photos')->onDelete('cascade');
         });
@@ -31,6 +31,6 @@ class CreateSubjectPhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subject_photos');
+        Schema::dropIfExists('tag_photos');
     }
 }

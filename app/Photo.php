@@ -16,8 +16,8 @@ class Photo extends Model
         return $this->belongsTo(Admin::class);
     }
 
-    public function subjects()
+    public function tags()
     {
-        return $this->belongsToMany(Subject::class, 'subject_photos');
+        return $this->belongsToMany(Tag::class, 'tag_photos');
     }
 }

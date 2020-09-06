@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class PageRequest extends FormRequest
 {
@@ -11,6 +12,7 @@ class PageRequest extends FormRequest
 
         'title_cn' => 'required|max:31|unique:posts,title->cn',
         'title_en' => 'required|max:127|unique:posts,title->en',
+        'slug' => 'unique:posts,slug',
 
         'sub_title_cn' => 'max:31',
         'sub_title_en' => 'max:127',
@@ -19,21 +21,11 @@ class PageRequest extends FormRequest
         'details_en' => 'max:15000',
     ];
 
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         $rules = $this->rules;
@@ -49,7 +41,8 @@ class PageRequest extends FormRequest
             case 'PUT':
             case 'PATCH': {
                 $rules['title_cn'] = 'required|max:31|unique:posts,title->cn,' . $this->page->id;
-                $rules['title_en'] = 'required|max:31|unique:posts,title->en,' . $this->page->id;
+                $rules['title_en'] = 'required|max:127|unique:posts,title->en,' . $this->page->id;
+                $rules['slug'] = 'unique:posts,slug,' . $this->page->id;
                 return $rules;
             }
         }
@@ -67,6 +60,7 @@ class PageRequest extends FormRequest
             'title_en.max' => trans('admin_CRUD.max_limit_127_en'),
             'title_cn.unique' => trans('admin_CRUD.already_exist'),
             'title_en.unique' => trans('admin_CRUD.already_exist'),
+            'slug.unique' => trans('admin_CRUD.already_exist'),
 
             'sub_title_cn.max' => trans('admin_CRUD.max_limit_31_cn'),
             'sub_title_en.max' => trans('admin_CRUD.max_limit_127_en'),

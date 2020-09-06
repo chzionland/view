@@ -20,8 +20,9 @@ class CreatePhotosTable extends Migration
             $table->unsignedBigInteger('admin_id');
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
 
-            $table->string('image_url');
+            $table->string('image_url')->unique();
             $table->text('intro')->nullable();    # translatable
+
             $table->enum('is_published', ['0', '1']);
         });
     }

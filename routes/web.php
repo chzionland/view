@@ -34,6 +34,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('posts', 'PostController');
     Route::resource('pages', 'PageController');
     Route::resource('news', 'NewsController');
+    Route::resource('tags', 'TagController');
     Route::resource('photos', 'PhotoController');
 });
 

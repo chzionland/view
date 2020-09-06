@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class PostRequest extends FormRequest
 {
@@ -11,11 +12,12 @@ class PostRequest extends FormRequest
 
         'title_cn' => 'required|max:31|unique:posts,title->cn',
         'title_en' => 'required|max:127|unique:posts,title->en',
+        'slug' => 'unique:posts,slug',
 
         'sub_title_cn' => 'max:31',
         'sub_title_en' => 'max:127',
 
-        'source' => 'exclude_unless:is_reproduced,"1"|required|max:31',
+        'source' => 'required_if:is_reproduced,==,"1"|max:31',
         'source_url' => 'nullable|url|max:255',
 
         'editor' => 'max:31',
@@ -30,21 +32,18 @@ class PostRequest extends FormRequest
         'category_id' => 'required',
     ];
 
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'slug' => Str::slug($this->title_en),
+        ]);
+    }
+
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         $rules = $this->rules;
@@ -60,7 +59,8 @@ class PostRequest extends FormRequest
             case 'PUT':
             case 'PATCH': {
                 $rules['title_cn'] = 'required|max:31|unique:posts,title->cn,' . $this->post->id;
-                $rules['title_en'] = 'required|max:31|unique:posts,title->en,' . $this->post->id;
+                $rules['title_en'] = 'required|max:127|unique:posts,title->en,' . $this->post->id;
+                $rules['slug'] = 'unique:posts,slug,' . $this->post->id;
                 return $rules;
             }
         }
@@ -78,6 +78,7 @@ class PostRequest extends FormRequest
             'title_en.max' => trans('admin_CRUD.max_limit_127_en'),
             'title_cn.unique' => trans('admin_CRUD.already_exist'),
             'title_en.unique' => trans('admin_CRUD.already_exist'),
+            'slug.unique' => trans('admin_CRUD.already_exist'),
 
             'sub_title_cn.max' => trans('admin_CRUD.max_limit_31_cn'),
             'sub_title_en.max' => trans('admin_CRUD.max_limit_127_en'),

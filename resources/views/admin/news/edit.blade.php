@@ -57,6 +57,11 @@
                             <span class="help-block text-red-500">{!! $errors->first('title_en') !!}</span>
                         @endif
                     </div>
+                    <div class="form-group @if($errors->has('slug')) has-error @endif">
+                        @if ($errors->has('slug'))
+                            <span class="help-block text-red-500">{!! $errors->first('slug') !!}</span>
+                        @endif
+                    </div>
 
                     {{-- Sub Title --}}
                     <div class="form-group @if($errors->has('sub_title_cn')) has-error @endif">

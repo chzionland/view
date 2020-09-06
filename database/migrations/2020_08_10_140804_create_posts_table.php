@@ -36,6 +36,7 @@ class CreatePostsTable extends Migration
             $table->text('intro')->nullable();        # translatable
             $table->text('details');                  # translatable
             $table->string('post_type');
+
             $table->enum('is_published', ['0', '1']);
         });
     }
