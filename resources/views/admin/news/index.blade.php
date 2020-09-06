@@ -23,7 +23,10 @@
             @foreach ($newses as $news)
                 <tr>
                     <td>{{ $news->id }}</td>
-                    <td>{{ $news->title }}</td>
+                    <td>
+                        <p>{{ $news->getTranslation('title', 'cn') }}</p>
+                        <p>{{ $news->getTranslation('title', 'en') }}</p>
+                    </td>
                     <td>{{ $news->admin->name }}</td>
                     <td>{{ $news->updated_at }}</td>
                     <td>

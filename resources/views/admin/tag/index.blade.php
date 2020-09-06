@@ -22,7 +22,10 @@
             @foreach ($tags as $tag)
                 <tr>
                     <td>{{ $tag->id }}</td>
-                    <td>{{ $tag->name }}</td>
+                    <td>
+                        <p>{{ $tag->getTranslation('name', 'cn') }}</p>
+                        <p>{{ $tag->getTranslation('name', 'en') }}</p>
+                    </td>
                     <td>{{ $tag->admin->name }}</td>
                     <td>{{ $tag->updated_at }}</td>
                     <td>

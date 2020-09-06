@@ -23,7 +23,10 @@
             @foreach ($authors as $author)
                 <tr>
                     <td>{{ $author->id }}</td>
-                    <td>{{ $author->name }}</td>
+                    <td>
+                        <p>{{ $author->getTranslation('name', 'cn') }}</p>
+                        <p>{{ $author->getTranslation('name', 'en') }}</p>
+                    </td>
                     <td>{{ $author->admin->name }}</td>
                     <td>{{ $author->updated_at }}</td>
                     <td>

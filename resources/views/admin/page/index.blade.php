@@ -23,7 +23,10 @@
             @foreach ($pages as $page)
                 <tr>
                     <td>{{ $page->id }}</td>
-                    <td>{{ $page->title }}</td>
+                    <td>
+                        <p>{{ $page->getTranslation('title', 'cn') }}</p>
+                        <p>{{ $page->getTranslation('title', 'en') }}</p>
+                    </td>
                     <td>{{ $page->admin->name }}</td>
                     <td>{{ $page->updated_at }}</td>
                     <td>

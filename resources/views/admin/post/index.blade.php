@@ -27,7 +27,10 @@
             @foreach ($posts as $post)
                 <tr>
                     <td>{{ $post->id }}</td>
-                    <td>{{ $post->title }}</td>
+                    <td>
+                        <p>{{ $post->getTranslation('title', 'cn') }}</p>
+                        <p>{{ $post->getTranslation('title', 'en') }}</p>
+                    </td>
                     <td>
                         @if ($post->is_top == 1)
                             {{ __('admin_CRUD.top') }}

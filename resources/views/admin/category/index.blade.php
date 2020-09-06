@@ -24,7 +24,10 @@
             @foreach ($columns as $column)
                 <tr>
                     <td>{{ $column->id }}</td>
-                    <td>{{ $column->name }}</td>
+                    <td>
+                        <p>{{ $column->getTranslation('name', 'cn') }}</p>
+                        <p>{{ $column->getTranslation('name', 'en') }}</p>
+                    </td>
                     <td>--</td>
                     <td>{{ $column->admin->name }}</td>
                     <td>{{ $column->updated_at }}</td>
@@ -61,8 +64,14 @@
                 @foreach ($column->categories()->orderBy('name', 'ASC')->get() as $category)
                     <tr>
                         <td>{{ $category->id }}</td>
-                        <td>{{ $category->name }}</td>
-                        <td>{{ $column->name }}</td>
+                        <td>
+                            <p>{{ $category->getTranslation('name', 'cn') }}</p>
+                            <p>{{ $category->getTranslation('name', 'en') }}</p>
+                        </td>
+                        <td>
+                            <p>{{ $column->getTranslation('name', 'cn') }}</p>
+                            <p>{{ $column->getTranslation('name', 'en') }}</p>
+                        </td>
                         <td>{{ $category->admin->name }}</td>
                         <td>{{ $category->updated_at }}</td>
                         <td>
