@@ -16,7 +16,7 @@
                     {{-- Tumbnail --}}
                     <div class="form-group @if($errors->has('thumbnail')) has-error @endif">
                         {!! Form::label('thumbnail', trans('admin_CRUD.thumbnail')) !!}
-                        &nbsp;&nbsp;
+                        <span class="text-red-500">&nbsp;&nbsp;</span>
                         <a href="{{ route('photos.index', app()->getLocale()) }}" target="_blank" class="text-primary">
                             {{ __('admin_CRUD.photos') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>

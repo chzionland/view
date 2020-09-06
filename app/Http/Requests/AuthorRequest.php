@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 class AuthorRequest extends FormRequest
 {
     protected $rules = [
+        'thumbnail' => 'nullable|url|max:255',
+
         'name_cn' => 'required|max:15|unique:tags,name->cn',
         'name_en' => "required|max:63|unique:tags,name->en",
         'slug' => "unique:tags,slug",
@@ -53,6 +55,9 @@ class AuthorRequest extends FormRequest
     public function messages()
     {
         return [
+            'thumbnail.url' => trans('admin_CRUD.must_url'),
+            'thumbnail.max' => trans('admin_CRUD.max_limit_255'),
+
             'name_cn.required' => trans('admin_CRUD.is_must'),
             'name_en.required' => trans('admin_CRUD.is_must'),
             'name_cn.max' => trans('admin_CRUD.max_limit_15_cn'),

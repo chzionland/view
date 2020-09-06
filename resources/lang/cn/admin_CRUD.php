@@ -135,7 +135,9 @@ return [
     'details_en' => '内容（英文）',
     'input_details_in_en' => '请用英文输入内容',
 
-    'select_categories' => '-- 请选择类别（可多选）--',
+    'category_belonging' => '所属类别',
+    'select_category' => '-- 请选择类别（单选）--',
+    'select_tags' => '-- 请选择标签（可多选）--',
     'default_is_today' => '默认为今天',
 
     # News

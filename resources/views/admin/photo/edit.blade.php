@@ -25,7 +25,7 @@
                     {{-- Category --}}
                     <div class="form-group @if($errors->has('category_id')) has-error @endif">
                         {!! Form::label('category_id', trans('admin_CRUD.categories')) !!}
-                        <span class="text-red-500">&nbsp;*&nbsp;</span>&nbsp;&nbsp;
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
                         <a href="{{ route('categories.create', app()->getLocale()) }}" target="_blank" class="text-primary">
                             {{ __('admin_CRUD.create_category') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>

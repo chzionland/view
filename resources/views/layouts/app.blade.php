@@ -48,13 +48,13 @@
                             <a class="nav-link" href="{{ route('admin.dashboard', app()->getLocale()) }}">{{ __('app.dashboard') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('tags.index', app()->getLocale()) }}">{{ __('admin_CRUD.tags') }}</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('categories.index', app()->getLocale()) }}">{{ __('admin_CRUD.categories') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('authors.index', app()->getLocale()) }}">{{ __('admin_CRUD.authors') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('tags.index', app()->getLocale()) }}">{{ __('admin_CRUD.tags') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('posts.index', app()->getLocale()) }}">{{ __('admin_CRUD.posts') }}</a>

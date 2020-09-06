@@ -6,7 +6,9 @@ use App\Author;
 use App\Category;
 use App\Http\Requests\PostRequest;
 use App\Post;
+use App\Tag;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -29,8 +31,9 @@ class PostController extends Controller
     {
         $title = trans('admin_CRUD.create_post');
         $authors = Author::orderBy('name', 'ASC')->pluck('name', 'id');
-        $categories = Category::orderBy('id', 'DESC')->pluck('name', 'id');
-        return view('admin.post.create', compact('title', 'authors', 'categories'));
+        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+        $tags = Tag::orderBy('name', 'ASC')->pluck('name', 'id');
+        return view('admin.post.create', compact('title', 'authors', 'categories', 'tags'));
     }
 
     public function store(PostRequest $request)
@@ -41,7 +44,7 @@ class PostController extends Controller
             $request->created_at = Carbon::now();
         }
 
-        $post = Post::create([
+        $data = [
             'admin_id' => Auth::id(),
             'thumbnail' => $validated['thumbnail'],
             'title' => ['cn' => $validated['title_cn'], 'en' => $validated['title_en']],
@@ -58,10 +61,17 @@ class PostController extends Controller
             'is_published' => $request->is_published,
             'post_type' => 'post',
             'created_at' => $request->created_at,
-        ]);
+        ];
+
+        if ($request->category_id){
+            $category = Category::find($validated['category_id']);
+            $post = $category->posts()->create($data);
+        } else {
+            $post = Post::create($data);
+        }
 
         $post->authors()->sync($request->author_id, true);
-        $post->categories()->sync($request->category_id, true);
+        $post->tags()->sync($request->tag_id, true);
 
         Session::flash('message', trans('admin_CRUD.created_successfully'));
         return redirect()->route('posts.index');
@@ -75,9 +85,14 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $title = trans('admin_CRUD.update_post');
-        $authors = Author::orderBy('id', 'DESC')->pluck('name', 'id');
-        $categories = Category::orderBy('id', 'DESC')->pluck('name', 'id');
-        return view('admin.post.edit', compact('title', 'authors', 'categories', 'post'));
+        $authors = Author::orderBy('name', 'ASC')->pluck('name', 'id');
+        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+        $tags = Tag::orderBy('name', 'ASC')->pluck('name', 'id');
+        $category_belonging_id = null;
+        if ($post->category()->first()) {
+            $category_belonging_id = $post->category()->first()->id;
+        }
+        return view('admin.post.edit', compact('title', 'authors', 'categories', 'tags', 'post', 'category_belonging_id'));
     }
 
     public function update(PostRequest $request, Post $post)
@@ -104,10 +119,23 @@ class PostController extends Controller
         $post->is_published = $request->is_published;
         $post->post_type = 'post';
         $post->created_at = $request->created_at;
+
+        if ($request->category_id) {
+            $category = Category::find($validated['category_id']);
+            $post->category()->associate($category);
+        } else {
+            try {
+                $post->category()->dissociate();
+            }
+            catch (Exception $e) {
+                return;
+            }
+        }
+
         $post->save();
 
         $post->authors()->sync($request->author_id, true);
-        $post->categories()->sync($request->category_id, true);
+        $post->tags()->sync($request->tag_id, true);
 
         Session::flash('warning-message', trans('admin_CRUD.updated_successfully'));
         return redirect()->route('posts.index');

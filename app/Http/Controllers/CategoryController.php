@@ -47,10 +47,9 @@ class CategoryController extends Controller
 
         if ($request->category_id){
             $column = Category::find($validated['category_id']);
-            $column->categories()->create($data);
+            $category = $column->categories()->create($data);
         } else {
-            $validated = $request->validated();
-            Category::create($data);
+            $category = Category::create($data);
         }
 
         Session::flash('message', trans('admin_CRUD.created_successfully'));
@@ -66,10 +65,9 @@ class CategoryController extends Controller
     {
         $title = trans('admin_CRUD.update_category');
         $columns = Category::latest()->where('is_column', '1')->pluck('name', 'id');
+        $column_belonging_id = null;
         if ($category->category()->first()) {
             $column_belonging_id = $category->category()->first()->id;
-        } else {
-            $column_belonging_id = null;
         }
 
         return view('admin.category.edit', compact('title', 'category', 'columns', 'column_belonging_id'));

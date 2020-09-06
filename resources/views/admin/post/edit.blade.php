@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group @if($errors->has('thumbnail')) has-error @endif">
                         {!! Form::label('thumbnail', trans('admin_CRUD.thumbnail')) !!}
-                        &nbsp;&nbsp;
+                        <span class="text-red-500">&nbsp;&nbsp;</span>
                         <a href="{{ route('photos.index', app()->getLocale()) }}" target="_blank" class="text-primary">
                             {{ __('admin_CRUD.photos') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>
@@ -208,14 +208,11 @@
                     {{-- Category --}}
                     <div class="form-group @if($errors->has('category_id')) has-error @endif">
                         {!! Form::label('category_id', trans('admin_CRUD.categories')) !!}
-                        &nbsp;&nbsp;
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
                         <a href="{{ route('categories.create', app()->getLocale()) }}" target="_blank" class="text-primary">
                             {{ __('admin_CRUD.create_category') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>
                         </a>
-                        <div style="display: none" id="trans-select-categories">
-                            {{ trans('admin_CRUD.select_categories') }}
-                        </div>
                         {!! Form::select('category_id[]', $categories, null, [
                             'class' => 'form-control',
                             'id'=>'category_id',
@@ -223,6 +220,33 @@
                         ]) !!}
                         @if ($errors->has('category_id'))
                             <span class="help-block">{!! $errors->first('category_id') !!}</span>
+                        @endif
+                    </div>
+                    <div style="display: none" id="trans-select-category">
+                        {{ trans('admin_CRUD.select_categories') }}
+                    </div>
+                    <div style="display: none" id="category_belonging_id">
+                        {{ $category_belonging_id }}
+                    </div>
+
+                    {{-- Tag --}}
+                    <div class="form-group @if($errors->has('tag_id')) has-error @endif">
+                        {!! Form::label('tag_id', trans('admin_CRUD.tags')) !!}
+                        <span class="text-red-500">&nbsp;*&nbsp;</span>
+                        <a href="{{ route('tags.create', app()->getLocale()) }}" target="_blank" class="text-primary">
+                            {{ __('admin_CRUD.create_tag') }}
+                            <i class="fas fa-external-link-alt fa-sm"></i>
+                        </a>
+                        <div style="display: none" id="trans-select-tags">
+                            {{ trans('admin_CRUD.select_tags') }}
+                        </div>
+                        {!! Form::select('tag_id[]', $tags, null, [
+                            'class' => 'form-control',
+                            'id'=>'tag_id',
+                            'multiple'=>'multiple'
+                        ]) !!}
+                        @if ($errors->has('tag_id'))
+                            <span class="help-block text-red-500">{!! $errors->first('tag_id') !!}</span>
                         @endif
                     </div>
 
@@ -275,10 +299,20 @@
             placeholder: select_authors
         }).val({!! json_encode($post->authors()->allRelatedIds()) !!}).trigger('change');
 
-        let select_categories = document.getElementById('trans-select-categories').textContent;
+        let select_category = document.getElementById('trans-select-category').textContent;
         $('#category_id').select2({
-            placeholder: select_categories
-        }).val({!! json_encode($post->categories()->allRelatedIds()) !!}).trigger('change');
+            placeholder: select_category
+        }).val(null).trigger('change');
+
+        let category_belonging_id = document.getElementById('category_belonging_id').textContent;
+        if ( category_belonging_id != null){
+            $('#category_id').val({{ $category_belonging_id }}).trigger('change');
+        }
+
+        let select_tags = document.getElementById('trans-select-tags').textContent;
+        $('#tag_id').select2({
+            placeholder: select_tags
+        }).val({!! json_encode($post->tags()->allRelatedIds()) !!}).trigger('change');
     });
 </script>
 @endsection

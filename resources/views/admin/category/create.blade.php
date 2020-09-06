@@ -81,9 +81,6 @@
                             {{ __('admin_CRUD.create_category') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>
                         </a>
-                        <div style="display: none" id="trans-select-column">
-                            {{ trans('admin_CRUD.select_column') }}
-                        </div>
                         {!! Form::select('category_id', $columns, null, [
                             'class' => 'form-control',
                             'id'=>'category_id',
@@ -95,6 +92,9 @@
                         @if ($errors->has('category_id'))
                             <span class="help-block text-red-500">{!! $errors->first('category_id') !!}</span>
                         @endif
+                    </div>
+                    <div style="display: none" id="trans-select-column">
+                        {{ trans('admin_CRUD.select_column') }}
                     </div>
 
                     {{-- Publish Status --}}

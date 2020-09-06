@@ -20,9 +20,9 @@ class Post extends Model
         return $this->belongsTo(Admin::class);
     }
 
-    public function categories()
+    public function category()
     {
-        return $this->belongsToMany(Category::class, 'category_posts');
+        return $this->belongsTo(Category::class);
     }
 
     public function authors()

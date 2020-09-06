@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group @if($errors->has('thumbnail')) has-error @endif">
                         {!! Form::label('thumbnail', trans('admin_CRUD.thumbnail')) !!}
-                        &nbsp;&nbsp;
+                        <span class="text-red-500">&nbsp;&nbsp;</span>
                         <a href="{{ route('photos.index', app()->getLocale()) }}" target="_blank" class="text-primary">
                             {{ __('admin_CRUD.photos') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>
@@ -88,9 +88,6 @@
                             {{ __('admin_CRUD.create_category') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>
                         </a>
-                        <div style="display: none" id="trans-select-column">
-                            {{ trans('admin_CRUD.select_column') }}
-                        </div>
                         {!! Form::select('category_id', $columns, null, [
                             'class' => 'form-control',
                             'id'=>'category_id',
@@ -102,6 +99,12 @@
                         @if ($errors->has('category_id'))
                             <span class="help-block text-red-500">{!! $errors->first('category_id') !!}</span>
                         @endif
+                    </div>
+                    <div style="display: none" id="trans-select-column">
+                        {{ trans('admin_CRUD.select_column') }}
+                    </div>
+                    <div style="display: none" id="column_belonging_id" >
+                        {{ $column_belonging_id }}
                     </div>
 
                     {{-- Publish Status --}}
@@ -139,10 +142,9 @@
             placeholder: select_column
         }).val(null).trigger('change');
 
-        if ({{ $column_belonging_id }} != null){
-            $('#category_id').select2({
-                placeholder: select_column
-            }).val({{ $column_belonging_id }}).trigger('change');
+        let column_belonging_id = document.getElementById('column_belonging_id').textContent;
+        if ( column_belonging_id != null){
+            $('#category_id').val({{ $column_belonging_id }}).trigger('change');
         }
 
     });
