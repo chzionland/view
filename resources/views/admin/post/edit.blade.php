@@ -213,10 +213,9 @@
                             {{ __('admin_CRUD.create_category') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>
                         </a>
-                        {!! Form::select('category_id[]', $categories, null, [
+                        {!! Form::select('category_id', $categories, null, [
                             'class' => 'form-control',
                             'id'=>'category_id',
-                            'multiple'=>'multiple'
                         ]) !!}
                         @if ($errors->has('category_id'))
                             <span class="help-block">{!! $errors->first('category_id') !!}</span>
