@@ -12,15 +12,15 @@
         <thead>
             <colgroup>
                 <col style="width: 5%">
-                <col style="width: 15%">
+                <col style="width: 30%">
+                <col style="width: 4%">
+                <col style="width: 6%">
                 <col style="width: 10%">
                 <col style="width: 10%">
                 <col style="width: 10%">
                 <col style="width: 10%">
-                <col style="width: 10%">
-                <col style="width: 10%">
-                <col style="width: 10%">
-                <col style="width: 10%">
+                <col style="width: 6%">
+                <col style="width: 14%">
               </colgroup>
             <tr>
                 <th scope="col">{{ __('#') }}</th>
