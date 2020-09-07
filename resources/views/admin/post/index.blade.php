@@ -17,9 +17,9 @@
                 <col style="width: 6%">
                 <col style="width: 10%">
                 <col style="width: 10%">
+                <col style="width: 8%">
                 <col style="width: 10%">
-                <col style="width: 10%">
-                <col style="width: 6%">
+                <col style="width: 8%">
                 <col style="width: 14%">
               </colgroup>
             <tr>
