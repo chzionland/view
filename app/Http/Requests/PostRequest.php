@@ -25,7 +25,7 @@ class PostRequest extends FormRequest
         'intro_cn' => 'max:250',
         'intro_en' => 'max:1500',
 
-        'details_cn' => 'max:2500',
+        'details_cn' => 'max:3000',
         'details_en' => 'max:15000',
 
         'author_id' => 'required',
