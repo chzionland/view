@@ -28,7 +28,7 @@
                 <th scope="col">{{ __('admin_CRUD.is_top') }}</th>
                 <th scope="col">{{ __('admin_CRUD.original_or_reproduced') }}</th>
                 <th scope="col">{{ __('admin_CRUD.author') }}</th>
-                <th scope="col">{{ __('admin_CRUD.updated_at') }}</th>
+                <th scope="col">{{ __('admin_CRUD.created_at') }}</th>
                 <th scope="col">{{ __('admin_CRUD.category_belonging') }}</th>
                 <th scope="col">{{ __('admin_CRUD.tags') }}</th>
                 <th scope="col">{{ __('admin_CRUD.publish_status') }}</th>
@@ -62,7 +62,7 @@
                             {{ $author->name }};&nbsp;
                         @endforeach
                     </td>
-                    <td>{{ $post->updated_at }}</td>
+                    <td>{{ $post->created_at }}</td>
                     <td>{{ $post->category->name }}</td>
                     <td>
                         @foreach ($post->tags as $tag)
