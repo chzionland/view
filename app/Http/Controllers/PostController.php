@@ -40,9 +40,9 @@ class PostController extends Controller
     {
         $validated = $request->validated();
 
-        if (!$request->created_at) {
-            $request->created_at = Carbon::now();
-        }
+        // if (!$request->created_at) {
+        //     $request->created_at = Carbon::now();
+        // }
 
         $data = [
             'admin_id' => Auth::id(),
