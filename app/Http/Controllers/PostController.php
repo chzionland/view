@@ -99,10 +99,6 @@ class PostController extends Controller
     {
         $validated = $request->validated();
 
-        if (!$request->created_at) {
-            $request->created_at = Carbon::now();
-        }
-
         $post->admin_id = Auth::id();
         $post->thumbnail = $validated['thumbnail'];
         $post->title = ['cn' => $validated['title_cn'], 'en' => $validated['title_en']];
