@@ -12,7 +12,7 @@
         <thead>
             <colgroup>
                 <col style="width: 5%">
-                <col style="width: 30%">
+                <col style="width: 25%">
                 <col style="width: 4%">
                 <col style="width: 6%">
                 <col style="width: 10%">
