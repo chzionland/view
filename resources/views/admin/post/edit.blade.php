@@ -231,7 +231,7 @@
                     {{-- Tag --}}
                     <div class="form-group @if($errors->has('tag_id')) has-error @endif">
                         {!! Form::label('tag_id', trans('admin_CRUD.tags')) !!}
-                        <span class="text-red-500">&nbsp;*&nbsp;</span>
+                        <span class="text-red-500">&nbsp;&nbsp;</span>
                         <a href="{{ route('tags.create', app()->getLocale()) }}" target="_blank" class="text-primary">
                             {{ __('admin_CRUD.create_tag') }}
                             <i class="fas fa-external-link-alt fa-sm"></i>
