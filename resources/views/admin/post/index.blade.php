@@ -10,17 +10,29 @@
 <div class="card-body">
     <table class="table table-bordered mb-0">
         <thead>
+            <colgroup>
+                <col style="width: 5%">
+                <col style="width: 15%">
+                <col style="width: 10%">
+                <col style="width: 10%">
+                <col style="width: 10%">
+                <col style="width: 10%">
+                <col style="width: 10%">
+                <col style="width: 10%">
+                <col style="width: 10%">
+                <col style="width: 10%">
+              </colgroup>
             <tr>
-                <th scope="col" width="10">{{ __('#') }}</th>
-                <th scope="col" width="60">{{ __('admin_CRUD.post_title') }}</th>
-                <th scope="col" width="30">{{ __('admin_CRUD.is_top') }}</th>
-                <th scope="col" width="30">{{ __('admin_CRUD.original_or_reproduced') }}</th>
-                <th scope="col" width="30">{{ __('admin_CRUD.author') }}</th>
-                <th scope="col" width="30">{{ __('admin_CRUD.updated_at') }}</th>
-                <th scope="col" width="30">{{ __('admin_CRUD.category_belonging') }}</th>
-                <th scope="col" width="30">{{ __('admin_CRUD.tags') }}</th>
-                <th scope="col" width="30">{{ __('admin_CRUD.publish_status') }}</th>
-                <th scope="col" width="30">{{ __('admin_CRUD.edit_delete') }}</th>
+                <th scope="col">{{ __('#') }}</th>
+                <th scope="col">{{ __('admin_CRUD.post_title') }}</th>
+                <th scope="col">{{ __('admin_CRUD.is_top') }}</th>
+                <th scope="col">{{ __('admin_CRUD.original_or_reproduced') }}</th>
+                <th scope="col">{{ __('admin_CRUD.author') }}</th>
+                <th scope="col">{{ __('admin_CRUD.updated_at') }}</th>
+                <th scope="col">{{ __('admin_CRUD.category_belonging') }}</th>
+                <th scope="col">{{ __('admin_CRUD.tags') }}</th>
+                <th scope="col">{{ __('admin_CRUD.publish_status') }}</th>
+                <th scope="col">{{ __('admin_CRUD.edit_delete') }}</th>
             </tr>
         </thead>
         <tbody>
