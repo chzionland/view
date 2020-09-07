@@ -1,7 +1,8 @@
+<!--
 @extends('website.template.master')
 
 @section('content')
-<!-- Page Header -->
+{{-- Page Header --}}
   <header class="masthead" style="background-image: url({{ asset('website/img/banners/bg1.jpg') }})">
     <div class="overlay"></div>
     <div class="container">
@@ -16,7 +17,7 @@
     </div>
   </header>
 
-  <!-- Main Content -->
+{{-- Main Content --}}
   <div class="container">
 
     {{-- News
@@ -81,7 +82,7 @@
         @endforeach
 
 
-        <!-- Pager -->
+        {{-- Pager --}}
         <br>
           <div class="clearfix mt-4">
             {{ $posts->links() }}
@@ -92,3 +93,4 @@
     </div>
   </div>
 @endsection
+
