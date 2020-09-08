@@ -11,7 +11,7 @@ class TagRequest extends FormRequest
     protected $rules = [
         'name_cn' => 'required|max:15|unique:tags,name->cn',
         'name_en' => "required|max:63|unique:tags,name->en",
-        'slug' => "required|max:255|unique:tags,slug"
+        'slug' => 'unique:tags,slug',
     ];
 
     protected function prepareForValidation()
