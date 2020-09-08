@@ -49,6 +49,7 @@ class TagRequest extends FormRequest
             case 'PATCH': {
                 $rules['name_cn'] = 'required|max:15|unique:tags,name->cn,' . $this->tag->id;
                 $rules['name_en'] = 'required|max:63|unique:tags,name->en,' . $this->tag->id;
+                $rules['slug'] = 'unique:tags,slug' . $this->tag->id;
                 return $rules;
             }
         }
