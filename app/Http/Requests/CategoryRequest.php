@@ -19,9 +19,12 @@ class CategoryRequest extends FormRequest
 
     protected function prepareForValidation()
     {
+        $this->name_cn = trim($this->name_cn);
+        $this->name_en = trim($this->name_en);
+
         $this->merge([
             'name_cn' => str_replace(' ', '', $this->name_cn),
-            'name_en' => Str::ucwords($this->name_en),
+            'name_en' => ucwords($this->name_en),
             'slug' => Str::slug($this->name_en),
         ]);
     }

@@ -34,11 +34,14 @@ class PostRequest extends FormRequest
 
     protected function prepareForValidation()
     {
+        $this->title_cn = trim($this->title_cn);
+        $this->title_en = trim($this->title_en);
+
         $this->merge([
             'title_cn' => str_replace(' ', '', $this->title_cn),
-            'title_en' => Str::ucwords($this->title_en),
+            'title_en' => ucwords($this->title_en),
             'slug' => Str::slug($this->title_en),
-            'sub_title_en' => Str::ucwords($this->sub_title_en),
+            'sub_title_en' => ucwords($this->sub_title_en),
         ]);
     }
 
