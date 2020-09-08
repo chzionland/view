@@ -31,7 +31,7 @@ class PostController extends Controller
     {
         $title = trans('admin_CRUD.create_post');
         $authors = Author::orderBy('name', 'ASC')->pluck('name', 'id');
-        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+        $categories = Category::orderBy('name', 'ASC')->where('is_column', '0')->pluck('name', 'id');
         $tags = Tag::orderBy('name', 'ASC')->pluck('name', 'id');
         return view('admin.post.create', compact('title', 'authors', 'categories', 'tags'));
     }
@@ -82,7 +82,7 @@ class PostController extends Controller
     {
         $title = trans('admin_CRUD.update_post');
         $authors = Author::orderBy('name', 'ASC')->pluck('name', 'id');
-        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+        $categories = Category::orderBy('name', 'ASC')->where('is_column', '0')->pluck('name', 'id');
         $tags = Tag::orderBy('name', 'ASC')->pluck('name', 'id');
         $category_belonging_id = null;
         if ($post->category()->first()) {
