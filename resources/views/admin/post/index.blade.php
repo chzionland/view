@@ -74,7 +74,7 @@
                     @endif
                     <td>
                         @foreach ($post->tags as $tag)
-                            {{ $category->name }};&nbsp;
+                            {{ $tag->name }};&nbsp;
                         @endforeach
                     </td>
                     <td>
