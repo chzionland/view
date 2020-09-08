@@ -77,8 +77,6 @@
                             ], isset($category->is_column) ? $category->is_column : null,
                             ['class' => 'form-control']
                         ) !!}
-                    </div>
-                    <div>
                         <span class="text-blue-500">注：同子类的文章可在文末汇集成相关文章列表</span>
                     </div>
 

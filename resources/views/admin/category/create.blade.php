@@ -67,9 +67,11 @@
                         {!! Form::label('is_column', trans('admin_CRUD.set_column_or_not')) !!}
                         <span class="text-red-500">&nbsp;*&nbsp;</span>
                         {!! Form::select('is_column', [
-                            0 => trans('admin_CRUD.set_as_sub_category'),
-                            1 => trans('admin_CRUD.set_as_column')
-                        ], null, ['class' => 'form-control']) !!}
+                                0 => trans('admin_CRUD.set_as_sub_category'),
+                                1 => trans('admin_CRUD.set_as_column')
+                            ], null, ['class' => 'form-control']
+                        ) !!}
+                        <span class="text-blue-500">注：同子类的文章可在文末汇集成相关文章列表</span>
                     </div>
 
                     {{-- Column --}}
