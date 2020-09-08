@@ -79,7 +79,7 @@
                         ) !!}
                     </div>
                     <div>
-                        <span class="text-blue-500">注：相同子类的文章可汇集成相关文章列表</span>
+                        <span class="text-blue-500">注：同子类的文章可在文末汇集成相关文章列表</span>
                     </div>
 
                     {{-- Column --}}
