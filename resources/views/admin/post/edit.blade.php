@@ -232,7 +232,7 @@
                         class="text-blue-500 px-1 border rounded my-1"
                     >
                     <div style="display: none" id="trans-select-category">
-                        {{ trans('admin_CRUD.select_categories') }}
+                        {{ trans('admin_CRUD.select_category') }}
                     </div>
                     <div style="display: none" id="category_belonging_id">
                         {{ $category_belonging_id }}
