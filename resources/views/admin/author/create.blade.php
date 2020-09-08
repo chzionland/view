@@ -70,7 +70,9 @@
                             <span class="help-block text-red-500">{!! $errors->first('intro_cn') !!}</span>
                         @endif
                     </div>
-                    <div class="form-group @if($errors->has('intro_en')) has-error @endif">
+                    <div class="form-group @if($errors->has('intro_en')) has-error @endif"
+                        style="display:none"
+                        >
                         {!! Form::label('intro_en', trans('admin_CRUD.intro_en')) !!}
                         {!! Form::textarea('intro_en', 'Introduction in English', [
                             'class' => 'form-control',
