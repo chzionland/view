@@ -21,7 +21,7 @@ class TagRequest extends FormRequest
 
         $this->name_en = trim($this->name_en);
         $this->name_en = Str::lower($this->name_en);
-        $this->name_en = str_replace(' ', '', $this->name_en);
+        $this->name_en = str_replace(' ', '_', $this->name_en);
 
         $this->merge([
             'name_cn' => preg_replace('/[^\p{L}\p{N}\-]/u', '', $this->name_cn),
