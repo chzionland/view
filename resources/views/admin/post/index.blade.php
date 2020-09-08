@@ -11,16 +11,17 @@
     <table class="table table-bordered mb-0">
         <thead>
             <colgroup>
-                <col style="width: 5%">
-                <col style="width: 25%">
+                <col style="width: 4%">
+                <col style="width: 24%">
                 <col style="width: 4%">
                 <col style="width: 6%">
                 <col style="width: 10%">
-                <col style="width: 10%">
                 <col style="width: 8%">
-                <col style="width: 10%">
                 <col style="width: 8%">
-                <col style="width: 14%">
+                <col style="width: 8%">
+                <col style="width: 8%">
+                <col style="width: 8%">
+                <col style="width: 12%">
               </colgroup>
             <tr>
                 <th scope="col">{{ __('#') }}</th>
@@ -30,6 +31,7 @@
                 <th scope="col">{{ __('admin_CRUD.author') }}</th>
                 <th scope="col">{{ __('admin_CRUD.created_at') }}</th>
                 <th scope="col">{{ __('admin_CRUD.category_belonging') }}</th>
+                <th scope="col">{{ __('admin_CRUD.column_belonging') }}</th>
                 <th scope="col">{{ __('admin_CRUD.tags') }}</th>
                 <th scope="col">{{ __('admin_CRUD.publish_status') }}</th>
                 <th scope="col">{{ __('admin_CRUD.edit_delete') }}</th>
@@ -63,7 +65,13 @@
                         @endforeach
                     </td>
                     <td>{{ $post->created_at }}</td>
-                    <td>{{ $post->category->name }}</td>
+                    @if ($post->category->category()->first())
+                        <td>{{ $post->category->name }}</td>
+                        <td>{{ $post->category->category()->first()->name }}</td>
+                    @else
+                        <td>--</td>
+                        <td>{{ $post->category->name }}</td>
+                    @endif
                     <td>
                         @foreach ($post->tags as $tag)
                             {{ $category->name }};&nbsp;
