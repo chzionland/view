@@ -224,6 +224,10 @@
                             <span class="help-block text-red-500">{!! $errors->first('category_id') !!}</span>
                         @endif
                     </div>
+                    <input type="button" value="{{ trans('admin_CRUD.clean_selection') }}"
+                        onclick="$('#category_id').val(null).trigger('change')"
+                        class="text-blue-500 px-1 border rounded my-1"
+                    >
 
                     {{-- Tag --}}
                     <div class="form-group @if($errors->has('tag_id')) has-error @endif">

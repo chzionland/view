@@ -227,6 +227,10 @@
                             <span class="help-block">{!! $errors->first('category_id') !!}</span>
                         @endif
                     </div>
+                    <input type="button" value="{{ trans('admin_CRUD.clean_selection') }}"
+                        onclick="$('#category_id').val(null).trigger('change')"
+                        class="text-blue-500 px-1 border rounded my-1"
+                    >
                     <div style="display: none" id="trans-select-category">
                         {{ trans('admin_CRUD.select_categories') }}
                     </div>
