@@ -25,7 +25,7 @@
                     <td>{{ $news->id }}</td>
                     <td>
                         <p>{{ $news->getTranslation('title', 'cn') }}</p>
-                        <p style="text-transform: capitalize;">{{ $news->getTranslation('title', 'en') }}</p>
+                        <p>{{ $news->getTranslation('title', 'en') }}</p>
                     </td>
                     <td>{{ $news->admin->name }}</td>
                     <td>{{ $news->updated_at }}</td>
