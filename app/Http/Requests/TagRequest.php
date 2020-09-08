@@ -11,12 +11,12 @@ class TagRequest extends FormRequest
     protected $rules = [
         'name_cn' => 'required|max:15|unique:tags,name->cn',
         'name_en' => "required|max:63|unique:tags,name->en",
+        'slug' => "required|max:255|unique:tags,slug"
     ];
 
     protected function prepareForValidation()
     {
         $this->merge([
-            'name_en' => Str::str_replace(' ', '', $this->name_en)->lower(),
             'slug' => Str::slug($this->name_en),
         ]);
     }

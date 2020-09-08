@@ -34,7 +34,7 @@ class TagController extends Controller
 
         Tag::create([
             'admin_id' => Auth::id(),
-            'name' => ['cn'=>$validated['name_cn'], 'en'=>$validated['name_en']],
+            'name' => ['cn'=>$validated['name_cn'], 'en'=>str_replace('-', '', $validated['slug'])],
             'slug' => $validated['slug'],
         ]);
 
