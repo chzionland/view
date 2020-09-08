@@ -21,6 +21,7 @@ class AuthorRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
+            'name_cn' => str_replace(' ', '', $this->title_cn),
             'name_en' => Str::ucwords($this->name_en),
             'slug' => Str::slug($this->name_en),
         ]);

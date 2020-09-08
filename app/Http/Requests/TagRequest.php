@@ -16,7 +16,11 @@ class TagRequest extends FormRequest
 
     protected function prepareForValidation()
     {
+        $this->name_en = str_replace  ("'", "", $this->name_en);
+
         $this->merge([
+            'name_cn' => str_replace(' ', '', $this->name_cn),
+            'name_en' => preg_replace('/[^a-zA-Z0-9\']/', '', $this->name_en),
             'slug' => Str::slug($this->name_en),
         ]);
     }
