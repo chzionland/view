@@ -17,14 +17,15 @@ class TagRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->name_cn = trim($this->name_cn);
-        $this->name_en = trim($this->name_en);
+        $this->name_cn = str_replace(' ', '', $this->name_cn);
 
+        $this->name_en = trim($this->name_en);
         $this->name_en = Str::lower($this->name_en);
         $this->name_en = str_replace(" ", "_", $this->name_en);
+
         $this->merge([
-            'name_cn' => str_replace(' ', '', $this->name_cn),
-            'name_en' => preg_replace('/[^a-zA-Z0-9\-\']/', '', $this->name_en),
-            'name_en' => Str::lower($this->name_en),
+            'name_cn' => preg_replace('/[^\p{L}\p{N}\-]/u', '', $this->name_cn),
+            'name_en' => preg_replace('/[^\p{L}\p{N}\-\']/u', '', $this->name_en),
             'slug' => Str::slug($this->name_en),
         ]);
     }
