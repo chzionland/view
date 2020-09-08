@@ -21,6 +21,15 @@ class NewsRequest extends FormRequest
         'details_en' => 'max:15000',
     ];
 
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'title_en' => Str::ucwords($this->title_en),
+            'slug' => Str::slug($this->title_en),
+            'sub_title_en' => Str::ucwords($this->sub_title_en),
+        ]);
+    }
+
     public function authorize()
     {
         return true;

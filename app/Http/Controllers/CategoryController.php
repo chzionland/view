@@ -47,9 +47,9 @@ class CategoryController extends Controller
 
         if ($request->category_id){
             $column = Category::find($validated['category_id']);
-            $category = $column->categories()->create($data);
+            $column->categories()->create($data);
         } else {
-            $category = Category::create($data);
+            Category::create($data);
         }
 
         Session::flash('message', trans('admin_CRUD.created_successfully'));

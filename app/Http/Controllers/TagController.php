@@ -35,7 +35,7 @@ class TagController extends Controller
         Tag::create([
             'admin_id' => Auth::id(),
             'name' => ['cn'=>$validated['name_cn'], 'en'=>$validated['name_en']],
-            'slug' => $validated['name_en'],
+            'slug' => $validated['slug'],
         ]);
 
         Session::flash('message', trans('admin_CRUD.created_successfully'));
@@ -59,7 +59,7 @@ class TagController extends Controller
 
         $tag->admin_id = Auth::id();
         $tag->name = ['cn' => $validated['name_cn'], 'en' => $validated['name_en']];
-        $tag->slug = $validated['name_en'];
+        $tag->slug = $validated['slug'];
         $tag->save();
 
         Session::flash('warning-message', trans('admin_CRUD.updated_successfully'));

@@ -40,15 +40,11 @@ class PostController extends Controller
     {
         $validated = $request->validated();
 
-        // if (!$request->created_at) {
-        //     $request->created_at = Carbon::now();
-        // }
-
         $data = [
             'admin_id' => Auth::id(),
             'thumbnail' => $validated['thumbnail'],
             'title' => ['cn' => $validated['title_cn'], 'en' => $validated['title_en']],
-            'slug' => str_slug($validated['title_en']),
+            'slug' => $validated['slug'],
             'sub_title' => ['cn' => $validated['sub_title_cn'], 'en' => $validated['sub_title_en']],
             'is_top' => $request->is_top,
             'limit' => '0',
@@ -102,7 +98,7 @@ class PostController extends Controller
         $post->admin_id = Auth::id();
         $post->thumbnail = $validated['thumbnail'];
         $post->title = ['cn' => $validated['title_cn'], 'en' => $validated['title_en']];
-        $post->slug = str_slug($validated['title_en']);
+        $post->slug = $validated['slug'];
         $post->sub_title = ['cn' => $validated['sub_title_cn'], 'en' => $validated['sub_title_en']];
         $post->is_top = $request->is_top;
         $post->limit = '0';
