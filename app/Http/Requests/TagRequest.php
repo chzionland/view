@@ -65,6 +65,7 @@ class TagRequest extends FormRequest
             'name_cn.unique' => trans('admin_CRUD.already_exist'),
             'name_en.unique' => trans('admin_CRUD.already_exist'),
             // 'name_en.regex' => trans('admin_CRUD.legal_english_name')
+            'slug.unique' => trans('admin_CRUD.already_exist'),
         ];
     }
 }
