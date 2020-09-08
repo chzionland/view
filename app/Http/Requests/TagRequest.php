@@ -25,7 +25,7 @@ class TagRequest extends FormRequest
 
         $this->merge([
             'name_cn' => preg_replace('/[^\p{L}\p{N}\-]/u', '', $this->name_cn),
-            'name_en' => preg_replace('/[^\p{L}\p{N}\-\']/u', '', $this->name_en),
+            'name_en' => preg_replace('/[^\p{L}\p{N}\-\'\_]/u', '', $this->name_en),
             'slug' => Str::slug($this->name_en),
         ]);
     }
