@@ -16,6 +16,9 @@ return [
     'updated_on' => '更新于',
     'category' => '类别',
 
+    # post
+    'related_posts' => '相关阅读',
+
     # pages
     'category_list' => '分类列表',
     'read_more' => '查看更多...>>',
