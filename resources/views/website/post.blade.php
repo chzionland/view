@@ -40,9 +40,13 @@
             </div>
         </div>
 
+        <br class="">
+        <hr class="">
+        <br class="">
+
         {{-- related posts --}}
-        <div class="row" style="list-style: none">
-            <ul class="col-lg-8 col-md-10 mx-auto">
+        <div class="row">
+            <ul class="col-lg-8 col-md-10 mx-auto" style="list-style: none">
                 @php($category = $post->category()->first())
                 @php($posts = $category->posts()->orderBy('title', 'ASC')->where('is_published', '1')->get())
                 @foreach ($posts as $post)
