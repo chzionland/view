@@ -33,7 +33,7 @@ class WebsiteController extends Controller
         if ($column) {
             $title = $column->title;
             $categories = $column->categories()->where('is_published', '1')->get();
-            if ($categories) {
+            if (count($categories) > 0) {
                 $first_category = $categories->first();
                 $posts = $first_category->posts()->orderBy('is_top', 'DESC')->latest()->where('is_published', '1')->get();
                 foreach ($categories as $category) {
@@ -41,12 +41,13 @@ class WebsiteController extends Controller
                     $merged_posts = $new_posts->merge($posts);
                     $posts = $merged_posts;
                 }
-                $posts->sortBy('created_at');
+                $posts->sortByDesc('created_at')->sortBy('created_at');
                 $posts = $this->paginate($posts);
-            } else  {
-                $posts = null;
+                return view('website.column', compact('title', 'column', 'posts', '$categories'));
+            } else {
+                return view('website.column', compact('title', 'column', '$categories'));
             }
-            return view('website.column', compact('title', 'column', 'posts'));
+
         }
     }
 
