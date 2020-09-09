@@ -58,14 +58,14 @@
               <h3 class="post-title text-center">{{ $post->title }}</h3>
               <h4 class="post-subtitle text-center">{{ $post->sub_title }}</h4>
             </a>
-            <div class="post-meta text-center">
-                <p>
+            <div class="post-meta">
+                <p class="text-center">
                     {{ __('website.created_on') }}&nbsp;{{ date('Y.m.d', strtotime($post->created_at)) }}
                     @if (date('Y.m.d', strtotime($post->created_at)) != date('Y.m.d', strtotime($post->updated_at)))
                         ,&nbsp;{{ __('website.updated_on') }}&nbsp;{{ date('Y.m.d', strtotime($post->updated_at)) }}
                     @endif
-                    @if ($post->category->first())
-                        ,&nbsp;{{ __('website.category') }}:&nbsp;{{$post->category->first()->name}}
+                    @if ($post->category()->first())
+                        ,&nbsp;{{ __('website.category') }}:&nbsp;{{$post->category()->first()->name}}
                     @endif
                 </p>
 

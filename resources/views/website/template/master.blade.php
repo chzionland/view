@@ -93,11 +93,7 @@
                 {{ __('website.home') }}
             </a>
           </li>
-          {{-- <li class="nav-item">
-            <a class="nav-link" href="{{ route('category_list', app()->getLocale()) }}">
-                {{ __('website.category_list') }}
-            </a>
-          </li> --}}
+
           @php ($columns = getColumns())
           @foreach ($columns as $column)
             <li class="nav-item">
@@ -106,6 +102,7 @@
                 </a>
             </li>
           @endforeach
+
           @php ($pages = getPages())
           @foreach ($pages as $page)
             <li class="nav-item">
@@ -114,6 +111,7 @@
                 </a>
             </li>
           @endforeach
+
           <li class="nav-item">
             <a class="nav-link" href="https://www.qizhong.land#contact" target="_blank">
                 {{ __('website.contact_us') }}&nbsp;<i class="fas fa-external-link-alt fa-xs"></i>

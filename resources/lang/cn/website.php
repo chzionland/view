@@ -2,7 +2,7 @@
 
 return [
     # master
-    'home' => '首 页',
+    'home' => '首页',
     'category_list' => '分类列表',
     'contact_us' => '联系我们',
     'copyright' => '版权所有',
