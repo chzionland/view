@@ -55,24 +55,20 @@
         @foreach ($posts as $post)
           <div class="post-preview">
             <a href="{{ route('post', [$post->slug, app()->getLocale()]) }}">
-              <h3 class="post-title">{{ $post->title }}</h3>
-              <h4 class="post-subtitle">{{ $post->sub_title }}</h4>
+              <h3 class="post-title text-center">{{ $post->title }}</h3>
+              <h4 class="post-subtitle text-center">{{ $post->sub_title }}</h4>
             </a>
-            <div class="post-meta">
+            <div class="post-meta text-center">
                 <p>
                     {{ __('website.created_on') }}&nbsp;{{ date('Y.m.d', strtotime($post->created_at)) }}
                     @if (date('Y.m.d', strtotime($post->created_at)) != date('Y.m.d', strtotime($post->updated_at)))
                         ,&nbsp;{{ __('website.updated_on') }}&nbsp;{{ date('Y.m.d', strtotime($post->updated_at)) }}
                     @endif
+                    @if ($post->category->first())
+                        ,&nbsp;{{ __('website.category') }}:&nbsp;{{$post->category->first()->name}}
+                    @endif
                 </p>
-                @if (count($post->categories) > 0)
-                    <p class="post-category">
-                        {{ __('website.category') }}:&nbsp;
-                        @foreach ($post->categories as $category)
-                            <a class="text-decoration-none" href="{{ route('category', [$category->slug, app()->getLocale()]) }}">{{ $category->name }};</a>
-                        @endforeach
-                    </p>
-                @endif
+
                 <p class="content-preview">
                     {{ $post->intro }}
                 </p>

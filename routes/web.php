@@ -42,8 +42,7 @@ Route::group(['prefix' => '{locale?}'], function() {
 
     # Web
     Route::get('/', 'WebsiteController@index')->name('index');
-    // Route::get('category_list', 'WebsiteController@categoryList')->name('category_list');
-    Route::get('category/{slug}', 'WebsiteController@category')->name('category');
+    // Route::get('category/{slug}', 'WebsiteController@category')->name('category');
     Route::get('column/{slug}', 'WebsiteController@column')->name('column');
     Route::get('post/{slug}', 'WebsiteController@post')->name('post');
     Route::get('page/{slug}', 'WebsiteController@page')->name('page');
