@@ -24,9 +24,10 @@
                             <span class="help-block text-red-500">{!! $errors->first('image_url') !!}</span>
                         @endif
                     </div>
-                    <div class="text-blue-500">{{ __('admin_CRUD.support_multi_photo') }}</div>
-                    <div class="text-red-500">{{ __('admin_CRUD.support_png_jpg_jpeg') }}</div>
-                    <div class="text-red-500">{{ __('admin_CRUD.should_smaller_than_500k') }}</div>
+
+                    <div class="text-orange-500">{{ __('admin_CRUD.support_png_jpg_jpeg') }}</div>
+                    <div class="text-orange-500">{{ __('admin_CRUD.should_smaller_than_500k') }}</div>
+
                     <br>
 
                     {{-- Intro --}}
