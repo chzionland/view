@@ -41,7 +41,7 @@ class WebsiteController extends Controller
                     $merged_posts = $new_posts->merge($posts);
                     $posts = $merged_posts;
                 }
-                $posts->sortByDesc('created_at')->sortBy('created_at');
+                $posts->sortByDesc('is_top')->sortBy('created_at');
                 $posts = $this->paginate($posts);
 
             } else {
