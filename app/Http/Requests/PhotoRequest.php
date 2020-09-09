@@ -8,8 +8,7 @@ class PhotoRequest extends FormRequest
 {
     protected $rules = [
         'image_url' => 'required|max:31',
-        // 'image' => 'size:max:500000',
-        // 'image' => 'mimes:jpeg,png,bmp,gif,svg',
+
         'intro_cn' => 'max:250',
         'intro_en' => 'max:1500',
     ];
@@ -33,7 +32,7 @@ class PhotoRequest extends FormRequest
             }
             case 'PUT':
             case 'PATCH': {
-                $rules['image_url'] = 'nullable';
+                $rules['file'] = 'is_empty';
                 return $rules;
             }
         }
@@ -42,8 +41,9 @@ class PhotoRequest extends FormRequest
     public function messages()
     {
         return [
-            'image_url.required' => trans('admin_CRUD.is_must'),
-            'image_url.max' => trans('admin_CRUD.max_limit_31'),
+
+            'img_url.required' => trans('admin_CRUD.is_must'),
+            'img_url.max' => trans('admin_CRUD.max_limit_31'),
             // 'image.size',
 
             'intro_cn.max' => trans('admin_CRUD.max_limit_250_cn'),

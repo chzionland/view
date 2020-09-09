@@ -36,6 +36,7 @@ class PhotoController extends Controller
 
     public function store(PhotoRequest $request)
     {
+
         $validated = $request->validated();
 
         foreach ($validated['image_url'] as $image_url) {
