@@ -51,7 +51,10 @@
                 @foreach ($posts as $post)
                     <li class="">
                         <a href="{{ route('post', [$post->slug, app()->getLocale()]) }}" class="">
-                            {{ $post->title }} - {{ $post->sub_title }}
+                            {{ $post->title }}
+                            @if ($post->sub_title)
+                                - {{ $post->sub_title }}
+                            @endif
                         </a>
                     </li>
                 @endforeach
