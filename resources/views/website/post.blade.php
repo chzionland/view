@@ -42,9 +42,11 @@
     </div>
 </article>
 
+{{-- related posts --}}
 <div class="">
     <ul class="">
-        @php($posts = $post->category()->first()->posts()->where('is_publishe', '1')->get())
+        @php($category = $post->category()->first())
+        @php($posts = $category->posts()->orderBy('name', 'ASC')->where('is_publishe', '1')->get())
         @foreach ($posts as $post)
             <li class="">{{ $post->title }} - {{ $post->sub_title }}</li>
         @endforeach
