@@ -7,7 +7,7 @@
 
 @section('content')
 
-    {{-- TODO: make photo as livewire component --}}
+    <!-- TODO: livewire component -->
 
     {{-- <livewire:photos /> --}}
 
@@ -37,7 +37,7 @@
                             @endif
                         </div>
 
-                        <div class="text-orange-500">{{ __('admin_CRUD.support_png_jpg_jpeg') }}</div>
+                        <div class="text-orange-500">{{ __('admin_CRUD.supported_format_for_img') }}</div>
                         <div class="text-orange-500">{{ __('admin_CRUD.should_smaller_than_2M') }}</div>
 
                         <br>

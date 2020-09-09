@@ -180,7 +180,7 @@ return [
     'delete' => '删除',
     'select_image' => '请选择相片',
     'support_multi_photo' => '支持多图上传',
-    'support_png_jpg_jpeg' => '支持 png, jpg, jpeg 格式',
+    'supported_format_for_img' => '支持 png, jpg, jpeg,  格式',
     'should_smaller_than_2M' => '所有图片的大小之和不能超过 2M，否则会返回 403 错误！',
     'upload' => '上传',
 ];

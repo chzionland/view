@@ -11,6 +11,8 @@ class PhotoRequest extends FormRequest
 
         'intro_cn' => 'max:250',
         'intro_en' => 'max:1500',
+
+        'tag_id' => 'required',
     ];
 
     public function authorize()
@@ -32,7 +34,7 @@ class PhotoRequest extends FormRequest
             }
             case 'PUT':
             case 'PATCH': {
-                $rules['file'] = 'is_empty';
+                $rules['image_url'] = 'is_empty';
                 return $rules;
             }
         }
@@ -48,6 +50,8 @@ class PhotoRequest extends FormRequest
 
             'intro_cn.max' => trans('admin_CRUD.max_limit_250_cn'),
             'intro_en.max' => trans('admin_CRUD.max_limit_1500_en'),
+
+            'tag_id.required' => trans('admin_CRUD.is_must'),
         ];
     }
 }

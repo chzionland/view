@@ -53,7 +53,6 @@ class PhotoController extends Controller
             $photo->intro = ['cn' => $validated['intro_cn'], 'en' => $validated['intro_en']];
             $photo->is_published = $request->is_published;
             $save = $photo->save();
-
             $photo->tags()->sync($request->tag_id, true);
 
             if ($save) {
