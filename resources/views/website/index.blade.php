@@ -57,14 +57,17 @@
         @foreach ($posts as $post)
           <div class="post-preview">
             <a href="{{ route('post', [$post->slug, app()->getLocale()]) }}">
-              <h3 class="post-title text-center">{{ $post->title }}</h3>
-              <h4 class="post-subtitle text-center">{{ $post->sub_title }}</h4>
+              <h3 class="post-title">{{ $post->title }}</h3>
+              <h4 class="post-subtitle">{{ $post->sub_title }}</h4>
             </a>
             <div class="post-meta">
-                <p class="text-center">
-                    {{ __('website.created_on') }}&nbsp;{{ date('Y.m.d', strtotime($post->created_at)) }}
-                    @if (date('Y.m.d', strtotime($post->created_at)) != date('Y.m.d', strtotime($post->updated_at)))
-                        ,&nbsp;{{ __('website.updated_on') }}&nbsp;{{ date('Y.m.d', strtotime($post->updated_at)) }}
+                <p>
+                    @foreach ($post->authors as $author)
+                        {{ $author->name }},&nbsp;
+                    @endforeach
+                    {{ date('Y.m.d', strtotime($post->created_at)) }}
+                    @if ($post->category()->first())
+                        ,&nbsp;{{ __('website.category') }}:&nbsp;{{$post->category()->first()->name}}
                     @endif
                 </p>
 
