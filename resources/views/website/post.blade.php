@@ -19,15 +19,10 @@
                     @if (date('Y.m.d', strtotime($post->created_at)) != date('Y.m.d', strtotime($post->updated_at)))
                         ,&nbsp;{{ __('website.updated_on') }}&nbsp;{{ date('Y.m.d', strtotime($post->updated_at)) }}
                     @endif
+                    @if ($post->category()->first())
+                        ,&nbsp;{{ __('website.category') }}:&nbsp;{{$post->category()->first()->name}}
+                    @endif
                 </p>
-                @if (count($post->categories) > 0)
-                    <p class="post-category">
-                        {{ __('website.category') }}:&nbsp;
-                        @foreach ($post->categories as $category)
-                            <a class="text-white" href="{{ route('category', [$category->slug, app()->getLocale()]) }}">{{ $category->name }};</a>
-                        @endforeach
-                    </p>
-                @endif
             </div>
 
           </div>
