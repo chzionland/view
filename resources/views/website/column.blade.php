@@ -21,7 +21,10 @@
       <div class="col-lg-8 col-md-10 mx-auto">
 
         @foreach ($categories as $category)
-            <h2 class="column-title">{{ $category->name }}</h2>
+            <div class="">
+                <h2 class="column-title">{{ $category->name }}</h2>
+            </div>
+
             @php ($posts = $category->posts()->latest()->where('is_published', '1')->paginate(3))
             @foreach ($posts as $post)
                 <div class="post-preview">

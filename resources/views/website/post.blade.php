@@ -45,7 +45,10 @@
 
         {{-- related posts --}}
         <div class="row">
-            <h2 class="column-title">{{ trans('website.related_posts') }}</h2>
+            <div class="">
+                <h2 class="column-title">{{ trans('website.related_posts') }}</h2>
+            </div>
+
             <ul class="col-lg-8 col-md-10 mx-auto" style="list-style: none">
                 @php($category = $post->category()->first())
                 @php($posts = $category->posts()->orderBy('title', 'ASC')->where('is_published', '1')->get())
