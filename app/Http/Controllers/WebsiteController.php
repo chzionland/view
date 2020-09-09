@@ -43,10 +43,11 @@ class WebsiteController extends Controller
                 }
                 $posts->sortByDesc('created_at')->sortBy('created_at');
                 $posts = $this->paginate($posts);
-                return view('website.column', compact('title', 'column', 'posts', 'categories'));
+
             } else {
-                return view('website.column', compact('title', 'column', 'categories'));
+                $posts = null;
             }
+            return view('website.column', compact('title', 'column', 'posts', 'categories'));
         }
     }
 
