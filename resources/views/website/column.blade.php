@@ -30,7 +30,7 @@
                         <h4 class="post-subtitle">{{ $post->sub_title }}</h4>
                     </a>
                     <div class="post-meta">
-                        <p>{{ $post->admin->name}},&nbsp;{{ __('website.created_on') }}&nbsp;{{ date('Y.m.d', strtotime($post->created_at)) }}
+                        <p>{{ $post->author->name}},&nbsp;{{ __('website.created_on') }}&nbsp;{{ date('Y.m.d', strtotime($post->created_at)) }}
                         @if (date('Y.m.d', strtotime($post->created_at)) != date('Y.m.d', strtotime($post->updated_at)))
                             ,&nbsp;{{ __('website.updated_on') }}&nbsp;{{ date('Y.m.d', strtotime($post->updated_at)) }}
                         @endif
