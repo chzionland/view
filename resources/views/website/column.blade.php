@@ -21,8 +21,8 @@
       <div class="col-lg-8 col-md-10 mx-auto">
 
         @foreach ($categories as $category)
-            <h2>{{ $category->name }}</h2>
-            @php ($posts = $category->posts()->latest()->where('is_published', '1')->paginate(6))
+            <h2 class="column-title">{{ $category->name }}</h2>
+            @php ($posts = $category->posts()->latest()->where('is_published', '1')->paginate(3))
             @foreach ($posts as $post)
                 <div class="post-preview">
                     <a href="{{ route('post', [$post->slug, app()->getLocale()]) }}">
