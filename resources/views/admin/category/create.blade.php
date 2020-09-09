@@ -98,6 +98,7 @@
                     <div style="display: none" id="trans-select-column">
                         {{ trans('admin_CRUD.select_column') }}
                     </div>
+                    <br class="">
 
                     {{-- Publish Status --}}
                     <div class="form-group">

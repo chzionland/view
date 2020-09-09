@@ -237,6 +237,7 @@
                     <div style="display: none" id="category_belonging_id">
                         {{ $category_belonging_id }}
                     </div>
+                    <br class="">
 
                     {{-- Tag --}}
                     <div class="form-group @if($errors->has('tag_id')) has-error @endif">

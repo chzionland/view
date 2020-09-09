@@ -228,6 +228,7 @@
                         onclick="$('#category_id').val(null).trigger('change')"
                         class="text-blue-500 px-1 border rounded my-1"
                     >
+                    <br class="">
 
                     {{-- Tag --}}
                     <div class="form-group @if($errors->has('tag_id')) has-error @endif">

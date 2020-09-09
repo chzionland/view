@@ -107,6 +107,7 @@
                     <div style="display: none" id="column_belonging_id" >
                         {{ $column_belonging_id }}
                     </div>
+                    <br class="">
 
                     {{-- Publish Status --}}
                     <div class="form-group">

@@ -25,7 +25,7 @@
                 <h2 class="column-title">{{ $category->name }}</h2>
             </div>
 
-            @php ($posts = $category->posts()->latest()->where('is_published', '1')->paginate(3))
+            @php ($posts = $category->posts()->orderBy('is_top', 'DESC')->latest()->where('is_published', '1')->paginate(3))
             @foreach ($posts as $post)
                 <div class="post-preview">
                     <a href="{{ route('post', [$post->slug, app()->getLocale()]) }}">
