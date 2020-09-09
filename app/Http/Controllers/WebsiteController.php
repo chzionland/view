@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Post;
 
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+
 class WebsiteController extends Controller
 {
     public function index()
@@ -29,7 +33,21 @@ class WebsiteController extends Controller
         if ($column) {
             $title = $column->title;
             $categories = $column->categories()->where('is_published', '1')->get();
-            return view('website.column', compact('title', 'column', 'categories'));
+            if ($categories) {
+                $first_category = $categories->first();
+                $posts = $first_category->posts()->orderBy('is_top', 'DESC')->latest()->where('is_published', '1')->get();
+                foreach ($categories as $category) {
+                    $new_posts = $category->posts()->orderBy('is_top', 'DESC')->latest()->where('is_published', '1')->get();
+                    $merged_posts = $new_posts->merge($posts);
+                    $posts = $merged_posts;
+                }
+                $posts->sortBy('created_at');
+                $posts = $this->paginate($posts);
+            } else  {
+                $posts = null;
+            }
+            // dd($posts);
+            return view('website.column', compact('title', 'column', 'posts'));
         }
     }
 
@@ -49,5 +67,12 @@ class WebsiteController extends Controller
             $title = $page->title;
             return view('website.page', compact('title', 'page'));
         }
+    }
+
+    public function paginate($items, $perPage = 6, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 }
