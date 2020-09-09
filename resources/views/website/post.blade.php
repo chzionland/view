@@ -39,19 +39,21 @@
                 {!! $post->details !!}
             </div>
         </div>
-    </div>
-</article>
 
-{{-- related posts --}}
-<div class="">
-    <ul class="">
-        @php($category = $post->category()->first())
-        @php($posts = $category->posts()->orderBy('title', 'ASC')->where('is_published', '1')->get())
-        @foreach ($posts as $post)
-            <li class="">{{ $post->title }} - {{ $post->sub_title }}</li>
-        @endforeach
-    </ul>
-</div>
+        {{-- related posts --}}
+        <div class="row">
+            <ul class="">
+                @php($category = $post->category()->first())
+                @php($posts = $category->posts()->orderBy('title', 'ASC')->where('is_published', '1')->get())
+                @foreach ($posts as $post)
+                    <li class="">{{ $post->title }} - {{ $post->sub_title }}</li>
+                @endforeach
+            </ul>
+        </div>
+        </article>
+    </div>
+
+
 
 @endsection
 
