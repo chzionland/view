@@ -46,7 +46,6 @@ class WebsiteController extends Controller
             } else  {
                 $posts = null;
             }
-            // dd($posts);
             return view('website.column', compact('title', 'column', 'posts'));
         }
     }

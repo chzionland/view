@@ -20,7 +20,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
 
-        @if ($posts)
+        @if ($posts != null)
             {{-- <div class="">
                 <h2 class="column-title">{{ $category->name }}</h2>
             </div>
