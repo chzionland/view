@@ -57,8 +57,10 @@
         @foreach ($posts as $post)
           <div class="post-preview">
             <a href="{{ route('post', [$post->slug, app()->getLocale()]) }}">
-              <h3 class="post-title">{{ $post->title }}</h3>
-              <h4 class="post-subtitle">{{ $post->sub_title }}</h4>
+                <h3 class="post-title">{{ $post->title }}</h3>
+                @if ($post->sub_title)
+                <h4 class="post-subtitle"> -- {{ $post->sub_title }}</h4>
+                @endif
             </a>
             <div class="post-meta">
                 <p>

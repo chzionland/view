@@ -288,12 +288,6 @@ header.masthead .post-heading .meta a {
   }
 }
 
-.container .column-title {
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-}
-
 .container .row p {
     margin: 1.5rem auto;
 }
@@ -314,7 +308,7 @@ header.masthead .post-heading .meta a {
 }
 
 .post-preview > a > .post-subtitle {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 300;
   margin: 0 0 10px;
 }
@@ -341,7 +335,7 @@ header.masthead .post-heading .meta a {
     font-size: 1.2rem;
   }
   .post-preview > a > .post-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   .post-preview > .post-meta {
     font-size: 1rem;
