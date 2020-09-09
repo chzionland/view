@@ -10,8 +10,10 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
             {{-- <h1></h1> --}}
-            <span class="subheading mt-4" style="line-height: 1.5">{{ __('website.sub_title') }}</span>
-          </div>
+            <span class="subheading mt-4" style="line-height: 1.5">{{ __('website.title') }}</span>
+            <span class="subheading mt-4" style="line-height: 1.5 text-align: left">{{ __('website.sub_title') }}</span>
+
+        </div>
         </div>
       </div>
     </div>

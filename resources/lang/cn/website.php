@@ -10,7 +10,8 @@ return [
     'owner_site' => '公司主页',
 
     # index
-    'sub_title' => '不忘昨天苦难辉煌, 不悔今天使命担当, 不负明天光荣梦想',
+    'title' => '不忘昨天苦难辉煌, 不悔今天使命担当, 不负明天光荣梦想',
+    'sub_title' => '——《南德视界》复刊词',
     'created_on' => '创建于',
     'updated_on' => '更新于',
     'category' => '类别',
