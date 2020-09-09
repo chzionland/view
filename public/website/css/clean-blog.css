@@ -328,7 +328,7 @@ header.masthead .post-heading .meta a {
 
 @media only screen and (min-width: 768px) {
   .post-preview > a > .post-title {
-    font-size: 1.75rem;
+    font-size: 1.2rem;
   }
   .post-preview > a > .post-subtitle {
     font-size: 1.5rem;
