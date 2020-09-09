@@ -29,7 +29,7 @@ h6 {
   font-family: 'Noto Sans SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-.h1, h1 {
+/* .h1, h1 {
     font-size: 2rem;
 }
 .h2, h2 {
@@ -46,7 +46,7 @@ h6 {
 }
 .h6, h6 {
     font-size: 1.1rem;
-}
+} */
 
 a {
   color: #212529;
