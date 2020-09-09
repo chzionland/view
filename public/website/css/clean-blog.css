@@ -294,6 +294,10 @@ header.masthead .post-heading .meta a {
     font-size: 1rem;
 }
 
+.container p {
+    margin: 10px auto;
+}
+
 .post-preview > a {
   color: #212529;
 }
