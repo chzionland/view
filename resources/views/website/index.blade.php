@@ -59,7 +59,7 @@
             <a href="{{ route('post', [$post->slug, app()->getLocale()]) }}">
                 <h3 class="post-title">{{ $post->title }}</h3>
                 @if ($post->sub_title)
-                <h4 class="post-subtitle"> -- {{ $post->sub_title }}</h4>
+                <h4 class="post-subtitle"> - {{ $post->sub_title }}</h4>
                 @endif
             </a>
             <div class="post-meta">
