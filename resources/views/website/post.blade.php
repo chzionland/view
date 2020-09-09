@@ -41,19 +41,21 @@
         </div>
 
         {{-- related posts --}}
-        <div class="row">
-            <ul class="">
+        <div class="row" style="list-style: none">
+            <ul class="col-lg-8 col-md-10 mx-auto">
                 @php($category = $post->category()->first())
                 @php($posts = $category->posts()->orderBy('title', 'ASC')->where('is_published', '1')->get())
                 @foreach ($posts as $post)
-                    <li class="">{{ $post->title }} - {{ $post->sub_title }}</li>
+                    <li class="">
+                        <a href="{{ route('post', [$post->slug, app()->getLocale()]) }}" class="">
+                            {{ $post->title }} - {{ $post->sub_title }}
+                        </a>
+                    </li>
                 @endforeach
             </ul>
         </div>
         </article>
     </div>
-
-
 
 @endsection
 
