@@ -42,6 +42,15 @@
     </div>
 </article>
 
+<div class="">
+    <ul class="">
+        @php($posts = $post->category()->first()->posts()->where('is_publishe', '1')->get())
+        @foreach ($posts as $post)
+            <li class="">{{ $post->title }} - {{ $post->sub_title }}</li>
+        @endforeach
+    </ul>
+</div>
+
 @endsection
 
 
