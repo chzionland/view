@@ -46,7 +46,7 @@
 
             <!-- Pager -->
             <br>
-            <div class="clearfix mt-4">
+            <div class="clearfix mt-4" style="text-align: center; ali">
                 {{ $posts->links() }}
             </div>
             <br>
