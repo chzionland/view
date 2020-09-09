@@ -14,11 +14,10 @@
 
             <div class="post-meta" style="opacity: 0.8">
                 <p>
-                    {{-- {{ $post->admin->name}},&nbsp; --}}
-                    {{ __('website.created_on') }}&nbsp;{{ date('Y.m.d', strtotime($post->created_at)) }}
-                    @if (date('Y.m.d', strtotime($post->created_at)) != date('Y.m.d', strtotime($post->updated_at)))
-                        ,&nbsp;{{ __('website.updated_on') }}&nbsp;{{ date('Y.m.d', strtotime($post->updated_at)) }}
-                    @endif
+                    @foreach ($post->authors as $author)
+                        {{ $author->name }},&nbsp;
+                    @endforeach
+                    {{ date('Y.m.d', strtotime($post->created_at)) }}
                     @if ($post->category()->first())
                         ,&nbsp;{{ __('website.category') }}:&nbsp;{{$post->category()->first()->name}}
                     @endif

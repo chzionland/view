@@ -32,7 +32,7 @@
                     <div class="post-meta">
                         <p>
                             @foreach ($post->authors as $author)
-                                {{ $author->name }},
+                                {{ $author->name }},&nbsp;
                             @endforeach
                             {{ date('Y.m.d', strtotime($post->created_at)) }}
                         </p>
