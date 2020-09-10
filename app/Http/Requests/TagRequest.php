@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 
 class TagRequest extends FormRequest
 {
-    // TODO: Regex
     protected $rules = [
         'name_cn' => 'required|max:15|unique:tags,name->cn',
         'name_en' => "required|max:63|unique:tags,name->en",

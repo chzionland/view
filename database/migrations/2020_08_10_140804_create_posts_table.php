@@ -13,12 +13,14 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
+        // TODO: need add more statistics data such as visits
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-
             $table->unsignedBigInteger('admin_id');
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+
+            # belongsTo: Category
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
@@ -40,6 +42,8 @@ class CreatePostsTable extends Migration
             $table->string('post_type');
 
             $table->enum('is_published', ['0', '1']);
+
+            # Many to Many: [Author, Tag]
         });
     }
 

@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 
 class AuthorRequest extends FormRequest
 {
+    // TODO: need more validation such as regex rules for all Request
     protected $rules = [
         'thumbnail' => 'nullable|url|max:255',
 
@@ -18,6 +19,7 @@ class AuthorRequest extends FormRequest
         'intro_en' => 'max:1500',
     ];
 
+    // TODO: need more cearfull prepareForValidation for all Request
     protected function prepareForValidation()
     {
         $this->name_cn = trim($this->name_cn);

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
+# TODO: For user auth
 // # User
 // Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
@@ -23,6 +25,7 @@ Route::prefix('admin')->group(function () {
     # No register, only can add admin in tinker for safe consideration
 
     # Reset password
+    # TODO: need debug
     // Route::get('/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
     // Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
     // Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');

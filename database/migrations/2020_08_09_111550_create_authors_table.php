@@ -16,7 +16,6 @@ class CreateAuthorsTable extends Migration
         Schema::create('authors', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-
             $table->unsignedBigInteger('admin_id');
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
 
@@ -26,6 +25,8 @@ class CreateAuthorsTable extends Migration
             $table->text('intro')->nullable();   # translatable
 
             $table->enum('is_published', ['0', '1']);
+
+            # Many to Many: Post
         });
     }
 

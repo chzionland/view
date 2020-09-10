@@ -14,6 +14,7 @@
             </div>
             <br>
 
+            <!-- TODO: need re design -->
             <div class="card">
                 <div class="card-header bg-primary text-light">
                     {{ __('admin_CRUD.latest_posts') }}

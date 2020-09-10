@@ -16,12 +16,13 @@ class CreateTagsTable extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-
             $table->unsignedBigInteger('admin_id');
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
 
             $table->string('name')->unique();    # translatable
             $table->string('slug')->unique();
+
+            # Many to Many: [Post, Photo]
         });
     }
 

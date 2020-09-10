@@ -8,7 +8,9 @@ use Spatie\Translatable\HasTranslations;
 class Photo extends Model
 {
     use HasTranslations;
+
     protected $fillable = ['admin_id', 'image_url', 'intro', 'is_published'];
+
     public $translatable = ['intro'];
 
     public function admin()
