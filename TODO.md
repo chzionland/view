@@ -14,4 +14,4 @@
 
 ## Front End
 
-- Rebuilt with Vue
+- Rebuild with Vue
