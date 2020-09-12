@@ -43,6 +43,7 @@ class WebsiteController extends Controller
                 }
                 $posts->sortByDesc('is_top')->sortByDesc('created_at');
                 $posts = $this->paginate($posts);
+                // dd($posts);
             } else {
                 $posts = null;
             }
