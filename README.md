@@ -75,10 +75,10 @@ php artisan config:cache
 ```
 
 - Mail setup
-    - visit <htps://mailtrap.io/>
-    - put laravel mail credentials in `.env` file 
+  - visit <htps://mailtrap.io/>
+  - put laravel mail credentials in `.env` file
 
-- Serve 
+- Serve
 
 ```bash
 php artisan serve
