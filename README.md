@@ -1,16 +1,24 @@
+# README
+
 ## How it was Built
 
-- [Blog Website (Admin)](https://www.sheldonl.com/2020/08/08/00.md)
+- [Laravel Blog (Admin)](https://www.sheldonl.com/2020/08/08/00.html)
 
-- [Blog Website (App Config)](https://www.sheldonl.com/2020/08/09/00.md)
+- [Laravel Blog (App Config)](https://www.sheldonl.com/2020/08/09/00.html)
 
-- [Blog Website (CMS)](https://www.sheldonl.com/2020/08/11/00.md)
+- [Laravel Blog (CMS-Model)](https://www.sheldonl.com/2020/09/10/00.html)
 
-- [Blog Website (Front End)](https://www.sheldonl.com/2020/08/24/00.md)
+- [Laravel Blog (CMS-Validation)](https://www.sheldonl.com/2020/09/10/01.html)
+
+- [Laravel Blog (CMS-Routs, Controller and Storage)](https://www.sheldonl.com/2020/09/10/02.html)
+
+- [Laravel Blog (CMS-View)](https://www.sheldonl.com/2020/09/10/03.html)
+
+- [Laravel Blog (Front End)](https://www.sheldonl.com/2020/08/24/00.md)
 
 ## How to Deploy
 
-- [Blog Website (Deployment)](https://www.sheldonl.com/2020/08/27/00.md)
+- [Laravel Blog (Deployment)](https://www.sheldonl.com/2020/08/27/00.md)
 
 ## How to Run Locally
 
