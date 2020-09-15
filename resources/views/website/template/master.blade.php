@@ -95,7 +95,7 @@
             </a>
           </li>
 
-          @php ($columns = getColumns())
+          @php ($columns = getColumns()) @endphp
           @foreach ($columns as $column)
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('column', [$column->slug, app()->getLocale()]) }}">
@@ -104,7 +104,7 @@
             </li>
           @endforeach
 
-          @php ($pages = getPages())
+          @php ($pages = getPages()) @endphp
           @foreach ($pages as $page)
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('page', [$page->slug, app()->getLocale()]) }}">
@@ -133,7 +133,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
 
           <p class="copyright text-muted">
-              {{ __('website.copyright') }} &copy; {{ __('website.owner') }}&nbsp;{{ date("Y") }}
+              {{ __('website.owner') }} &copy; {{ date("Y") }}
               <br>
               <a class="text-decoration-none" href="https://www.qizhong.land" target="_blank" style="color: #0085a1">
                 {{ __('website.owner_site') }}&nbsp;<i class="fas fa-external-link-alt fa-xs"></i>
