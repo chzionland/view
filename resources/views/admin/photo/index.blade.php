@@ -20,7 +20,7 @@
                     <th scope="col" width="80">{{ __('admin_CRUD.tags') }}</th>
                     <th scope="col" width="10">{{ __('admin_CRUD.uploaded_by') }}</th>
                     <th scope="col" width="10">{{ __('admin_CRUD.uploaded_at') }}</th>
-                    <th scope="col" width="10">{{ __('admin_CRUD.is_published') }}</th>
+                    <th scope="col" width="10">{{ __('admin_CRUD.publish_statuss') }}</th>
                     <th scope="col" width="10">{{ __('admin_CRUD.edit_delete') }}</th>
                 </tr>
             </thead>
