@@ -95,7 +95,7 @@
             </a>
           </li>
 
-          @php ($columns = getColumns()) @endphp
+          @php $columns = getColumns() @endphp
           @foreach ($columns as $column)
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('column', [$column->slug, app()->getLocale()]) }}">
@@ -104,7 +104,7 @@
             </li>
           @endforeach
 
-          @php ($pages = getPages()) @endphp
+          @php $pages = getPages() @endphp
           @foreach ($pages as $page)
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('page', [$page->slug, app()->getLocale()]) }}">

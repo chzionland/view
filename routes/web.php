@@ -49,7 +49,6 @@ Route::group(['prefix' => '{locale?}'], function() {
     Route::get('column/{slug}', 'WebsiteController@column')->name('column');
     Route::get('post/{slug}', 'WebsiteController@post')->name('post');
     Route::get('page/{slug}', 'WebsiteController@page')->name('page');
-    // Route::get('news/{slug}', 'WebsiteController@news')->name('news');
 });
 
 
