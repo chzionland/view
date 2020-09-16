@@ -50,8 +50,8 @@
             </div>
 
             <ul class="col-lg-8 col-md-10 mx-auto" style="list-style: none">
-                @php($category = $post->category()->first())
-                @php($posts = $category->posts()->orderBy('title', 'ASC')->where('is_published', '1')->get())
+                @php($category = $post->category()->first())@endphp
+                @php($posts = $category->posts()->orderBy('title', 'ASC')->where('is_published', '1')->get())@endphp
                 @foreach ($posts as $post)
                     <li class="">
                         <a href="{{ route('post', [$post->slug, app()->getLocale()]) }}" class="">
