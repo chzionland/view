@@ -18,8 +18,8 @@
                         {{ $author->name }},&nbsp;
                     @endforeach
                     {{ date('Y.m.d', strtotime($post->created_at)) }}
-                    @if ($post->category()->first())
-                        ,&nbsp;{{ __('website.category') }}:&nbsp;{{$post->category()->first()->name}}
+                    @if ($post->category()->first()->category()->first())
+                        ,&nbsp;{{ __('website.category') }}:&nbsp;{{$post->category()->first()->category()->first()->name}}
                     @endif
                 </p>
             </div>
