@@ -1,5 +1,7 @@
 # README
 
+This is a content management system build with PHP.
+
 ## How it was Built
 
 - [Laravel Blog (Admin)](https://www.sheldonl.com/2020/08/08/00.html)
